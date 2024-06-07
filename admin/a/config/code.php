@@ -33,6 +33,12 @@ switch ($action){
 		include '../content/form.php';
 	break;
 
+	case 'get_secondary_form_with_id':
+		$page=$_POST['page'];
+		$ids=$_POST['ids'];
+		include '../content/form.php';
+	break;
+
 	case 'get_detail':
 		$ids=$_POST['ids'];
 		$page=$_POST['page'];

@@ -138,14 +138,18 @@ cursor:pointer;
 	background: rgba(0,0,0,.8);
 	z-index:900;
 	display:none;
+	top: 0;
+	left: 0;
 }
 #get-more-div-secondary{
-	width:100%;
-	height:100%;
-	position:fixed;
-	background: rgba(0,0,0,.8);
-	z-index:920;
-	display:none;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background: rgba(0, 0, 0, 0.8);
+	z-index: 950;
+	display: none;
+	top: 0;
+	left: 0;
 }
 
 .ajax-loader{
@@ -201,6 +205,7 @@ cursor:pointer;
 	left: 30%;
 	top: 40%;
 	width: 100px;
+	background: none;
 }
 
 
@@ -771,20 +776,36 @@ transition:all 0.2s ease-in 0.2s;
 
 /*--------------------------------------------------------------------------------------------------*/
 .caption-div{
-	margin:100px auto;
 	width:500px;
 	min-height:200px;
 	background:#FFF;
 	border-radius:7px;
 	overflow:hidden;
+	display: flex;
+	flex-direction: column;
 }
 .caption-div .title-div{
+    width: calc(100% - 40px);
 	font-size:15px;
 	height:30px;
-	padding:10px;
+	padding:10px 20px;
 	background: var(--white-color);
-	line-height:30px;	
-	border-radius:7px 7px 0px 0px;
+	color: var(--sub-body-color);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.caption-div .select-title{
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+}
+
+
+.caption-div .title-div .title-text{
+    font-size: 15px;
+	font-family: sub-title-font;
 	color: var(--sub-body-color);
 }
 
@@ -794,11 +815,12 @@ transition:all 0.2s ease-in 0.2s;
 	border: none;
 	background-color: var(--close-color);
 	font-size: 15px;
-	float: right;
 	cursor: pointer;
 	font-weight: bold;
 	color: var(--white-color);
 	border-radius: 25px;
+	display: flex;
+	justify-content: center;
 	align-items: center;
 	transition:all 0.2s ease-in 0.2s;
 	-moz-transition:all 0.2s ease-in 0.2s;
@@ -815,7 +837,7 @@ transition:all 0.2s ease-in 0.2s;
 }
 
 .caption-div .div-in{
-	padding:20px 40px 40px 40px;
+	padding:15px 40px 40px 40px;
 }
 
 
@@ -828,12 +850,13 @@ transition:all 0.2s ease-in 0.2s;
 	color:#F00;
 	font-size:16px;
 }
+
 .caption-div .div-in .text_field{
 	margin-bottom:10px;
 	border-radius:5px;
 	border:#CCC 1px solid;
 	padding:15px 5% 15px 5%;
-	width:100%;
+	width:90%;
 	font-size:13px;
 	font-family:body-font;
 	color:var(--sub-body-color);

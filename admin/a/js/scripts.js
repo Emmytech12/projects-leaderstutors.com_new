@@ -85,6 +85,9 @@ function _alert_close() {
   $("#get-more-div").fadeOut(300);
 }
 
+function _alert_secondary_close() {
+  $("#get-more-div-secondary").fadeOut(300);
+}
 
 function _alert_close2() {
   $("#get-more-div").fadeOut(300);
@@ -198,7 +201,14 @@ function _get_page_with_id(page, ids, other_ids, other_ids1, other_ids2) {
 
 
 function _get_form(page) {
-  $("#get-more-div").html('<div class="ajax-loader"><img src="' +website_url +'/all-images/images/ajax-loader.gif"/></div>').fadeIn("fast");
+  $("#get-more-div")
+  .html('<div class="ajax-loader"><img src="'+website_url+'/all-images/images/ajax-loader.gif"/></div>')
+  .css({
+      'display': 'flex',
+      'justify-content': 'center',
+      'align-items': 'center'
+  })
+  .fadeIn(500);
   var action = "get_form";
   var dataString = "action=" + action + "&page=" + page;
   $.ajax({
@@ -214,7 +224,14 @@ function _get_form(page) {
 
 
 function _get_form_with_id(page, ids, other_ids, other_ids1, other_ids2) {
-  $("#get-more-div").html('<div class="ajax-loader"><img src="'+website_url+'/all-images/images/ajax-loader.gif"/></div>').fadeIn(500);
+  $("#get-more-div")
+  .html('<div class="ajax-loader"><img src="'+website_url+'/all-images/images/ajax-loader.gif"/></div>')
+  .css({
+      'display': 'flex',
+      'justify-content': 'center',
+      'align-items': 'center'
+  })
+  .fadeIn(500);
   var action = "get_form_with_id";
   var dataString = "action=" + action + "&page=" + page + "&ids=" + ids + "&other_ids=" + other_ids + "&other_ids1=" + other_ids1 + "&other_ids2=" + other_ids2;
   $.ajax({
@@ -230,11 +247,35 @@ function _get_form_with_id(page, ids, other_ids, other_ids1, other_ids2) {
 
 
 
+
+function _get_secondary_form_with_id(page, ids) {
+  $("#get-more-div-secondary")
+    .html('<div class="ajax-loader"><img src="'+website_url+'/all-images/images/ajax-loader.gif"/></div>')
+    .css({
+        'display': 'flex',
+        'justify-content': 'center',
+        'align-items': 'center'
+    })
+    .fadeIn(500);
+  var action = "get_secondary_form_with_id";
+  var dataString = "action=" + action + "&page=" + page + "&ids=" + ids;
+  $.ajax({
+    type: "POST",
+    url: admin_local_portal_url,
+    data: dataString,
+    cache: false,
+    success: function (html) {
+      $("#get-more-div-secondary").html(html);
+    },
+  });
+}
+
+
 function _get_page_contents(page, actid, ids) {
 	if (page == '') {
 		//do nothing
 	} else {
-		$('#main_page_contents, #quiz_question_page').removeClass('active-li');
+		$('#main_page_contents, #quiz_question_page, #load_questions_manu_page').removeClass('active-li');
 		$('#' + actid).addClass('active-li');
 		
 			$('#get_page_details').html('<div class="ajax-loader cbt-ajax-loader"><img src="all-images/images/ajax-loader2.gif"/></div>').fadeIn(500);

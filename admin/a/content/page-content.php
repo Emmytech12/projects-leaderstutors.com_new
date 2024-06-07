@@ -502,7 +502,7 @@
 
 
 <?php if ($page=='video_page'){ ?>
-    <div class="alert alert-success"> <i class="bi-book"></i></span> TUTORIAL / <span id="tutorial_department_name">xxxx</span> / <span id="tutorial_class_name">xxxx</span> / <span id="tutorial_subject_name">xxxx</span> /  <span id="tutorial_term_name">xxxx</span> / VIDEO'S LIST <button class="btn" onClick="_get_form()"><i class="bi-plus-square"></i> TERMINAL EXAM</button></div>
+    <div class="alert alert-success"> <i class="bi-book"></i></span> TUTORIAL / <span id="tutorial_department_name">xxxx</span> / <span id="tutorial_class_name">xxxx</span> / <span id="tutorial_subject_name">xxxx</span> /  <span id="tutorial_term_name">xxxx</span> / VIDEO'S LIST <button class="btn" onClick="_get_form('cbt_page_details')"><i class="bi-plus-square"></i> TERMINAL EXAM</button></div>
            	
         <div class="faq-back-div">
             <div class="fetch" id="fetch_tutorial_video_page">

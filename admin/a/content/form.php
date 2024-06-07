@@ -549,7 +549,7 @@
 
 <?php if ($page=='select_class_form'){?>
 	<div class="caption-div animated zoomIn">
-        <div  class="title-div"><button class="close-btn" onclick="_alert_close()"><i class="bi-x-lg"></i></button></div>
+        <div  class="title-div select-title"><button class="close-btn" onclick="_alert_close()"><i class="bi-x-lg"></i></button></div>
         <div class="div-in animated fadeInRight">
             <div class="alert alert-success"> Hi, You are about to view <strong><span>Tutorial</span></strong> videos. <br/> Kindly select <strong>department</strong> & <strong>Class</strong> to Continue.</div>
 
@@ -1699,475 +1699,743 @@
     <div class="cbt-creation-panel">
         <div class="side-bar">
             <div class="div-in">
-                <div class="details-back-div">
-                    <div class="video-div">      
-                        <div id="view_sub_topic_video" class="video-container">
-                            <video src="<?php echo $website_url?>/admin/a/all-images/body-pix/video-slide.mp4" id="videoDisplay" name="sub_video" controls="controls" loop="" class="video-slide"></video>
-                        </div>
-                        <input name="sub_video" id="video" onchange="showVideo(this)" type="file" style="display:none;">
-
-
-                        <script>     
-                            var videoDisplay = document.getElementById('videoDisplay');
-                            var videoInput = document.getElementById('video');
-                            var legendElement = document.querySelector('legend');
-                            
-                            // Add click event listener to the legend element
-                            legendElement.addEventListener('click', function () {
-                                videoInput.click();
-                            });
-                        
-                            videoInput.addEventListener('change', function () {
-                                showVideo(this);
-                            });
-                        
-                            function showVideo(input) {
-                                var videoDisplay = document.getElementById('videoDisplay');
-                                var videoBackground = document.getElementById('video-background');
-                        
-                                if (input.files && input.files[0]) {
-                                    var reader = new FileReader();
-                                    reader.onload = function (e) {
-                                        videoDisplay.src = e.target.result;
-                                        videoBackground.style.display = 'none'; // Hide the default background image
-                                        videoDisplay.style.display = 'block'; // Show the video
-                                    };
-                                    reader.readAsDataURL(input.files[0]);
-                                }
-                            }
-                        </script>
-                    </div>
-
-                    <div class="text-div">
-                        <div class="list-back-div">
-                            <div class="list-div">
-                                <div><i class="bi-buildings"></i> Department:</div>
-                                <div><span>Junior</span></div>
-                            </div>
-
-                            <div class="list-div">
-                                <div><i class="bi-book"></i> Class:</div>
-                                <div><span>Jss 1</span></div>
-                            </div>
-
-                            <div class="list-div">
-                                <div><i class="bi-book"></i> Subject:</div>
-                                <div><span>Mathematics</span></div>
-                            </div>
-
-                            <div class="list-div">
-                                <div><i class="bi-book"></i> Week:</div>
-                                <div><span>Week 1</span></div>
-                            </div>
-
-                            <div class="list-div">
-                                <div><i class="bi-book"></i> Topic:</div>
-                                <div><span>HCM</span></div>
-                            </div>
-
-                            <div class="list-div no-border">
-                                <div><i class="bi-clock"></i> Class Duration:</div>
-                                <div><span>00:01:04</span></div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="video-div">
+                    <video src="<?php echo $website_url?>/admin/a/all-images/body-pix/video-slide.mp4" id="videoDisplay" name="sub_video" controls="controls" loop="" class="video-slide"></video>
                 </div>
+
+                <div class="text-div">
+                    
+                    <div class="list-div">
+                        <div><i class="bi-buildings"></i> Department:</div>
+                        <span>Junior</span>
+                    </div>
+
+                    <div class="list-div">
+                        <div><i class="bi-book"></i> Class:</div>
+                        <span>Jss 1</span>
+                    </div>
+
+                    <div class="list-div">
+                        <div><i class="bi-book"></i> Subject:</div>
+                        <span>Mathematics</span>
+                    </div>
+
+                    <div class="list-div">
+                        <div><i class="bi-book"></i> Week:</div>
+                        <span>Week 1</span>
+                    </div>
+
+                    <div class="list-div">
+                        <div><i class="bi-book"></i> Topic:</div>
+                       <span>HCM</span>
+                    </div>
+
+                    <div class="list-div no-border">
+                        <div><i class="bi-clock"></i> Class Duration:</div>
+                        <span>00:01:04</span>
+                    </div>
+                    
+                </div>
+               
             </div>
         </div>
 
-        <div class="title-div">
-            <div class="div-in">
-                <div class="left-div">
-                    <ul>
-                        <li class="active-li" id="main_page_contents" onclick="_get_page_contents('question_bank_details','main_page_contents','')">Question Bank </li>
-                        <li id="quiz_question_page" onclick="_get_page_contents('quiz_question','quiz_question_page','')">Quiz Question</li>
-                        <li id="" onclick="_get_page_contents()">Load Question Manually</li>
-                        <li id="" onclick="_get_page_contents()">Load Question Automatically</li>
-                    </ul>
-                </div>
-
-                <div class="btn-div">
-                    <button class="close-btn" onclick="_alert_close()"><i class="bi-x-lg"></i></button>
-                </div>             
+        <div class="cbt-content-div">   
+            <div class="title-div">
+                <ul>
+                    <li class="active-li" title="Question Bank" id="main_page_contents" onclick="_get_page_contents('question_bank_details','main_page_contents','')">Question Bank </li>
+                    <li title="Quiz Questions" id="quiz_question_page" onclick="_get_page_contents('quiz_question','quiz_question_page','')">Quiz Questions</li>
+                    <li title="Load Question Manually" id="load_questions_manu_page" onclick="_get_page_contents('load_questions_manually','load_questions_manu_page','')">Load Questions Manually</li>
+                    <li title="Load Question Automatically" id="" onclick="_get_page_contents()">Load Questions Automatically</li>
+                </ul>
+                <button class="close-btn" onclick="_alert_close()" title="Close"><i class="bi-x-lg"></i></button> 
             </div>
-        </div>
-
-        <div class="main-page-content sb-container">
-            <div class="div-in">
-                <div id="get_page_details">
-
-                    <div class="page-back-div">
-                        <div class="top-div">
-                            <div class="check-div">
-                                <label for="">
-                                    <input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY">
-                                    <span>All Questions</span>
-                                </label>      
-                            </div>
-
-                            <div class="btn-div">
-                                <button class="activate-btn"><i class="bi-check2-circle"></i> Activate</button>
-                                <button class="activate-btn delete-btn"><i class="bi-trash"></i> Delete</button>
-                            </div> 
+            
+            <div id="get_page_details">
+                <div class="question-back-div">
+                    <div class="top-div">
+                        <label>
+                            <input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY">
+                            <span>All Questions</span>
+                        </label>
+                        <div>
+                            <button class="btn" title="Activate Question(s)"><i class="bi-check2-circle"></i> Set Question As Quiz</button>
+                            <button class="btn delete" title="Delete Question(s)"><i class="bi-trash"></i> Delete</button>
                         </div>
-                        
-                        <div class="main-pg-div">
-                            <div class="question-div">
-                                <div class="top-div">
-                                    <div class="check-div">
-                                        <label for="">
-                                            <input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY">
-                                            <span>Question 1</span>
-                                        </label>      
-                                    </div>
+                    </div>
 
-                                    <div class="btn-div">
-                                        <button class="btn"><i class="bi-pencil-square"></i> Edit</button>
-                                    </div> 
+                    <div class="question-body-div">
+
+                        <div class="question-div">
+                            <div class="div-in">
+                                <div class="check-div">
+                                    <label>
+                                        <input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY">
+                                        <span>Question 1</span>
+                                    </label>
+                                    <button class="btn" title="Edit Question"><i class="bi-pencil-square"></i> Edit</button>
                                 </div>
 
-                                <div class="question-list-back-div">
-                                    <div class="question-list">
-                                        <p>_______ is an electronics Computer</p>  
-                                    </div>
+                                <div class="each-question">
+                                    <div class="text-div">
+                                        <div><p>______________ is an electronic machine that accept data, process data and provide output.</p></div>
+                                        <div class="options-div">
+                                            
+                                            <div class="each-option">
+                                                <div class="letter">A</div>
+                                                <div>House</div>
+                                            </div>
 
-                                    <div class="question-list">
-                                        <p><span>A</span> Computer</p>  
+                                            <div class="each-option correct-option">
+                                                <div class="letter">B</div>
+
+                                                <div>House</div>
+                                            </div>
+
+                                            <div class="each-option">
+                                                <div class="letter">C</div>
+
+                                                <div>House</div>
+                                            </div>
+
+                                            <div class="each-option">
+                                                <div class="letter">D</div>
+                                                <div>House</div>
+                                            </div>
+                                            
+                                        </div>
                                     </div>
-                                    <div class="question-list">
-                                        <p><span>B</span> Computer</p>  
-                                    </div>
-                                    <div class="question-list answer">
-                                        <p><span>C</span> Computer</p>  
-                                    </div>
-                                        
-                                    <div class="question-list">
-                                        <p><span>D</span> Chair</p>  
-                                    </div>                
                                 </div>
+                                
                             </div>
+                        </div>
 
-                            <div class="question-div">
-                                <div class="top-div">
-                                    <div class="check-div">
-                                        <label for="">
-                                            <input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY">
-                                            <span>Question 2</span>
-                                        </label>      
-                                    </div>
-
-                                    <div class="btn-div">
-                                        <button class="btn"><i class="bi-pencil-square"></i> Edit</button>
-                                    </div> 
+                        <div class="question-div">
+                            <div class="div-in">
+                                <div class="check-div">
+                                    <label>
+                                        <input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY">
+                                        <span>Question 2</span>
+                                    </label>
+                                    <button class="btn" title="Edit Question"><i class="bi-pencil-square"></i> Edit</button>
                                 </div>
 
-                                <div class="question-list-back-div">
-                                    <div class="question-list">
-                                        <p>What is the name of anything?</p>  
-                                    </div>
+                                <div class="each-question">
+                                    <div class="pix-div"><img src="all-images/body-pix/computer.png" alt="Computer"/></div>
+                                    <div class="text-div">
+                                        <div><p>______________ is an electronic machine that accept data, process data and provide output.</p></div>
+                                        <div class="options-div">
+                                            
+                                            <div class="each-option">
+                                                <div class="letter">A</div>
+                                                <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                                <div>House</div>
+                                            </div>
 
-                                    <div class="question-list answer">
-                                        <p><span>A</span> Noun</p>  
+                                            <div class="each-option">
+                                                <div class="letter">B</div>
+                                                <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                                <div>House</div>
+                                            </div>
+
+                                            <div class="each-option">
+                                                <div class="letter">C</div>
+                                                <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                                <div>House</div>
+                                            </div>
+
+                                            <div class="each-option">
+                                                <div class="letter">D</div>
+                                                <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                                <div>House</div>
+                                            </div>
+                                            
+                                        </div>
                                     </div>
-                                    <div class="question-list">
-                                        <p><span>B</span> Pronoun</p>  
-                                    </div>
-                                    <div class="question-list">
-                                        <p><span>C</span> Verb</p>  
-                                    </div>
-                                        
-                                    <div class="question-list">
-                                        <p><span>D</span> Adverb</p>  
-                                    </div>                
                                 </div>
+                                
                             </div>
+                        </div>
 
-                            <div class="question-div">
-                                <div class="top-div">
-                                    <div class="check-div">
-                                        <label for="">
-                                            <input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY">
-                                            <span>Question 3</span>
-                                        </label>      
-                                    </div>
-
-                                    <div class="btn-div">
-                                        <button class="btn"><i class="bi-pencil-square"></i> Edit</button>
-                                    </div> 
+                        <div class="question-div">
+                            <div class="div-in">
+                                <div class="check-div">
+                                    <label>
+                                        <input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY">
+                                        <span>Question 3</span>
+                                    </label>
+                                    <button class="btn" title="Edit Question"><i class="bi-pencil-square"></i> Edit</button>
                                 </div>
 
-                                <div class="question-list-back-div">
-                                    <div class="question-list">
-                                        <p>______ is an action words?</p>  
-                                    </div>
+                                <div class="each-question">
+                                    <div class="text-div">
+                                        <div><p>______________ is an electronic machine that accept data, process data and provide output.</p></div>
+                                        <div class="options-div">
+                                            
+                                            <div class="each-option">
+                                                <div class="letter">A</div>
+                                                <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                                <div>House</div>
+                                            </div>
 
-                                    <div class="question-list">
-                                        <p><span>A</span> Noun</p>  
+                                            <div class="each-option">
+                                                <div class="letter">B</div>
+                                                <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                                <div>House</div>
+                                            </div>
+
+                                            <div class="each-option">
+                                                <div class="letter">C</div>
+                                                <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                                <div>House</div>
+                                            </div>
+
+                                            <div class="each-option">
+                                                <div class="letter">D</div>
+                                                <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                                <div>House</div>
+                                            </div>
+                                            
+                                        </div>
                                     </div>
-                                    <div class="question-list">
-                                        <p><span>B</span> Pronoun</p>  
-                                    </div>
-                                    <div class="question-list answer">
-                                        <p><span>C</span> Verb</p>  
-                                    </div>
-                                        
-                                    <div class="question-list">
-                                        <p><span>D</span> Adverb</p>  
-                                    </div>                  
                                 </div>
+                                
+                            </div>
+                        </div>
+
+                        <div class="question-div">
+                            <div class="div-in">
+                                <div class="check-div">
+                                    <label>
+                                        <input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY">
+                                        <span>Question 4</span>
+                                    </label>
+                                    <button class="btn" title="Edit Question"><i class="bi-pencil-square"></i> Edit</button>
+                                </div>
+
+                                <div class="each-question">
+                                    <div class="pix-div"><img src="all-images/body-pix/computer.png" alt="Computer"/></div>
+                                    <div class="text-div">
+                                        <div><p>______________ is an electronic machine that accept data, process data and provide output.</p></div>
+                                        <div class="options-div">
+                                            
+                                            <div class="each-option">
+                                                <div class="letter">A</div>
+                                                <div>House</div>
+                                            </div>
+
+                                            <div class="each-option">
+                                                <div class="letter">B</div>
+                                                <div>House</div>
+                                            </div>
+
+                                            <div class="each-option">
+                                                <div class="letter">C</div>
+                                                <div>House</div>
+                                            </div>
+
+                                            <div class="each-option">
+                                                <div class="letter">D</div>
+                                                <div>House</div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        
-    </div
+                </div> 
+            </div>    
+        </div>      
+    </div>
 <?php }?>
+
 
 <?php if ($page=='question_bank_details'){ ?>
     <div id="get_page_details">
-        <div class="page-back-div">
+        <div class="question-back-div">
             <div class="top-div">
-                <div class="check-div">
-                    <label for="">
-                        <input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY">
-                        <span>All Questions</span>
-                    </label>      
+                <label>
+                    <input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY">
+                    <span>All Questions</span>
+                </label>
+                <div>
+                    <button class="btn" title="Activate Question(s)"><i class="bi-check2-circle"></i> Set Question As Quiz</button>
+                    <button class="btn delete" title="Delete Question(s)"><i class="bi-trash"></i> Delete</button>
                 </div>
-
-                <div class="btn-div">
-                    <button class="activate-btn"><i class="bi-check2-circle"></i> Activate</button>
-                    <button class="activate-btn delete-btn"><i class="bi-trash"></i> Delete</button>
-                </div> 
             </div>
-            
-            <div class="main-pg-div">
+
+            <div class="question-body-div">
                 <div class="question-div">
-                    <div class="top-div">
+                    <div class="div-in">
                         <div class="check-div">
-                            <label for="">
+                            <label>
                                 <input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY">
                                 <span>Question 1</span>
-                            </label>      
+                            </label>
+                            <button class="btn" title="Edit Question"><i class="bi-pencil-square"></i> Edit</button>
                         </div>
 
-                        <div class="btn-div">
-                            <button class="btn"><i class="bi-pencil-square"></i> Edit</button>
-                        </div> 
-                    </div>
+                        <div class="each-question">
+                            <div class="text-div">
+                                <div><p>______________ is an electronic machine that accept data, process data and provide output.</p></div>
+                                <div class="options-div">
+                                    
+                                    <div class="each-option">
+                                        <div class="letter">A</div>
+                                        <div>House</div>
+                                    </div>
 
-                    <div class="question-list-back-div">
-                        <div class="question-list">
-                            <p>_______ is an electronics Computer</p>  
-                        </div>
+                                    <div class="each-option correct-option">
+                                        <div class="letter">B</div>
 
-                        <div class="question-list">
-                            <p><span>A</span> Computer</p>  
+                                        <div>House</div>
+                                    </div>
+
+                                    <div class="each-option">
+                                        <div class="letter">C</div>
+
+                                        <div>House</div>
+                                    </div>
+
+                                    <div class="each-option">
+                                        <div class="letter">D</div>
+                                        <div>House</div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
                         </div>
-                        <div class="question-list">
-                            <p><span>B</span> Computer</p>  
-                        </div>
-                        <div class="question-list answer">
-                            <p><span>C</span> Computer</p>  
-                        </div>
-                            
-                        <div class="question-list">
-                            <p><span>D</span> Chair</p>  
-                        </div>                
+                        
                     </div>
                 </div>
 
                 <div class="question-div">
-                    <div class="top-div">
+                    <div class="div-in">
                         <div class="check-div">
-                            <label for="">
+                            <label>
                                 <input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY">
                                 <span>Question 2</span>
-                            </label>      
+                            </label>
+                            <button class="btn" title="Edit Question"><i class="bi-pencil-square"></i> Edit</button>
                         </div>
 
-                        <div class="btn-div">
-                            <button class="btn"><i class="bi-pencil-square"></i> Edit</button>
-                        </div> 
-                    </div>
+                        <div class="each-question">
+                            <div class="pix-div"><img src="all-images/body-pix/computer.png" alt="Computer"/></div>
+                            <div class="text-div">
+                                <div><p>______________ is an electronic machine that accept data, process data and provide output.</p></div>
+                                <div class="options-div">
+                                    
+                                    <div class="each-option">
+                                        <div class="letter">A</div>
+                                        <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                        <div>House</div>
+                                    </div>
 
-                    <div class="question-list-back-div">
-                        <div class="question-list">
-                            <p>What is the name of anything?</p>  
-                        </div>
+                                    <div class="each-option">
+                                        <div class="letter">B</div>
+                                        <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                        <div>House</div>
+                                    </div>
 
-                        <div class="question-list answer">
-                            <p><span>A</span> Noun</p>  
+                                    <div class="each-option">
+                                        <div class="letter">C</div>
+                                        <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                        <div>House</div>
+                                    </div>
+
+                                    <div class="each-option">
+                                        <div class="letter">D</div>
+                                        <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                        <div>House</div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
                         </div>
-                        <div class="question-list">
-                            <p><span>B</span> Pronoun</p>  
-                        </div>
-                        <div class="question-list">
-                            <p><span>C</span> Verb</p>  
-                        </div>
-                            
-                        <div class="question-list">
-                            <p><span>D</span> Adverb</p>  
-                        </div>                
+                        
                     </div>
                 </div>
 
                 <div class="question-div">
-                    <div class="top-div">
+                    <div class="div-in">
                         <div class="check-div">
-                            <label for="">
+                            <label>
                                 <input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY">
                                 <span>Question 3</span>
-                            </label>      
+                            </label>
+                            <button class="btn" title="Edit Question"><i class="bi-pencil-square"></i> Edit</button>
                         </div>
 
-                        <div class="btn-div">
-                            <button class="btn"><i class="bi-pencil-square"></i> Edit</button>
-                        </div> 
+                        <div class="each-question">
+                            <div class="text-div">
+                                <div><p>______________ is an electronic machine that accept data, process data and provide output.</p></div>
+                                <div class="options-div">
+                                    
+                                    <div class="each-option">
+                                        <div class="letter">A</div>
+                                        <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                        <div>House</div>
+                                    </div>
+
+                                    <div class="each-option">
+                                        <div class="letter">B</div>
+                                        <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                        <div>House</div>
+                                    </div>
+
+                                    <div class="each-option">
+                                        <div class="letter">C</div>
+                                        <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                        <div>House</div>
+                                    </div>
+
+                                    <div class="each-option">
+                                        <div class="letter">D</div>
+                                        <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                        <div>House</div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
+                </div>
 
-                    <div class="question-list-back-div">
-                        <div class="question-list">
-                            <p>______ is an action words?</p>  
+                <div class="question-div">
+                    <div class="div-in">
+                        <div class="check-div">
+                            <label>
+                                <input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY">
+                                <span>Question 4</span>
+                            </label>
+                            <button class="btn" title="Edit Question"><i class="bi-pencil-square"></i> Edit</button>
                         </div>
 
-                        <div class="question-list">
-                            <p><span>A</span> Noun</p>  
+                        <div class="each-question">
+                            <div class="pix-div"><img src="all-images/body-pix/computer.png" alt="Computer"/></div>
+                            <div class="text-div">
+                                <div><p>______________ is an electronic machine that accept data, process data and provide output.</p></div>
+                                <div class="options-div">
+                                    
+                                    <div class="each-option">
+                                        <div class="letter">A</div>
+                                        <div>House</div>
+                                    </div>
+
+                                    <div class="each-option">
+                                        <div class="letter">B</div>
+                                        <div>House</div>
+                                    </div>
+
+                                    <div class="each-option">
+                                        <div class="letter">C</div>
+                                        <div>House</div>
+                                    </div>
+
+                                    <div class="each-option">
+                                        <div class="letter">D</div>
+                                        <div>House</div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
                         </div>
-                        <div class="question-list">
-                            <p><span>B</span> Pronoun</p>  
-                        </div>
-                        <div class="question-list answer">
-                            <p><span>C</span> Verb</p>  
-                        </div>
-                            
-                        <div class="question-list">
-                            <p><span>D</span> Adverb</p>  
-                        </div>                  
+                        
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
     </div>
 <?php }?>
 
 
 <?php if ($page=='quiz_question'){ ?>
     <div id="get_page_details">
-        <div class="page-back-div">       
-            <div class="main-pg-div">
+        <div class="question-back-div">
+            <div class="top-div">
+                <label>
+                    <span>Quiz Questions</span>
+                </label>
+                <div>
+                    <button class="btn" title="Activate Question(s)" onClick="_get_secondary_form_with_id('set_quiz_time_form')"><i class="bi-check2-circle"></i> Set Quiz</button>
+                    <button class="btn delete" title="Delete Question(s)"><i class="bi-trash"></i> Deactivate</button>
+                </div>
+            </div>
+
+            <div class="question-body-div">
                 <div class="question-div">
-                    <div class="top-div">
+                    <div class="div-in">
                         <div class="check-div">
-                            <label for="">
-                                <input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY">
+                            <label>
                                 <span>Question 1</span>
-                            </label>      
+                            </label>
                         </div>
 
-                        <div class="btn-div">
-                            <button class="btn"><i class="bi-pencil-square"></i> Edit</button>
-                        </div> 
-                    </div>
+                        <div class="each-question">
+                            <div class="text-div">
+                                <div><p>______________ is an electronic machine that accept data, process data and provide output.</p></div>
+                                <div class="options-div">
+                                    
+                                    <div class="each-option">
+                                        <div class="letter">A</div>
+                                        <div>House</div>
+                                    </div>
 
-                    <div class="question-list-back-div">
-                        <div class="question-list">
-                            <p>_______ is an electronics Computer</p>  
-                        </div>
+                                    <div class="each-option correct-option">
+                                        <div class="letter">B</div>
 
-                        <div class="question-list">
-                            <p><span>A</span> Computer</p>  
+                                        <div>House</div>
+                                    </div>
+
+                                    <div class="each-option">
+                                        <div class="letter">C</div>
+
+                                        <div>House</div>
+                                    </div>
+
+                                    <div class="each-option">
+                                        <div class="letter">D</div>
+                                        <div>House</div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
                         </div>
-                        <div class="question-list">
-                            <p><span>B</span> Computer</p>  
-                        </div>
-                        <div class="question-list answer">
-                            <p><span>C</span> Computer</p>  
-                        </div>
-                            
-                        <div class="question-list">
-                            <p><span>D</span> Chair</p>  
-                        </div>                
+                        
                     </div>
                 </div>
 
                 <div class="question-div">
-                    <div class="top-div">
+                    <div class="div-in">
                         <div class="check-div">
-                            <label for="">
-                                <input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY">
+                            <label>
                                 <span>Question 2</span>
-                            </label>      
+                            </label>
                         </div>
 
-                        <div class="btn-div">
-                            <button class="btn"><i class="bi-pencil-square"></i> Edit</button>
-                        </div> 
-                    </div>
+                        <div class="each-question">
+                            <div class="pix-div"><img src="all-images/body-pix/computer.png" alt="Computer"/></div>
+                            <div class="text-div">
+                                <div><p>______________ is an electronic machine that accept data, process data and provide output.</p></div>
+                                <div class="options-div">
+                                    
+                                    <div class="each-option">
+                                        <div class="letter">A</div>
+                                        <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                        <div>House</div>
+                                    </div>
 
-                    <div class="question-list-back-div">
-                        <div class="question-list">
-                            <p>What is the name of anything?</p>  
-                        </div>
+                                    <div class="each-option">
+                                        <div class="letter">B</div>
+                                        <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                        <div>House</div>
+                                    </div>
 
-                        <div class="question-list answer">
-                            <p><span>A</span> Noun</p>  
+                                    <div class="each-option">
+                                        <div class="letter">C</div>
+                                        <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                        <div>House</div>
+                                    </div>
+
+                                    <div class="each-option">
+                                        <div class="letter">D</div>
+                                        <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                        <div>House</div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
                         </div>
-                        <div class="question-list">
-                            <p><span>B</span> Pronoun</p>  
-                        </div>
-                        <div class="question-list">
-                            <p><span>C</span> Verb</p>  
-                        </div>
-                            
-                        <div class="question-list">
-                            <p><span>D</span> Adverb</p>  
-                        </div>                
+                        
                     </div>
                 </div>
 
                 <div class="question-div">
-                    <div class="top-div">
+                    <div class="div-in">
                         <div class="check-div">
-                            <label for="">
-                                <input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY">
+                            <label>
                                 <span>Question 3</span>
-                            </label>      
+                            </label>
                         </div>
 
-                        <div class="btn-div">
-                            <button class="btn"><i class="bi-pencil-square"></i> Edit</button>
-                        </div> 
+                        <div class="each-question">
+                            <div class="text-div">
+                                <div><p>______________ is an electronic machine that accept data, process data and provide output.</p></div>
+                                <div class="options-div">
+                                    
+                                    <div class="each-option">
+                                        <div class="letter">A</div>
+                                        <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                        <div>House</div>
+                                    </div>
+
+                                    <div class="each-option">
+                                        <div class="letter">B</div>
+                                        <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                        <div>House</div>
+                                    </div>
+
+                                    <div class="each-option">
+                                        <div class="letter">C</div>
+                                        <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                        <div>House</div>
+                                    </div>
+
+                                    <div class="each-option">
+                                        <div class="letter">D</div>
+                                        <div class="pix"><img src="all-images/body-pix/house.png" alt="house"/></div>
+                                        <div>House</div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
+                </div>
 
-                    <div class="question-list-back-div">
-                        <div class="question-list">
-                            <p>______ is an action words?</p>  
+                <div class="question-div">
+                    <div class="div-in">
+                        <div class="check-div">
+                            <label>
+                                <span>Question 4</span>
+                            </label>
                         </div>
 
-                        <div class="question-list">
-                            <p><span>A</span> Noun</p>  
+                        <div class="each-question">
+                            <div class="pix-div"><img src="all-images/body-pix/computer.png" alt="Computer"/></div>
+                            <div class="text-div">
+                                <div><p>______________ is an electronic machine that accept data, process data and provide output.</p></div>
+                                <div class="options-div">
+                                    
+                                    <div class="each-option">
+                                        <div class="letter">A</div>
+                                        <div>House</div>
+                                    </div>
+
+                                    <div class="each-option">
+                                        <div class="letter">B</div>
+                                        <div>House</div>
+                                    </div>
+
+                                    <div class="each-option">
+                                        <div class="letter">C</div>
+                                        <div>House</div>
+                                    </div>
+
+                                    <div class="each-option">
+                                        <div class="letter">D</div>
+                                        <div>House</div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
                         </div>
-                        <div class="question-list">
-                            <p><span>B</span> Pronoun</p>  
-                        </div>
-                        <div class="question-list answer">
-                            <p><span>C</span> Verb</p>  
-                        </div>
-                            
-                        <div class="question-list">
-                            <p><span>D</span> Adverb</p>  
-                        </div>                  
+                        
                     </div>
                 </div>
             </div>
-        </div>
-    </div>     
+        </div> 
+    </div> 
+<?php }?>
+
+<?php if ($page=='load_questions_manually'){ ?>
+    <div id="get_page_details">
+        <div class="question-back-div">
+            <div class="top-div">
+                <label>
+                    <span>Load Questions Manually</span>
+                </label>
+            </div>
+
+            <div class="question-body-div">
+                <div class="question-div">
+                    <div class="div-in quest-manual-div-in">                      
+                        <div class="img-back-div">
+                            <legend>Click to Upload Quiz Image <i class="bi-upload"></i></legend>
+                            <label>
+                                <div class="img-div" title="Click to Upload Quiz Image">
+                                    <img id="subject-pix" src="all-images/body-pix/default.png" alt="Default Image">
+                                    <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);" />
+                                </div>
+                            </label> 
+                        </div>
+
+                        <script src="js/TextEditor.js" referrerpolicy="origin"></script>
+                        <script>tinymce.init({selector:'#summary',  // change this value according to your HTML
+                        plugins: "link, image, table"
+                        });</script>
+                        <textarea style="width: 100%;" rows="20" id="summary" title="CLASS SUMMARY" placeholder="CLASS SUMMARY"></textarea>
+                    </div>
+                </div>
+
+                <div class="question-div">
+                    <div class="div-in">
+                        <div class="each-question">
+                            <div class="text-div">
+                                <div class="options-div">
+                                    
+                                    <div class="each-option">
+                                        <div class="letter">A</div>
+                                        <div>House</div>
+                                    </div>
+
+                                    <div class="each-option">
+                                        <div class="letter">B</div>
+                                        <div>House</div>
+                                    </div>
+
+                                    <div class="each-option">
+                                        <div class="letter">C</div>
+                                        <div>House</div>
+                                    </div>
+
+                                    <div class="each-option">
+                                        <div class="letter">D</div>
+                                        <div>House</div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>                
+                    </div>
+                </div>
+
+                <div class="question-div">
+                    <div class="div-in">
+                        <div class="title">QUIZ ANSWER: <span>*</span> (A, B, C, D)</div>
+                        <input id="duration" type="text" class="text_field" placeholder="A, B, C, D" title="QUIZ ANSWER"/>               
+                        
+                        <div>
+                            <button class="btn" title="Submit" onClick=""><i class="bi-check2-circle"></i> Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div> 
 <?php }?>
 
 
+<?php if ($page=='set_quiz_time_form'){?>
+	<div class="caption-div animated zoomIn">
+        <div class="title-div">
+            <div class="title-text">CBT QUIZ TIME FORM</div>
+            <button class="close-btn" onclick="_alert_secondary_close()"><i class="bi-x-lg"></i></button>
+        </div>
 
+        <div class="div-in animated fadeIn">
+            <div class="alert alert-success"> Hi, you are about to set <strong><span>Quiz Questions</span></strong> time. <br/> Kindly input <strong>Hour</strong>, <strong>Minutes</strong>, and <strong>Seconds</strong> to continue.</div>
+            <div class="title">SET QUIZ TIME: <span>*</span></div>
+            <input id="" type="text"  class="text_field" placeholder="HH:MM:SS" title="HH:MM:SS"/>
+            <button class="btn" type="button" id="submit_btn"  title="Proceed"  onclick=""><i class="bi-check"></i> PROCEED </button>
+        </div>
+    </div>
+<?php } ?>
 
 
 
@@ -2344,4 +2612,10 @@
 			<div class="img"><img src="<?php echo $website_url?>/admin/all-images/images/warning.gif"/></div>
             <h2>INVALID ACCESS TOKEN</h2>
             Please LogIn Again
-            <button class="btn" onclick="_logout();"><i class="bi-check"></i> Okay, Log-In </bu
+            <button class="btn" onclick="_logout();"><i class="bi-check"></i> Okay, Log-In </button>
+        </div>
+    </div>
+<?php } ?>
+
+<script type="text/javascript" src="js/scrollBar.js"></script>
+<script type="text/javascript">$(".sb-container").scrollBox();</script>
