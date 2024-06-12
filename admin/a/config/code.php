@@ -13,9 +13,22 @@ switch ($action){
 	case 'get_page_with_id':
 		$page=$_POST['page'];
 		$ids=$_POST['ids'];
-		$other_ids=$_POST['other_ids'];
-		$other_ids1=$_POST['other_ids1'];
-		$other_ids2=$_POST['other_ids2'];
+		include '../content/page-content.php';
+	break;
+
+	case 'get_class_page_with_id':
+		$page=$_POST['page'];
+		$department_id=$_POST['department_id'];
+		$class_id=$_POST['class_id'];
+		include '../content/page-content.php';
+	break;
+
+	case 'get_video_page_with_id':
+		$page=$_POST['page'];
+		$department_id=$_POST['department_id'];
+		$class_id=$_POST['class_id'];
+		$subject_id=$_POST['subject_id'];
+		$term_id=$_POST['term_id'];
 		include '../content/page-content.php';
 	break;
 
@@ -27,11 +40,25 @@ switch ($action){
 	case 'get_form_with_id':
 		$page=$_POST['page'];
 		$ids=$_POST['ids'];
-		$other_ids=$_POST['other_ids'];
-		$other_ids1=$_POST['other_ids1'];
-		$other_ids2=$_POST['other_ids2'];
 		include '../content/form.php';
 	break;
+
+	case 'get_subject_form_with_id':
+		$page=$_POST['page'];
+		$department_id=$_POST['department_id'];
+		$class_id=$_POST['class_id'];
+		include '../content/form.php';
+	break;
+
+	case 'get_video_form_with_id':
+		$page=$_POST['page'];
+		$department_id=$_POST['department_id'];
+		$class_id=$_POST['class_id'];
+		$subject_id=$_POST['subject_id'];
+		$tutorial_id=$_POST['tutorial_id'];
+		include '../content/form.php';
+	break;
+
 
 	case 'get_secondary_form_with_id':
 		$page=$_POST['page'];

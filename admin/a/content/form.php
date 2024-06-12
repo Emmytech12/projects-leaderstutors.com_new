@@ -1,53 +1,46 @@
 
 <?php if ($page=='staff_reg'){ ?>
-<div class="slide-form-div animated fadeInRight">
-    <div class="fly-title-div">
-        <div class="in">
-            <span id="panel-title"><i class="bi-plus-square"></i> ADD NEW STAFF</span>
-            <div class="close" title="Close" onclick="_alert_close();">X</div>
+    <div class="slide-form-div animated fadeInRight">
+        <div class="fly-title-div">
+            <div class="in">
+                <span id="panel-title"><i class="bi-plus-square"></i> ADD NEW STAFF</span>
+                <div class="close" title="Close" onclick="_alert_close();">X</div>
+            </div>
         </div>
+
+        <div class="container-back-div sb-container">
+            <div class="inner-div">
+
+                <div class="alert">Kindly fill the form below to <span>ADD NEW STAFF</span></div>
+
+                <div class="title">FULL NAME: <span>*</span></div>
+                <input  id="reg_fullname" type="text" class="text_field" placeholder="FULL NAME" title="FULL NAME" />
+
+                <div class="title">EMAIL ADDRESS: <span>*</span></div>
+                <input id="reg_email" type="email" class="text_field" placeholder="EMAIL ADDRESS" title="EMAIL ADDRESS" />
+
+                <div class="title">PHONE NUMBER: <span>*</span><div id="mobile_info" style="float:right;font-size:12px;display:none;color:#f00"><span>Mobile not accepted!</span></div></div>
+                <input id="reg_mobile" type="tel" class="text_field" onkeypress="isNumber_Check()" placeholder="PHONE NUMBER" title="PHONE NUMBER"  />      
+
+                <div class="title">HOME ADDRESS: <span>*</span></div>
+                <input id="reg_address" type="text" class="text_field" placeholder="HOME ADDRESS" title="HOME ADDRESS"  />
+
+                <div class="title">SELECT ROLE: <span>*</span></div>
+                <select id="reg_role_id" class="text_field selectinput" title="SELECT ROLE">
+                    <option value="" selected="selected">SELECT ROLE</option>
+                        <script>_get_select_role('reg_role_id');</script>
+                </select>
+            
+                <div class="title">SELECT STATUS: <span>*</span></div>
+                <select id="reg_status_id" class="text_field selectinput" title="SELECT STATUS">
+                    <option value="" selected="selected">SELECT STATUS</option>
+                    <script>_get_select_status('reg_status_id','1,2');</script>
+                </select> 
+                <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_add_staff('');"> <i class="bi-check"></i> SUBMIT </button>  
+            </div>
+        </div> 
     </div>
-
-    <div class="container-back-div sb-container">
-        <div class="inner-div">
-
-            <div class="alert">Kindly fill the form below to <span>ADD NEW STAFF</span></div>
-
-            <div class="title">FULL NAME: <span>*</span></div>
-            <input  id="reg_fullname" type="text" class="text_field" placeholder="FULL NAME" title="FULL NAME" />
-
-            <div class="title">EMAIL ADDRESS: <span>*</span></div>
-            <input id="reg_email" type="email" class="text_field" placeholder="EMAIL ADDRESS" title="EMAIL ADDRESS" />
-
-            <div class="title">PHONE NUMBER: <span>*</span><div id="mobile_info" style="float:right;font-size:12px;display:none;color:#f00"><span>Mobile not accepted!</span></div></div>
-            <input id="reg_mobile" type="tel" class="text_field" onkeypress="isNumber_Check()" placeholder="PHONE NUMBER" title="PHONE NUMBER"  />      
-
-            <div class="title">HOME ADDRESS: <span>*</span></div>
-            <input id="reg_address" type="text" class="text_field" placeholder="HOME ADDRESS" title="HOME ADDRESS"  />
-
-            <div class="title">SELECT ROLE: <span>*</span></div>
-            <select id="reg_role_id" class="text_field selectinput" title="SELECT ROLE">
-                <option value="" selected="selected">SELECT ROLE</option>
-                    <script>_get_select_role('reg_role_id');</script>
-            </select>
-        
-            <div class="title">SELECT STATUS: <span>*</span></div>
-            <select id="reg_status_id" class="text_field selectinput" title="SELECT STATUS">
-                <option value="" selected="selected">SELECT STATUS</option>
-                <script>_get_select_status('reg_status_id','1,2');</script>
-            </select> 
-            <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_add_staff('');"> <i class="bi-check"></i> SUBMIT </button>
-        
-     
-        
-        </div>
-    </div> 
-</div>
 <?php } ?>
-
-
-
-
 
 
 <?php if ($page=='my_profile'){?>
@@ -56,496 +49,483 @@
 
 
 <?php if ($page=='staff_profile'){?>
-<div class="overlay-off-div">
-    <div class="user-profile-div animated fadeInUp" >
-        <div class="top-panel-div">
-            <i class="bi-person"></i> ADMINISTRATIVE PROFILE</span>
-            <div class="close" title="Close" onclick="_alert_close();">X</div>
-        </div>
-        <div class="profile-content-div sb-container">
-
-    
-            <div class="bg-img">
-                
-                <div class="mini-profile">
-                    <label>
-                        <div class="img-div" id="current_user_passport1">
-                            <img src="" alt=""/>                                
-                        </div> 
-                    </label>
-
-                    <div class="text-div">
-                        <div class="name" id="staff_login_fullname"></div>
-                        <div class="text">
-                            STATUS: <strong id="staff_status_name"> </strong> | LAST LOGIN DATE: <strong id="last_login_time"> </strong>
-                        </div>                 
-                    </div>
-                </div>
+    <div class="overlay-off-div">
+        <div class="user-profile-div animated fadeInUp" >
+            <div class="top-panel-div">
+                <i class="bi-person"></i> ADMINISTRATIVE PROFILE</span>
+                <div class="close" title="Close" onclick="_alert_close();">X</div>
             </div>
+            <div class="profile-content-div sb-container">
 
-            <div class="user-in">
-                <div class="title">BASIC INFORMATION</div>
-                       
-                <div class="profile-segment-div col-3">
-                    <div class="segment-title">FULLNAME:</div>
-                    <div class="text-field-div no-border">
-                        <input id="updt_fullname" type="text" class="text_field text_field2" placeholder="FULLNAME" title="FULLNAME"/>
+        
+                <div class="bg-img">
+                    
+                    <div class="mini-profile">
+                        <label>
+                            <div class="img-div" id="current_user_passport1">
+                                <img src="" alt=""/>                                
+                            </div> 
+                        </label>
+
+                        <div class="text-div">
+                            <div class="name" id="staff_login_fullname"></div>
+                            <div class="text">
+                                STATUS: <strong id="staff_status_name"> </strong> | LAST LOGIN DATE: <strong id="last_login_time"> </strong>
+                            </div>                 
+                        </div>
                     </div>
                 </div>
 
-                <div class="profile-segment-div col-4">
-                    <div class="segment-title">EMAIL:</div>
-                    <div class="text-field-div no-border">
-                        <input id="updt_email" type="text" class="text_field text_field2" placeholder="EMAIL" title="EMAIL"/>
+                <div class="user-in">
+                    <div class="title">BASIC INFORMATION</div>
+                        
+                    <div class="profile-segment-div col-3">
+                        <div class="segment-title">FULLNAME:</div>
+                        <div class="text-field-div no-border">
+                            <input id="updt_fullname" type="text" class="text_field text_field2" placeholder="FULLNAME" title="FULLNAME"/>
+                        </div>
+                    </div>
+
+                    <div class="profile-segment-div col-4">
+                        <div class="segment-title">EMAIL:</div>
+                        <div class="text-field-div no-border">
+                            <input id="updt_email" type="text" class="text_field text_field2" placeholder="EMAIL" title="EMAIL"/>
+                        </div>
+                    </div>
+
+                    <div class="profile-segment-div col-3">
+                        <div class="segment-title">HOME ADDRESS:</div>
+                        <div class="text-field-div no-border">
+                            <input id="updt_address" type="text" class="text_field text_field2" placeholder="HOME ADDRESS" title="HOME ADDRESS"/>
+                        </div>
+                    </div>
+
+                    <div class="profile-segment-div col-4"><div id="mobile_info" style="float:right;font-size:12px;display:none;color:#f00"><span>Mobile not accepted!</span></div>
+                        <div class="segment-title">PHONE NUMBER:</div>
+                        <div class="text-field-div no-border">
+                            <input id="updt_mobile" type="text" class="text_field text_field2" onkeypress="isNumber_Check()" placeholder="PHONE NUMBER" title="PHONE NUMBER"/>
+                        </div>
                     </div>
                 </div>
-
-                <div class="profile-segment-div col-3">
-                    <div class="segment-title">HOME ADDRESS:</div>
-                    <div class="text-field-div no-border">
-                        <input id="updt_address" type="text" class="text_field text_field2" placeholder="HOME ADDRESS" title="HOME ADDRESS"/>
-                    </div>
-                </div>
-
-                <div class="profile-segment-div col-4"><div id="mobile_info" style="float:right;font-size:12px;display:none;color:#f00"><span>Mobile not accepted!</span></div>
-                    <div class="segment-title">PHONE NUMBER:</div>
-                    <div class="text-field-div no-border">
-                        <input id="updt_mobile" type="text" class="text_field text_field2" onkeypress="isNumber_Check()" placeholder="PHONE NUMBER" title="PHONE NUMBER"/>
-                    </div>
-                </div>
-            </div>
-            
-
-            <div class="user-in">
-                <div class="title">ACCOUNT INFORMATION</div>
                 
-                <div class="profile-segment-div col-5">
-                    <div class="segment-title">STAFF ID:</div>
-                    <div class="text-field-div">
-                        <input id="s_staff_id" type="text" class="text_field" readonly="readonly" placeholder="STAFF ID" title="STAFF ID"/>
-                        <span>&nbsp;<i class="bi-lock"></i></span>
-                    </div>
-                </div>
 
-                <div class="profile-segment-div col-6">
-                    <div class="segment-title">DATE OF REGISTRATION:</div>
-                    <div class="text-field-div">
-                        <input id="s_created_time" type="text" readonly="readonly" class="text_field" placeholder="Date Of Registration" title="Date Of Registration"/>
-                        <span>&nbsp;<i class="bi-lock"></i></span>
+                <div class="user-in">
+                    <div class="title">ACCOUNT INFORMATION</div>
+                    
+                    <div class="profile-segment-div col-5">
+                        <div class="segment-title">STAFF ID:</div>
+                        <div class="text-field-div">
+                            <input id="s_staff_id" type="text" class="text_field" readonly="readonly" placeholder="STAFF ID" title="STAFF ID"/>
+                            <span>&nbsp;<i class="bi-lock"></i></span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="profile-segment-div col-7">
-                    <div class="segment-title">LAST LOGIN DATE:</div>
-                    <div class="text-field-div">
-                        <input id="s_last_login" type="text" class="text_field" readonly="readonly" placeholder="Last Login Date" title="Last Login Date" />
-                        <span>&nbsp;<i class="bi-lock"></i></span>
+                    <div class="profile-segment-div col-6">
+                        <div class="segment-title">DATE OF REGISTRATION:</div>
+                        <div class="text-field-div">
+                            <input id="s_created_time" type="text" readonly="readonly" class="text_field" placeholder="Date Of Registration" title="Date Of Registration"/>
+                            <span>&nbsp;<i class="bi-lock"></i></span>
+                        </div>
                     </div>
-                </div>
-            </div>   
 
-            <div class="user-in user-in-bottom">
-                <div class="title">ADMINISTRATIVE INFORMATION</div>
-                <div class="profile-segment-div col-6">
-                    <div class="segment-title">STAFF ROLE:</div>
-                    <div class="text-field-div no-border">
-                        <select class="text_field text_field2" id="updt_role_id" style="background:#fff;">                                       
-                        <option value="">SELECT ROLE </option>
-                            <script>_get_select_role('updt_role_id');</script>
-                      </select>
+                    <div class="profile-segment-div col-7">
+                        <div class="segment-title">LAST LOGIN DATE:</div>
+                        <div class="text-field-div">
+                            <input id="s_last_login" type="text" class="text_field" readonly="readonly" placeholder="Last Login Date" title="Last Login Date" />
+                            <span>&nbsp;<i class="bi-lock"></i></span>
+                        </div>
                     </div>
+                </div>   
+
+                <div class="user-in user-in-bottom">
+                    <div class="title">ADMINISTRATIVE INFORMATION</div>
+                    <div class="profile-segment-div col-6">
+                        <div class="segment-title">STAFF ROLE:</div>
+                        <div class="text-field-div no-border">
+                            <select class="text_field text_field2" id="updt_role_id" style="background:#fff;">                                       
+                            <option value="">SELECT ROLE </option>
+                                <script>_get_select_role('updt_role_id');</script>
+                        </select>
+                        </div>
+                    </div> 
+
+
+                    <div class="profile-segment-div col-7">
+                        <div class="segment-title">STAFF STATUS:</div>
+                        <div class="text-field-div no-border">
+                            <select class="text_field text_field2" readonly="readonly" id="updt_status_id" style="background:#fff;" >                       
+                            <option value="">SELECT STATUS </option>
+                            <script> _get_select_status('updt_status_id','1,2');</script>
+                        </select>
+                        </div>
+                    </div>
+                    <button class="btn" type="button" id="update_btn" onclick="_update_staff_profile('<?php echo $ids?>');"> UPDATE PROFILE <i class="bi-check"></i></button>     
                 </div> 
-
-
-                <div class="profile-segment-div col-7">
-                    <div class="segment-title">STAFF STATUS:</div>
-                    <div class="text-field-div no-border">
-                        <select class="text_field text_field2" readonly="readonly" id="updt_status_id" style="background:#fff;" >                       
-                        <option value="">SELECT STATUS </option>
-                        <script> _get_select_status('updt_status_id','1,2');</script>
-                     </select>
-                    </div>
-                </div>
-                <button class="btn" type="button" id="update_btn" onclick="_update_staff_profile('<?php echo $ids?>');"> UPDATE PROFILE <i class="bi-check"></i></button>     
-            </div> 
-        </div>
-                
-    </div> 
-</div>
-<script>_get_staff_profile('<?php echo $ids?>');</script>
+            </div>
+                    
+        </div> 
+    </div>
+    <script>_get_staff_profile('<?php echo $ids?>');</script>
 <?php } ?>
 
 
-
 <?php if ($page=='add_and_update_subject'){ ?>
-
-<div class="overlay-off-div">
-    <div class="slide-form-div center-form-div animated fadeInUp">
-        <div class="fly-title-div">
-            <div class="in">
-                    <span id="panel-title"><i class="bi-pencil-square"></i> ADD NEW SUBJECT</span>          
-                <div class="close" title="Close" onclick="_alert_close();">X</div>
-            </div>
-        </div>
-
-        <div class="img-back-div">
-            <legend >Click to Upload Subject Pix <i class="bi-upload" ></i></legend>
-            <label>
-                <div class="img-div" title="Click To Upload Subject Image">
-                    <div class="img-in">
-                        <div id=""><img id="subject-pix" src="<?php echo $website_url?>/admin/a/all-images/images/sample.jpg" alt="exam-pix"/></div>
-                        <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);"/>
-                    </div>
+    <div class="overlay-off-div">
+        <div class="slide-form-div center-form-div animated fadeInUp">
+            <div class="fly-title-div">
+                <div class="in">
+                        <span id="panel-title"><i class="bi-pencil-square"></i> ADD NEW SUBJECT</span>          
+                    <div class="close" title="Close" onclick="_alert_close();">X</div>
                 </div>
-            </label>
-        </div>
-           
-        <div class="container-back-div container-back-div2  sb-container" >
-            <div class="inner-div">
-
-                <div class="alert">Kindly fill the form below to <span>ADD NEW SUBJECT</span></div>
-
-                <div class="title">SUBJECT NAME: <span>*</span></div>
-                <input id="subject_name" type="text"  class="text_field" placeholder="SUBJECT NAME" title="SUBJECT NAME"/>
-                
-                <div class="title">SUBJECT URL: <span>*</span></div>
-                <input id="urls" type="text"  class="text_field" placeholder="SUBJECT URL" title="SUBJECT URL"/>          
-
-                <div class="title">SELECT STATUS: <span>*</span></div>
-                <select id="reg_status_id" class="text_field selectinput" title="SELECT STATUS">
-                    <option value="" selected="selected"> SELECT STATUS</option>
-                    <script>_get_select_status('reg_status_id','1,2');</script>
-                </select>
-                <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_add_subject('');"> <i class="bi-check"></i> SUBMIT </button>
             </div>
-        </div> 
+
+            <div class="img-back-div">
+                <legend >Click to Upload Subject Pix <i class="bi-upload" ></i></legend>
+                <label>
+                    <div class="img-div" title="Click To Upload Subject Image">
+                        <div class="img-in">
+                            <div id=""><img id="subject-pix" src="<?php echo $website_url?>/admin/a/all-images/images/sample.jpg" alt="exam-pix"/></div>
+                            <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);"/>
+                        </div>
+                    </div>
+                </label>
+            </div>
+            
+            <div class="container-back-div container-back-div2  sb-container" >
+                <div class="inner-div">
+
+                    <div class="alert">Kindly fill the form below to <span>ADD NEW SUBJECT</span></div>
+
+                    <div class="title">SUBJECT NAME: <span>*</span></div>
+                    <input id="subject_name" type="text"  class="text_field" placeholder="SUBJECT NAME" title="SUBJECT NAME"/>
+                    
+                    <div class="title">SUBJECT URL: <span>*</span></div>
+                    <input id="urls" type="text"  class="text_field" placeholder="SUBJECT URL" title="SUBJECT URL"/>          
+
+                    <div class="title">SELECT STATUS: <span>*</span></div>
+                    <select id="reg_status_id" class="text_field selectinput" title="SELECT STATUS">
+                        <option value="" selected="selected"> SELECT STATUS</option>
+                        <script>_get_select_status('reg_status_id','1,2');</script>
+                    </select>
+                    <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_add_subject('');"> <i class="bi-check"></i> SUBMIT </button>
+                </div>
+            </div> 
+        </div>
     </div>
-</div>
 <?php } ?>
 
 
 <?php if ($page=='update_subject'){ ?>
-
-<div class="overlay-off-div">
-    <div class="slide-form-div center-form-div animated fadeInUp">
-        <div class="fly-title-div">
-            <div class="in">              
-                <span id="panel-title"><i class="bi-pencil-square"></i> UPDATE SUBJECT</span>
-                <div class="close" title="Close" onclick="_alert_close();">X</div>
-            </div>
-        </div>
-
-        <div class="img-back-div">
-            <legend >Click to Upload Subject Pix <i class="bi-upload" ></i></legend>
-            <label>
-                <div class="img-div" title="Click To Upload Exam Pix">
-                    <div class="img-in">
-                        <div id="view_pix"><img id="subject-pix" src="<?php echo $website_url?>/admin/a/all-images/images/sample.jpg" alt="exam-pix"/></div>
-                        <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);"/>
-                    </div>
+    <div class="overlay-off-div">
+        <div class="slide-form-div center-form-div animated fadeInUp">
+            <div class="fly-title-div">
+                <div class="in">              
+                    <span id="panel-title"><i class="bi-pencil-square"></i> UPDATE SUBJECT</span>
+                    <div class="close" title="Close" onclick="_alert_close();">X</div>
                 </div>
-            </label>
-        </div>
-           
-        <div class="container-back-div container-back-div2  sb-container" >
-            <div class="inner-div">
-
-                <div class="alert">Kindly fill the form below to <span>UPDATE SUBJECT</span></div>
-
-                <div class="title">SUBJECT NAME: <span>*</span></div>
-                <input id="updt_subject_name" type="text"  class="text_field" placeholder="SUBJECT NAME" title="SUBJECT NAME"/>
-                
-                <div class="title">SUBJECT URL: <span>*</span></div>
-                <input id="updt_urls" type="text"  class="text_field" placeholder="SUBJECT URL" title="SUBJECT URL"/>          
-
-                <div class="title">SELECT STATUS: <span>*</span></div>
-                <select id="updt_status_id" class="text_field selectinput" title="SELECT STATUS">
-                    <option value="" selected="selected"> SELECT STATUS</option>
-                    <script>_get_select_status('updt_status_id','1,2');</script>
-                </select>
-                <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_update_subject('<?php echo $ids?>');"> <i class="bi-check"></i> SUBMIT </button>
             </div>
-        </div> 
-    </div>
-</div>
-<script>_fetch_each_subject('<?php echo $ids?>');</script>
-<?php } ?>
 
+            <div class="img-back-div">
+                <legend >Click to Upload Subject Pix <i class="bi-upload" ></i></legend>
+                <label>
+                    <div class="img-div" title="Click To Upload Exam Pix">
+                        <div class="img-in">
+                            <div id="view_pix"><img id="subject-pix" src="<?php echo $website_url?>/admin/a/all-images/images/sample.jpg" alt="exam-pix"/></div>
+                            <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);"/>
+                        </div>
+                    </div>
+                </label>
+            </div>
+            
+            <div class="container-back-div container-back-div2  sb-container" >
+                <div class="inner-div">
+
+                    <div class="alert">Kindly fill the form below to <span>UPDATE SUBJECT</span></div>
+
+                    <div class="title">SUBJECT NAME: <span>*</span></div>
+                    <input id="updt_subject_name" type="text"  class="text_field" placeholder="SUBJECT NAME" title="SUBJECT NAME"/>
+                    
+                    <div class="title">SUBJECT URL: <span>*</span></div>
+                    <input id="updt_urls" type="text"  class="text_field" placeholder="SUBJECT URL" title="SUBJECT URL"/>          
+
+                    <div class="title">SELECT STATUS: <span>*</span></div>
+                    <select id="updt_status_id" class="text_field selectinput" title="SELECT STATUS">
+                        <option value="" selected="selected"> SELECT STATUS</option>
+                        <script>_get_select_status('updt_status_id','1,2');</script>
+                    </select>
+                    <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_update_subject('<?php echo $ids?>');"> <i class="bi-check"></i> SUBMIT </button>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <script>_fetch_each_subject('<?php echo $ids?>');</script>
+<?php } ?>
 
 
 <?php if ($page=='add_classes'){ ?>
-
-<div class="overlay-off-div">
-    <div class="slide-form-div center-form-div animated fadeInUp">
-        <div class="fly-title-div">
-            <div class="in">
-                    <span id="panel-title"><i class="bi-pencil-square"></i> ADD NEW CLASS</span>          
-                <div class="close" title="Close" onclick="_alert_close();">X</div>
-            </div>
-        </div>
-
-        <div class="img-back-div">
-            <legend >Click to Upload Class Pix <i class="bi-upload" ></i></legend>
-            <label>
-                <div class="img-div" title="Click To Upload Exam Pix">
-                    <div class="img-in">
-                        <div id=""><img id="subject-pix" src="<?php echo $website_url?>/admin/a/all-images/images/sample.jpg" alt="exam-pix"/></div>
-                        <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);"/>
-                    </div>
+    <div class="overlay-off-div">
+        <div class="slide-form-div center-form-div animated fadeInUp">
+            <div class="fly-title-div">
+                <div class="in">
+                        <span id="panel-title"><i class="bi-pencil-square"></i> ADD NEW CLASS</span>          
+                    <div class="close" title="Close" onclick="_alert_close();">X</div>
                 </div>
-            </label>
-        </div>
-           
-        <div class="container-back-div container-back-div2  sb-container" >
-            <div class="inner-div">
-
-                <div class="alert">Kindly fill the form below to <span>ADD NEW CLASS</span></div>
-
-                <div class="title">CLASS NAME: <span>*</span></div>
-                <input id="class_name" type="text"  class="text_field" placeholder="CLASS NAME" title="CLASS NAME"/>
-                
-                <div class="title">CLASS URL: <span>*</span></div>
-                <input id="urls" type="text"  class="text_field" placeholder="CLASS URL" title="CLASS URL"/>          
-
-                <div class="title">SELECT STATUS: <span>*</span></div>
-                <select id="reg_status_id" class="text_field selectinput" title="SELECT STATUS">
-                    <option value="" selected="selected"> SELECT STATUS</option>
-                    <script>_get_select_status('reg_status_id','1,2');</script>
-                </select>
-                <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_add_classes('');"> <i class="bi-check"></i> SUBMIT </button>
             </div>
-        </div> 
+
+            <div class="img-back-div">
+                <legend >Click to Upload Class Pix <i class="bi-upload" ></i></legend>
+                <label>
+                    <div class="img-div" title="Click To Upload Exam Pix">
+                        <div class="img-in">
+                            <div id=""><img id="subject-pix" src="<?php echo $website_url?>/admin/a/all-images/images/sample.jpg" alt="exam-pix"/></div>
+                            <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);"/>
+                        </div>
+                    </div>
+                </label>
+            </div>
+            
+            <div class="container-back-div container-back-div2  sb-container" >
+                <div class="inner-div">
+
+                    <div class="alert">Kindly fill the form below to <span>ADD NEW CLASS</span></div>
+
+                    <div class="title">CLASS NAME: <span>*</span></div>
+                    <input id="class_name" type="text"  class="text_field" placeholder="CLASS NAME" title="CLASS NAME"/>
+                    
+                    <div class="title">CLASS URL: <span>*</span></div>
+                    <input id="urls" type="text"  class="text_field" placeholder="CLASS URL" title="CLASS URL"/>          
+
+                    <div class="title">SELECT STATUS: <span>*</span></div>
+                    <select id="reg_status_id" class="text_field selectinput" title="SELECT STATUS">
+                        <option value="" selected="selected"> SELECT STATUS</option>
+                        <script>_get_select_status('reg_status_id','1,2');</script>
+                    </select>
+                    <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_add_classes('');"> <i class="bi-check"></i> SUBMIT </button>
+                </div>
+            </div> 
+        </div>
     </div>
-</div>
 <?php } ?>
 
 
-
 <?php if ($page=='update_classes'){ ?>
-
-<div class="overlay-off-div">
-    <div class="slide-form-div center-form-div animated fadeInUp">
-        <div class="fly-title-div">
-            <div class="in">              
-                <span id="panel-title"><i class="bi-pencil-square"></i> UPDATE CLASS</span>
-                <div class="close" title="Close" onclick="_alert_close();">X</div>
-            </div>
-        </div>
-
-        <div class="img-back-div">
-            <legend >Click to Upload Class Pix <i class="bi-upload" ></i></legend>
-            <label>
-                <div class="img-div" title="Click To Upload Exam Pix">
-                    <div class="img-in">
-                        <div id="view_pix"><img id="subject-pix" src="<?php echo $website_url?>/admin/a/all-images/images/sample.jpg" alt="exam-pix"/></div>
-                        <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);"/>
-                    </div>
+    <div class="overlay-off-div">
+        <div class="slide-form-div center-form-div animated fadeInUp">
+            <div class="fly-title-div">
+                <div class="in">              
+                    <span id="panel-title"><i class="bi-pencil-square"></i> UPDATE CLASS</span>
+                    <div class="close" title="Close" onclick="_alert_close();">X</div>
                 </div>
-            </label>
-        </div>
-           
-        <div class="container-back-div container-back-div2  sb-container" >
-            <div class="inner-div">
-                <div class="alert">Kindly fill the form below to <span>UPDATE CLASS</span></div>
-
-                <div class="title">CLASS NAME: <span>*</span></div>
-                <input id="updt_class_name" type="text"  class="text_field" placeholder="CLASS NAME" title="CLASS NAME"/>
-                
-                <div class="title">SUBJECT URL: <span>*</span></div>
-                <input id="updt_urls" type="text"  class="text_field" placeholder="CLASS URL" title="CLASS URL"/>          
-
-                <div class="title">SELECT STATUS: <span>*</span></div>
-                <select id="updt_status_id" class="text_field selectinput" title="SELECT STATUS">
-                    <option value="" selected="selected"> SELECT STATUS</option>
-                    <script>_get_select_status('updt_status_id','1,2');</script>
-                </select>
-                <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_update_classes('<?php echo $ids?>');"> <i class="bi-check"></i> SUBMIT </button>
             </div>
-        </div> 
+
+            <div class="img-back-div">
+                <legend >Click to Upload Class Pix <i class="bi-upload" ></i></legend>
+                <label>
+                    <div class="img-div" title="Click To Upload Exam Pix">
+                        <div class="img-in">
+                            <div id="view_pix"><img id="subject-pix" src="<?php echo $website_url?>/admin/a/all-images/images/sample.jpg" alt="exam-pix"/></div>
+                            <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);"/>
+                        </div>
+                    </div>
+                </label>
+            </div>
+            
+            <div class="container-back-div container-back-div2  sb-container" >
+                <div class="inner-div">
+                    <div class="alert">Kindly fill the form below to <span>UPDATE CLASS</span></div>
+
+                    <div class="title">CLASS NAME: <span>*</span></div>
+                    <input id="updt_class_name" type="text"  class="text_field" placeholder="CLASS NAME" title="CLASS NAME"/>
+                    
+                    <div class="title">SUBJECT URL: <span>*</span></div>
+                    <input id="updt_urls" type="text"  class="text_field" placeholder="CLASS URL" title="CLASS URL"/>          
+
+                    <div class="title">SELECT STATUS: <span>*</span></div>
+                    <select id="updt_status_id" class="text_field selectinput" title="SELECT STATUS">
+                        <option value="" selected="selected"> SELECT STATUS</option>
+                        <script>_get_select_status('updt_status_id','1,2');</script>
+                    </select>
+                    <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_update_classes('<?php echo $ids?>');"> <i class="bi-check"></i> SUBMIT </button>
+                </div>
+            </div> 
+        </div>
     </div>
-</div>
-<script>_fetch_each_class('<?php echo $ids?>');</script>
+    <script>_fetch_each_class('<?php echo $ids?>');</script>
 <?php } ?>
 
 
 <?php if ($page=='dept_reg'){ ?>
-
-<div class="overlay-off-div">
-    <div class="slide-form-div center-form-div animated fadeInUp">
-        <div class="fly-title-div">
-            <div class="in">
-                <span id="panel-title"><i class="bi-pencil-square"></i> ADD NEW DEPARTMENT</span>
-                <div class="close" title="Close" onclick="_alert_close();">X</div>
-            </div>
-        </div>
-
-        <div class="img-back-div">
-            <legend >Click to Upload Department Pix <i class="bi-upload" ></i></legend>
-            <label>
-                <div class="img-div" title="Click To Upload Exam Pix">
-                    <div class="img-in">
-                        <div id="view_exam"><img id="subject-pix" src="<?php echo $website_url?>/admin/a/all-images/images/sample.jpg" alt="Exam pix" /></div>
-                        <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);"/>
-                    </div>
+    <div class="overlay-off-div">
+        <div class="slide-form-div center-form-div animated fadeInUp">
+            <div class="fly-title-div">
+                <div class="in">
+                    <span id="panel-title"><i class="bi-pencil-square"></i> ADD NEW DEPARTMENT</span>
+                    <div class="close" title="Close" onclick="_alert_close();">X</div>
                 </div>
-            </label>
-        </div>
-           
-        <div class="container-back-div container-back-div2  sb-container" >
-            <div class="inner-div">
-
-                <div class="alert">Kindly fill the form below to <span>ADD NEW DEPARTMENT</span></div>
-
-                <div class="title">DEPARTMENT NAME: <span>*</span></div>
-                <input id="department_name" type="text" class="text_field" placeholder="DEPARTMENT NAME" title="DEPARTMENT NAME" />
-                
-                <div class="title">DEPARTMENT URL: <span>*</span></div>
-                <input id="urls" type="text"  class="text_field" placeholder="DEPARTMENT URL" title="DEPARTMENT URL"/>
-                
-                <div class="title">SEO KEYWORDS: <span>*</span></div>
-                <textarea id="seo_keywords" class="text_field textarea" rows="2" maxlength="160" title="SEO KEYWORDS" placeholder="SEO KEYWORDS"></textarea>
-
-                <div class="title">SEO DESCRIPTION: <span>*</span></div>
-                <textarea id="seo_description" class="text_field textarea" rows="2" maxlength="160" title="SEO DESCRIPTION" placeholder="SEO DESCRIPTION"></textarea>
-            
-                <div class="title">SELECT STATUS: <span>*</span></div>
-                <select id="reg_status_id" class="text_field selectinput" title="SELECT STATUS">
-                    <option value="" selected="selected"> SELECT STATUS</option>
-                    <script>_get_select_status('reg_status_id','1,2');</script>
-                </select> 
-                <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_add_department('');"> <i class="bi-check"></i> SUBMIT </button>
             </div>
-        </div> 
+
+            <div class="img-back-div">
+                <legend >Click to Upload Department Pix <i class="bi-upload" ></i></legend>
+                <label>
+                    <div class="img-div" title="Click To Upload Exam Pix">
+                        <div class="img-in">
+                            <div id="view_exam"><img id="subject-pix" src="<?php echo $website_url?>/admin/a/all-images/images/sample.jpg" alt="Exam pix" /></div>
+                            <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);"/>
+                        </div>
+                    </div>
+                </label>
+            </div>
+            
+            <div class="container-back-div container-back-div2  sb-container" >
+                <div class="inner-div">
+
+                    <div class="alert">Kindly fill the form below to <span>ADD NEW DEPARTMENT</span></div>
+
+                    <div class="title">DEPARTMENT NAME: <span>*</span></div>
+                    <input id="department_name" type="text" class="text_field" placeholder="DEPARTMENT NAME" title="DEPARTMENT NAME" />
+                    
+                    <div class="title">DEPARTMENT URL: <span>*</span></div>
+                    <input id="urls" type="text"  class="text_field" placeholder="DEPARTMENT URL" title="DEPARTMENT URL"/>
+                    
+                    <div class="title">SEO KEYWORDS: <span>*</span></div>
+                    <textarea id="seo_keywords" class="text_field textarea" rows="2" maxlength="160" title="SEO KEYWORDS" placeholder="SEO KEYWORDS"></textarea>
+
+                    <div class="title">SEO DESCRIPTION: <span>*</span></div>
+                    <textarea id="seo_description" class="text_field textarea" rows="2" maxlength="160" title="SEO DESCRIPTION" placeholder="SEO DESCRIPTION"></textarea>
+                
+                    <div class="title">SELECT STATUS: <span>*</span></div>
+                    <select id="reg_status_id" class="text_field selectinput" title="SELECT STATUS">
+                        <option value="" selected="selected"> SELECT STATUS</option>
+                        <script>_get_select_status('reg_status_id','1,2');</script>
+                    </select> 
+                    <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_add_department('');"> <i class="bi-check"></i> SUBMIT </button>
+                </div>
+            </div> 
+        </div>
     </div>
-</div>
 <?php } ?>
 
 
 <?php if ($page=='update_dept'){ ?>
+    <div class="overlay-off-div">
+        <div class="slide-form-div center-form-div animated fadeInUp">
+            <div class="fly-title-div">
+                <div class="in">
+                    <span id="panel-title"><i class="bi-pencil-square"></i> UPADTE DEPARTMENT</span>
+                    <div class="close" title="Close" onclick="_alert_close();">X</div>
+                </div>
+            </div>
 
-<div class="overlay-off-div">
-    <div class="slide-form-div center-form-div animated fadeInUp">
+            <div class="img-back-div">
+                <legend >Click to Upload Department Pix <i class="bi-upload" ></i></legend>
+                <label>
+                    <div class="img-div" title="Click To Upload Exam Pix">
+                        <div class="img-in">
+                            <div id="view_pix"><img id="subject-pix" src="<?php echo $website_url?>/admin/a/all-images/images/sample.jpg" alt="Exam pix" /></div>
+                            <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);"/>
+                        </div>
+                    </div>
+                </label>
+            </div>
+            
+            <div class="container-back-div container-back-div2  sb-container" >
+                <div class="inner-div">
+
+                    <div class="alert">Kindly fill the form below to <span> UPADTE DEPARTMENT </span></div>
+
+                    <div class="title">DEPARTMENT NAME: <span>*</span></div>
+                    <input id="updt_department_name" type="text" class="text_field" placeholder="DEPARTMENT NAME" title="DEPARTMENT NAME" />
+                    
+                    <div class="title">DEPARTMENT URL: <span>*</span></div>
+                    <input id="updt_urls" type="text"  class="text_field" placeholder="DEPARTMENT URL" title="DEPARTMENT URL"/>
+                    
+                    <div class="title">SEO KEYWORDS: <span>*</span></div>
+                    <textarea id="updt_seo_keywords" class="text_field textarea" rows="2" maxlength="160" title="SEO KEYWORDS" placeholder="SEO KEYWORDS"></textarea>
+
+                    <div class="title">SEO DESCRIPTION: <span>*</span></div>
+                    <textarea id="updt_seo_description" class="text_field textarea" rows="2" maxlength="160" title="SEO DESCRIPTION" placeholder="SEO DESCRIPTION"></textarea>
+                
+                    <div class="title">SELECT STATUS: <span>*</span></div>
+                    <select id="updt_status_id" class="text_field selectinput" title="SELECT STATUS">
+                        <option value="" selected="selected"> SELECT STATUS</option>
+                        <script>_get_select_status('updt_status_id','1,2');</script>
+                    </select> 
+                    <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_update_department('<?php echo $ids?>');"> <i class="bi-check"></i> SUBMIT </button>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <script>_fetch_each_department('<?php echo $ids?>');</script>
+<?php } ?>
+
+
+<?php if ($page=='add_class_dept'){ ?>
+    <div class="slide-form-div animated fadeInRight">
         <div class="fly-title-div">
             <div class="in">
-                <span id="panel-title"><i class="bi-pencil-square"></i> UPADTE DEPARTMENT</span>
+                <span id="panel-title"><i class="bi-plus-square"></i> ADD A NEW CLASS</span>
                 <div class="close" title="Close" onclick="_alert_close();">X</div>
             </div>
         </div>
 
-        <div class="img-back-div">
-            <legend >Click to Upload Department Pix <i class="bi-upload" ></i></legend>
-            <label>
-                <div class="img-div" title="Click To Upload Exam Pix">
-                    <div class="img-in">
-                        <div id="view_pix"><img id="subject-pix" src="<?php echo $website_url?>/admin/a/all-images/images/sample.jpg" alt="Exam pix" /></div>
-                        <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);"/>
+        <div class="container-back-div sb-container" >
+            <div class="inner-div" id="status_id">
+
+                <div class="alert" id="search_keywords">Kindly check the checkboxes to add a new class under <span id="department1_name">XXX</span> Department</div>
+
+                <div class="title">SELECT CLASS: <span>*</span></div>
+                    <div class="subject-info-div">
+                        <div class="div-in" id="fetch_classes_checkbox">
+                            <label for="">
+                                <!-- <div class="radio-in-div">
+                                    <div class="radio"><input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY"><div class="border"></div></div>
+                                    <span>JUPEB</span>
+                                </div> -->
+                            </label>                       
+                        </div>                  
                     </div>
-                </div>
-            </label>
-        </div>
-           
-        <div class="container-back-div container-back-div2  sb-container" >
-            <div class="inner-div">
-
-                <div class="alert">Kindly fill the form below to <span> UPADTE DEPARTMENT </span></div>
-
-                <div class="title">DEPARTMENT NAME: <span>*</span></div>
-                <input id="updt_department_name" type="text" class="text_field" placeholder="DEPARTMENT NAME" title="DEPARTMENT NAME" />
-                
-                <div class="title">DEPARTMENT URL: <span>*</span></div>
-                <input id="updt_urls" type="text"  class="text_field" placeholder="DEPARTMENT URL" title="DEPARTMENT URL"/>
-                
-                <div class="title">SEO KEYWORDS: <span>*</span></div>
-                <textarea id="updt_seo_keywords" class="text_field textarea" rows="2" maxlength="160" title="SEO KEYWORDS" placeholder="SEO KEYWORDS"></textarea>
-
-                <div class="title">SEO DESCRIPTION: <span>*</span></div>
-                <textarea id="updt_seo_description" class="text_field textarea" rows="2" maxlength="160" title="SEO DESCRIPTION" placeholder="SEO DESCRIPTION"></textarea>
-            
-                <div class="title">SELECT STATUS: <span>*</span></div>
-                <select id="updt_status_id" class="text_field selectinput" title="SELECT STATUS">
-                    <option value="" selected="selected"> SELECT STATUS</option>
-                    <script>_get_select_status('updt_status_id','1,2');</script>
-                </select> 
-                <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_update_department('<?php echo $ids?>');"> <i class="bi-check"></i> SUBMIT </button>
+                <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_add_class_dept('<?php echo $ids?>');"> <i class="bi-check"></i> SUBMIT </button>
             </div>
         </div> 
     </div>
-</div>
-<script>_fetch_each_department('<?php echo $ids?>');</script>
+    <script> _get_fetch_all_classes('fetch_classes_checkbox');</script>
+    <script>_get_fetch_form_class_dept('<?php echo $ids?>');</script>
 <?php } ?>
-
-
-
-<?php if ($page=='add_class_dept'){ ?>
-<div class="slide-form-div animated fadeInRight">
-    <div class="fly-title-div">
-        <div class="in">
-            <span id="panel-title"><i class="bi-plus-square"></i> ADD A NEW CLASS</span>
-            <div class="close" title="Close" onclick="_alert_close();">X</div>
-        </div>
-     </div>
-
-    <div class="container-back-div sb-container" >
-        <div class="inner-div" id="status_id">
-
-            <div class="alert" id="search_keywords">Kindly check the checkboxes to add a new class under <span id="department1_name">XXX</span> Department</div>
-
-            <div class="title">SELECT CLASS: <span>*</span></div>
-                <div class="subject-info-div">
-                    <div class="div-in" id="fetch_classes_checkbox">
-                        <label for="">
-                            <!-- <div class="radio-in-div">
-                                <div class="radio"><input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY"><div class="border"></div></div>
-                                <span>JUPEB</span>
-                            </div> -->
-                        </label>                       
-                    </div>                  
-                </div>
-            <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_add_class_dept('<?php echo $ids?>');"> <i class="bi-check"></i> SUBMIT </button>
-        </div>
-    </div> 
-</div>
-<script> _get_fetch_all_classes('fetch_classes_checkbox');</script>
-<script>_get_fetch_form_class_dept('<?php echo $ids?>');</script>
-<?php } ?>
-
 
 
 <?php if ($page=='add_subject_class'){ ?>
-<div class="slide-form-div animated fadeInRight">
-    <div class="fly-title-div">
-        <div class="in">
-            <span id="panel-title"><i class="bi-plus-square"></i> ADD A NEW SUBJECT</span>
-            <div class="close" title="Close" onclick="_alert_close();">X</div>
+    <div class="slide-form-div animated fadeInRight">
+        <div class="fly-title-div">
+            <div class="in">
+                <span id="panel-title"><i class="bi-plus-square"></i> ADD A NEW SUBJECT</span>
+                <div class="close" title="Close" onclick="_alert_close();">X</div>
+            </div>
         </div>
-     </div>
 
-    <div class="container-back-div sb-container" >
-        <div class="inner-div" id="status_id">
+        <div class="container-back-div sb-container" >
+            <div class="inner-div" id="status_id">
 
-            <div class="alert" id="search_keywords">Kindly check the checkboxes to add a new subject under <span id="class1_name">XXX</span> Class</div>
+                <div class="alert" id="search_keywords">Kindly check the checkboxes to add a new subject under <span id="class1_name">XXX</span> Class</div>
 
-            <div class="title">SELECT CLASS: <span>*</span></div>
-                <div class="subject-info-div">
-                    <div class="div-in" id="fetch_subject_checkbox">
-                        <label for="">
-                            <!-- <div class="radio-in-div">
-                                <div class="radio"><input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY"><div class="border"></div></div>
-                                <span>JUPEB</span>
-                            </div> -->
-                        </label>                       
-                    </div>                  
-                </div>
-            <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_add_subject_class('<?php echo $ids?>','<?php echo $other_ids?>');"> <i class="bi-check"></i> SUBMIT </button>
-        </div>
-    </div> 
-</div>
-<script> _get_fetch_all_subject('fetch_subject_checkbox');</script>
-<script>_get_fetch_form_subject_class('<?php echo $ids?>','<?php echo $other_ids?>');</script>
+                <div class="title">SELECT CLASS: <span>*</span></div>
+                    <div class="subject-info-div">
+                        <div class="div-in" id="fetch_subject_checkbox">
+                            <label for="">
+                                <!-- <div class="radio-in-div">
+                                    <div class="radio"><input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY"><div class="border"></div></div>
+                                    <span>JUPEB</span>
+                                </div> -->
+                            </label>                       
+                        </div>                  
+                    </div>
+                <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_add_subject_class('<?php echo $department_id?>','<?php echo $class_id?>');"> <i class="bi-check"></i> SUBMIT </button>
+            </div>
+        </div> 
+    </div>
+    <script> _get_fetch_all_subject('fetch_subject_checkbox');</script>
+    <script>_get_fetch_form_subject_class('<?php echo $department_id?>','<?php echo $class_id?>');</script>
 <?php } ?>
      
-
-
 
 <?php if ($page=='select_class_form'){?>
 	<div class="caption-div animated zoomIn">
@@ -563,572 +543,556 @@
             <select id="class_id" class="text_field selectinput" title="SELECT DEPARTMENT FIRST">
                 <option value="" selected="selected">SELECT DEPARTMENT FIRST</option>           
             </select>
-            <button class="btn" type="button" id="submit_btn"  title="Proceed"  onclick="_fetch_department_class_subject('<?php echo $ids?>','<?php echo $other_ids?>');" ><i class="bi-check"></i> PROCEED </button>
+            <button class="btn" type="button" id="submit_btn"  title="Proceed"  onclick="_fetch_department_class_subject('');" ><i class="bi-check"></i> PROCEED </button>
         </div>
     </div>
 <?php } ?>
 
 
-
 <?php if ($page=='video_reg'){ ?>
-<div class="slide-form-div animated fadeInRight">
-    <div class="fly-title-div">
-        <div class="in">
-            <span id="panel-title"><i class="bi-plus-square"></i> ADD NEW VIDEO</span>
-            <div class="close" title="Close" onclick="_alert_close2();">X</div>
-        </div>
-     </div>
-
-    <div class="container-back-div sb-container" >
-        <div class="inner-div">
-            <div class="alert alert-success">
-                <p>Kindly fill the form below to add a new tutorial:</p>
-                <div class="alert-list-div">
-                    <div class="alert-list">
-                        <div>DEPARMTMENT:</div>
-                        <div><span id="tut_department_name">xxxx</span></div>
-                    </div>
-                    <div class="alert-list">
-                        <div>CLASS:</div>
-                        <div><span id="tut_class_name">xxxx</span></div>
-                    </div>
-                    <div class="alert-list">
-                        <div>SUBJECT:</div>
-                        <div><span id="tut_subject_name">xxxx</span></div>
-                    </div>
-                </div>
-            </div>               
-
-            <div class="title">SELECT TERM: <span>*</span></div>
-            <select id="term_id" class="text_field selectinput" title="SELECT TERM">
-                <option value="" selected="selected">SELECT TERM</option>
-                <script>_get_select_term('term_id');</script>
-            </select> 
-
-            <div class="title">SELECT WEEK: <span>*</span></div>
-            <select id="week_id" class="text_field selectinput" title="SELECT WEEK">
-                <option value="" selected="selected">SELECT WEEK</option>
-                <script>_get_select_week('week_id');</script>
-            </select> 
-
-            <div class="title">SELECT VIDEO SERIES: <span>*</span></div>
-            <select id="series_id" class="text_field selectinput" title="VIDEO SERIES">
-                <option value="" selected="selected">VIDEO SERIES</option>
-                <script>_get_select_series('series_id');</script>
-            </select> 
-
-            <div class="title">TOPIC: <span>*</span></div>
-            <input id="topic" type="text"  class="text_field" placeholder="TOPIC" title="TOPIC"/>
-
-            <div class="title">URL: <span>*</span></div>
-            <input id="urls" type="text"  class="text_field" placeholder="URL" title="URL"/>
-
-            <div class="title">SEO KEYWORDS: <span>*</span></div>
-            <textarea id="seo_keywords" class="text_field textarea" rows="2" maxlength="160" title="SEO KEYWORDS" placeholder="SEO KEYWORDS"></textarea>
-
-            <div class="title">SEO DESCRIPTION: <span>*</span></div>
-            <textarea id="seo_description" class="text_field textarea" rows="2" maxlength="160" title="SEO DESCRIPTION" placeholder="SEO DESCRIPTION"></textarea>
-
-            <div class="title">CLASS SUMMARY: <span>*</span></div>
-            <script src="js/TextEditor.js" referrerpolicy="origin"></script>
-            <script>tinymce.init({selector:'#summary',  // change this value according to your HTML
-            plugins: "link, image, table"
-            });</script>
-            <textarea style="width: 100%;" rows="20" id="summary" title="CLASS SUMMARY" placeholder="CLASS SUMMARY"></textarea>
-            <br clear="all"/>
-            
-            <div class="video-img-back-div">
-                <legends>Click to Upload Video Image <i class="bi-upload"></i></legends>
-                <label>
-                    <div class="img-div bottom-image-div" title="Click To Upload Tutorial Video Image">
-                        <img id="subject-pix" src="<?php echo $website_url?>/admin/a/all-images/body-pix/default.png" alt="Default Image">
-                        <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);" />
-                    </div>
-                </label> 
+    <div class="slide-form-div animated fadeInRight">
+        <div class="fly-title-div">
+            <div class="in">
+                <span id="panel-title"><i class="bi-plus-square"></i> ADD NEW VIDEO</span>
+                <div class="close" title="Close" onclick="_alert_close2();">X</div>
             </div>
+        </div>
 
+        <div class="container-back-div sb-container" >
+            <div class="inner-div">
+                <div class="alert alert-success">
+                    <p>Kindly fill the form below to add a new tutorial:</p>
+                    <div class="alert-list-div">
+                        <div class="alert-list">
+                            <div>DEPARMTMENT:</div>
+                            <div><span id="tut_department_name">xxxx</span></div>
+                        </div>
+                        <div class="alert-list">
+                            <div>CLASS:</div>
+                            <div><span id="tut_class_name">xxxx</span></div>
+                        </div>
+                        <div class="alert-list">
+                            <div>SUBJECT:</div>
+                            <div><span id="tut_subject_name">xxxx</span></div>
+                        </div>
+                    </div>
+                </div>               
 
-            <div class="video-img-back-div">
-                <legend style="cursor:pointer;">Click to Upload Video <i class="bi-upload"></i></legend>
+                <div class="title">SELECT TERM: <span>*</span></div>
+                <select id="term_id" class="text_field selectinput" title="SELECT TERM">
+                    <option value="" selected="selected">SELECT TERM</option>
+                    <script>_get_select_term('term_id');</script>
+                </select> 
+
+                <div class="title">SELECT WEEK: <span>*</span></div>
+                <select id="week_id" class="text_field selectinput" title="SELECT WEEK">
+                    <option value="" selected="selected">SELECT WEEK</option>
+                    <script>_get_select_week('week_id');</script>
+                </select> 
+
+                <div class="title">SELECT VIDEO SERIES: <span>*</span></div>
+                <select id="series_id" class="text_field selectinput" title="VIDEO SERIES">
+                    <option value="" selected="selected">VIDEO SERIES</option>
+                    <script>_get_select_series('series_id');</script>
+                </select> 
+
+                <div class="title">TOPIC: <span>*</span></div>
+                <input id="topic" type="text"  class="text_field" placeholder="TOPIC" title="TOPIC"/>
+
+                <div class="title">URL: <span>*</span></div>
+                <input id="urls" type="text"  class="text_field" placeholder="URL" title="URL"/>
+
+                <div class="title">SEO KEYWORDS: <span>*</span></div>
+                <textarea id="seo_keywords" class="text_field textarea" rows="2" maxlength="160" title="SEO KEYWORDS" placeholder="SEO KEYWORDS"></textarea>
+
+                <div class="title">SEO DESCRIPTION: <span>*</span></div>
+                <textarea id="seo_description" class="text_field textarea" rows="2" maxlength="160" title="SEO DESCRIPTION" placeholder="SEO DESCRIPTION"></textarea>
+
+                <div class="title">CLASS SUMMARY: <span>*</span></div>
+                <script src="js/TextEditor.js" referrerpolicy="origin"></script>
+                <script>tinymce.init({selector:'#summary',  // change this value according to your HTML
+                plugins: "link, image, table"
+                });</script>
+                <textarea style="width: 100%;" rows="20" id="summary" title="CLASS SUMMARY" placeholder="CLASS SUMMARY"></textarea>
+                <br clear="all"/>
+                
+                <div class="video-img-back-div">
+                    <legends>Click to Upload Video Image <i class="bi-upload"></i></legends>
                     <label>
-                        <div class="img-div video-div" title="Click To Upload Tutorial Video">
-                            <div id="view_sub_topic_video" class="video-container">
-                                <video src="" id="videoDisplay" name="sub_video" controls="controls" loop="" class="video-slide"></video>
-                                <div id="video-background" class="background-image">
-                                    <img src="<?php echo $website_url?>/admin/a/all-images/body-pix/default.png" alt="Default Image">
-                                </div>
-                            </div>
-                            <input name="sub_video" id="video" onchange="showVideo(this)" type="file" style="display:none;">
+                        <div class="img-div bottom-image-div" title="Click To Upload Tutorial Video Image">
+                            <img id="subject-pix" src="<?php echo $website_url?>/admin/a/all-images/images/default.png" alt="Default Image">
+                            <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);" />
                         </div>
                     </label> 
-                    <script>     
-                        var videoDisplay = document.getElementById('videoDisplay');
-                        var videoInput = document.getElementById('video');
-                        var legendElement = document.querySelector('legend');
-                        
-                        // Add click event listener to the legend element
-                        legendElement.addEventListener('click', function () {
-                            videoInput.click();
-                        });
-                    
-                        videoInput.addEventListener('change', function () {
-                            showVideo(this);
-                        });
-                    
-                        function showVideo(input) {
-                            var videoDisplay = document.getElementById('videoDisplay');
-                            var videoBackground = document.getElementById('video-background');
-                    
-                            if (input.files && input.files[0]) {
-                                var reader = new FileReader();
-                                reader.onload = function (e) {
-                                    videoDisplay.src = e.target.result;
-                                    videoBackground.style.display = 'none'; // Hide the default background image
-                                    videoDisplay.style.display = 'block'; // Show the video
-                                };
-                                reader.readAsDataURL(input.files[0]);
-                            }
-                        }
-                    </script>
-            </div>
+                </div>
 
-            <div class="title">VIDEO DURATION: <span>*</span> (HH:MM:SS)</div>
-            <input id="duration" type="text" class="text_field" placeholder="00:00:00" title="VIDEO DURATION"/>              
-            
-            <div class="pdf-back-div">
-                <div class="title">CLASS MATERIAL (PDF): <span>*</span></div>
-                <legend id="pdf_legend" style="cursor:pointer;">Click to Upload PDF <i class="bi-upload"></i></legend>
-                <div class="div-in" id="pdf_upload_area">
-                    <label>
-                        <div id="pdf_display" class="pdf-container background-display">
-                            <embed id="pdfFile" src="" type="application/pdf" width="100%" height="350px" style="display: none;">                          
-                            <div id="pdf-background" class="background-text" style="cursor:pointer;">
-                                <img src="<?php echo $website_url?>/admin/a/all-images/body-pix/default.png" alt="Default Image">
+
+                <div class="video-img-back-div">
+                    <legend style="cursor:pointer;">Click to Upload Video <i class="bi-upload"></i></legend>
+                        <label>
+                            <div class="img-div video-div" title="Click To Upload Tutorial Video">
+                                <div id="view_sub_topic_video" class="video-container">
+                                    <video src="" id="videoDisplay" name="sub_video" controls="controls" loop="" class="video-slide"></video>
+                                    <div id="video-background" class="background-image">
+                                        <img src="<?php echo $website_url?>/admin/a/all-images/images/default.png" alt="Default Image">
+                                    </div>
+                                </div>
+                                <input name="sub_video" id="video" onchange="showVideo(this)" type="file" style="display:none;">
                             </div>
-                        </div>
-                        <input type="file" id="material" onchange="showPdf(this)" name="pdf_file" accept=".pdf" style="display: none;">
-                    </label>
+                        </label> 
+                        <script>     
+                            var videoDisplay = document.getElementById('videoDisplay');
+                            var videoInput = document.getElementById('video');
+                            var legendElement = document.querySelector('legend');
+                            
+                            // Add click event listener to the legend element
+                            legendElement.addEventListener('click', function () {
+                                videoInput.click();
+                            });
+                        
+                            videoInput.addEventListener('change', function () {
+                                showVideo(this);
+                            });
+                        
+                            function showVideo(input) {
+                                var videoDisplay = document.getElementById('videoDisplay');
+                                var videoBackground = document.getElementById('video-background');
+                        
+                                if (input.files && input.files[0]) {
+                                    var reader = new FileReader();
+                                    reader.onload = function (e) {
+                                        videoDisplay.src = e.target.result;
+                                        videoBackground.style.display = 'none'; // Hide the default background image
+                                        videoDisplay.style.display = 'block'; // Show the video
+                                    };
+                                    reader.readAsDataURL(input.files[0]);
+                                }
+                            }
+                        </script>
                 </div>
-                <div id="file-list">
-                    <!-- PDF will be displayed here -->
+
+                <div class="title">VIDEO DURATION: <span>*</span> (HH:MM:SS)</div>
+                <input id="duration" type="text" class="text_field" placeholder="00:00:00" title="VIDEO DURATION"/>              
+                
+                <div class="pdf-back-div">
+                    <div class="title">CLASS MATERIAL (PDF): <span>*</span></div>
+                    <legend id="pdf_legend" style="cursor:pointer;">Click to Upload PDF <i class="bi-upload"></i></legend>
+                    <div class="div-in" id="pdf_upload_area">
+                        <label>
+                            <div id="pdf_display" class="pdf-container background-display">
+                                <embed id="pdfFile" src="" type="application/pdf" width="100%" height="350px" style="display: none;">                          
+                                <div id="pdf-background" class="background-text" style="cursor:pointer;">
+                                    <img src="<?php echo $website_url?>/admin/a/all-images/images/default.png" alt="Default Image">
+                                </div>
+                            </div>
+                            <input type="file" id="material" onchange="showPdf(this)" name="pdf_file" accept=".pdf" style="display: none;">
+                        </label>
+                    </div>
+                    <div id="file-list">
+                        <!-- PDF will be displayed here -->
+                    </div>
                 </div>
+
+
+                <script>
+                    var pdfDisplay = document.getElementById('pdf_display');
+                    var pdfInput = document.getElementById('material');
+                    var fileList = document.getElementById('file-list');
+                    var legendElement = document.getElementById('pdf_legend');
+                    var pdfEmbed = document.getElementById('pdfFile');
+
+                    function showPdf(input) {
+                        if (input.files && input.files[0]) {
+                            var file = URL.createObjectURL(input.files[0]);
+                            pdfDisplay.classList.add('embed-display');
+                            pdfDisplay.classList.remove('background-display');
+                            pdfEmbed.style.display = 'block'; // Display the PDF embed
+                            pdfEmbed.src = file;
+                            pdfDisplay.querySelector('.background-text').style.display = 'none';
+
+                            // Show file size
+                            var fileSize = input.files[0].size;
+                            var sizeInMB = (fileSize / (1024 * 1024)).toFixed(2); // Convert to MB with two decimal places
+                            fileList.innerHTML = 'File size: ' + sizeInMB + ' MB';
+                        }
+                    }   
+
+
+                    // Trigger file input click on the legend click
+                    legendElement.addEventListener('click', function() {
+                        pdfInput.click();
+                    });
+
+                    // Drag and drop functionality
+                    pdfDisplay.addEventListener('dragover', function(e) {
+                        e.preventDefault();
+                        pdfDisplay.classList.add('drag-over');
+                    });
+
+                    pdfDisplay.addEventListener('dragleave', function() {
+                        pdfDisplay.classList.remove('drag-over');
+                    });
+
+                    pdfDisplay.addEventListener('drop', function(e) {
+                        e.preventDefault();
+                        pdfDisplay.classList.remove('drag-over');
+                        var file = e.dataTransfer.files[0];
+                        pdfInput.files = e.dataTransfer.files;
+                        showPdf(pdfInput);
+                    });
+
+
+                </script>
+
+                <div class="title">SELECT STATUS: <span>*</span></div>
+                <select id="reg_status_id" class="text_field select_input" title="SELECT STATUS">
+                    <option value="" selected="selected"> SELECT STATUS</option>
+                    <script>_get_select_status('reg_status_id','1,2');</script>
+                </select> 
+
+                <div class="alert alert-success" id="progress-alert">
+                    <span>UPLOADING IN PROGRESS...</span><br>
+                    Please DO NOT close this panel as the process takes some time.
+                    <div class="ajax-progress">0%</div>
+                </div> 
+
+                <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_add_tutorial_video('<?php echo $department_id?>','<?php echo $class_id?>','<?php echo $subject_id?>');"> <i class="bi-check"></i> SUBMIT </button>
             </div>
-
-
-            <script>
-                var pdfDisplay = document.getElementById('pdf_display');
-                var pdfInput = document.getElementById('material');
-                var fileList = document.getElementById('file-list');
-                var legendElement = document.getElementById('pdf_legend');
-                var pdfEmbed = document.getElementById('pdfFile');
-
-                function showPdf(input) {
-                    if (input.files && input.files[0]) {
-                        var file = URL.createObjectURL(input.files[0]);
-                        pdfDisplay.classList.add('embed-display');
-                        pdfDisplay.classList.remove('background-display');
-                        pdfEmbed.style.display = 'block'; // Display the PDF embed
-                        pdfEmbed.src = file;
-                        pdfDisplay.querySelector('.background-text').style.display = 'none';
-
-                        // Show file size
-                        var fileSize = input.files[0].size;
-                        var sizeInMB = (fileSize / (1024 * 1024)).toFixed(2); // Convert to MB with two decimal places
-                        fileList.innerHTML = 'File size: ' + sizeInMB + ' MB';
-                    }
-                }   
-
-
-                // Trigger file input click on the legend click
-                legendElement.addEventListener('click', function() {
-                    pdfInput.click();
-                });
-
-                // Drag and drop functionality
-                pdfDisplay.addEventListener('dragover', function(e) {
-                    e.preventDefault();
-                    pdfDisplay.classList.add('drag-over');
-                });
-
-                pdfDisplay.addEventListener('dragleave', function() {
-                    pdfDisplay.classList.remove('drag-over');
-                });
-
-                pdfDisplay.addEventListener('drop', function(e) {
-                    e.preventDefault();
-                    pdfDisplay.classList.remove('drag-over');
-                    var file = e.dataTransfer.files[0];
-                    pdfInput.files = e.dataTransfer.files;
-                    showPdf(pdfInput);
-                });
-
-
-            </script>
-
-            <div class="title">SELECT STATUS: <span>*</span></div>
-            <select id="reg_status_id" class="text_field select_input" title="SELECT STATUS">
-                <option value="" selected="selected"> SELECT STATUS</option>
-                <script>_get_select_status('reg_status_id','1,2');</script>
-            </select> 
-
-            <div class="alert alert-success" id="progress-alert">
-                <span>UPLOADING IN PROGRESS...</span><br>
-                Please DO NOT close this panel as the process takes some time.
-                <div class="ajax-progress">0%</div>
-            </div> 
-
-            <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_add_tutorial_video('<?php echo $ids?>','<?php echo $other_ids?>','<?php echo $other_ids1?>');"> <i class="bi-check"></i> SUBMIT </button>
-        </div>
-    </div> 
-</div>
-<script>_get_fetch_department_class_subject_form('<?php echo $ids?>','<?php echo $other_ids?>')</script>
-<script>_get_fetch_subject_form('<?php echo $other_ids1?>')</script>
+        </div> 
+    </div>
+    <script>_get_fetch_department_class_subject_form('<?php echo $department_id?>','<?php echo $class_id?>')</script>
+    <script>_get_fetch_subject_form('<?php echo $subject_id?>')</script>
 <?php } ?>
-
-
-
-
-
-
 
 
 <?php if ($page=='update_video'){ ?>
-<div class="slide-form-div animated fadeInRight">
-    <div class="fly-title-div">
-        <div class="in">
-            <span id="panel-title"><i class="bi-plus-square"></i> UPDATE VIDEO</span>
-            <div class="close" title="Close" onclick="_alert_close2();">X</div>
-        </div>
-     </div>
-
-    <div class="container-back-div sb-container" >
-        <div class="inner-div">
-            <div class="alert alert-success">
-                <p>Kindly fill the form below to update tutorial:</p>
-                <div class="alert-list-div">
-                    <div class="alert-list">
-                        <div>DEPARMTMENT:</div>
-                        <div><span id="tut_department_name">xxxx</span></div>
-                    </div>
-                    <div class="alert-list">
-                        <div>CLASS:</div>
-                        <div><span id="tut_class_name">xxxx</span></div>
-                    </div>
-                    <div class="alert-list">
-                        <div>SUBJECT:</div>
-                        <div><span id="update_subject_name">xxxx</span></div>
-                    </div>
-                </div>
-            </div>  
-
-            <div class="title">SUBJECT: <span>*</span></div>
-            <select id="subject_id" class="text_field selectinput" title="SUBJECT">
-                <option value="" selected="selected"></option>
-                <script>_fetch_select_subject('subject_id');</script>
-            </select> 
-
-            <div class="title">SELECT TERM: <span>*</span></div>
-            <select id="term_id" class="text_field selectinput" title="SELECT TERM">
-                <option value="" selected="selected">SELECT TERM</option>
-                <script>_get_select_term('term_id');</script>
-            </select> 
-
-            <div class="title">SELECT WEEK: <span>*</span></div>
-            <select id="week_id" class="text_field selectinput" title="SELECT WEEK">
-                <option value="" selected="selected">SELECT WEEK</option>
-                <script>_get_select_week('week_id');</script>
-            </select> 
-
-            <div class="title">SELECT VIDEO SERIES: <span>*</span></div>
-            <select id="series_id" class="text_field selectinput" title="VIDEO SERIES">
-                <option value="" selected="selected">VIDEO SERIES</option>
-                <script>_get_select_series('series_id');</script>
-            </select> 
-
-            <div class="title">TOPIC: <span>*</span></div>
-            <input id="topic" type="text"  class="text_field" placeholder="TOPIC" title="TOPIC"/>
-
-            <div class="title">URL: <span>*</span></div>
-            <input id="urls" type="text"  class="text_field" placeholder="URL" title="URL"/>
-
-            <div class="title">SEO KEYWORDS: <span>*</span></div>
-            <textarea id="seo_keywords" class="text_field textarea" rows="2" maxlength="160" title="SEO KEYWORDS" placeholder="SEO KEYWORDS"></textarea>
-
-            <div class="title">SEO DESCRIPTION: <span>*</span></div>
-            <textarea id="seo_description" class="text_field textarea" rows="2" maxlength="160" title="SEO DESCRIPTION" placeholder="SEO DESCRIPTION"></textarea>
-
-            <div class="title">CLASS SUMMARY: <span>*</span></div>
-            <script src="js/TextEditor.js" referrerpolicy="origin"></script>
-            <script>tinymce.init({selector:'#summary',  // change this value according to your HTML
-            plugins: "link, image, table"
-            });</script>
-            <textarea style="width: 100%;" rows="20" id="summary" title="CLASS SUMMARY" placeholder="CLASS SUMMARY"></textarea>
-            <br clear="all"/>
-            
-            
-            <div class="video-img-back-div">
-                <legends>Click to Upload Video Image <i class="bi-upload"></i></legends>
-                <label>
-                    <div class="bottom-image-div" title="Click to upload tutorial Video Image">
-                        <div id="view_tutorial_pix"><img id="subject-pix" src="<?php echo $website_url?>/admin/a/all-images/body-pix/default.png" alt="Default Image"></div>
-                        <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);" />
-                    </div>
-                </label> 
+    <div class="slide-form-div animated fadeInRight">
+        <div class="fly-title-div">
+            <div class="in">
+                <span id="panel-title"><i class="bi-plus-square"></i> UPDATE VIDEO</span>
+                <div class="close" title="Close" onclick="_alert_close2();">X</div>
             </div>
+        </div>
 
+        <div class="container-back-div sb-container" >
+            <div class="inner-div">
+                <div class="alert alert-success">
+                    <p>Kindly fill the form below to update tutorial:</p>
+                    <div class="alert-list-div">
+                        <div class="alert-list">
+                            <div>DEPARMTMENT:</div>
+                            <div><span id="tut_department_name">xxxx</span></div>
+                        </div>
+                        <div class="alert-list">
+                            <div>CLASS:</div>
+                            <div><span id="tut_class_name">xxxx</span></div>
+                        </div>
+                        <div class="alert-list">
+                            <div>SUBJECT:</div>
+                            <div><span id="update_subject_name">xxxx</span></div>
+                        </div>
+                    </div>
+                </div>  
 
-            <div class="video-img-back-div">
-                <legend style="cursor:pointer;">Click to Upload Video <i class="bi-upload"></i></legend>
+                <div class="title">SUBJECT: <span>*</span></div>
+                <select id="subject_id" class="text_field selectinput" title="SUBJECT">
+                    <option value="" selected="selected"></option>
+                    <script>_fetch_select_subject('subject_id');</script>
+                </select> 
+
+                <div class="title">SELECT TERM: <span>*</span></div>
+                <select id="term_id" class="text_field selectinput" title="SELECT TERM">
+                    <option value="" selected="selected">SELECT TERM</option>
+                    <script>_get_select_term('term_id');</script>
+                </select> 
+
+                <div class="title">SELECT WEEK: <span>*</span></div>
+                <select id="week_id" class="text_field selectinput" title="SELECT WEEK">
+                    <option value="" selected="selected">SELECT WEEK</option>
+                    <script>_get_select_week('week_id');</script>
+                </select> 
+
+                <div class="title">SELECT VIDEO SERIES: <span>*</span></div>
+                <select id="series_id" class="text_field selectinput" title="VIDEO SERIES">
+                    <option value="" selected="selected">VIDEO SERIES</option>
+                    <script>_get_select_series('series_id');</script>
+                </select> 
+
+                <div class="title">TOPIC: <span>*</span></div>
+                <input id="topic" type="text"  class="text_field" placeholder="TOPIC" title="TOPIC"/>
+
+                <div class="title">URL: <span>*</span></div>
+                <input id="urls" type="text"  class="text_field" placeholder="URL" title="URL"/>
+
+                <div class="title">SEO KEYWORDS: <span>*</span></div>
+                <textarea id="seo_keywords" class="text_field textarea" rows="2" maxlength="160" title="SEO KEYWORDS" placeholder="SEO KEYWORDS"></textarea>
+
+                <div class="title">SEO DESCRIPTION: <span>*</span></div>
+                <textarea id="seo_description" class="text_field textarea" rows="2" maxlength="160" title="SEO DESCRIPTION" placeholder="SEO DESCRIPTION"></textarea>
+
+                <div class="title">CLASS SUMMARY: <span>*</span></div>
+                <script src="js/TextEditor.js" referrerpolicy="origin"></script>
+                <script>tinymce.init({selector:'#summary',  // change this value according to your HTML
+                plugins: "link, image, table"
+                });</script>
+                <textarea style="width: 100%;" rows="20" id="summary" title="CLASS SUMMARY" placeholder="CLASS SUMMARY"></textarea>
+                <br clear="all"/>
+                
+                
+                <div class="video-img-back-div">
+                    <legends>Click to Upload Video Image <i class="bi-upload"></i></legends>
                     <label>
-                        <div class="img-div video-div" title="Click to upload tutorial Video">
-                            <div id="view_sub_topic_video" class="video-container">
-                                <video src="" id="videoDisplay" name="sub_video" controls="controls" loop="" class="video-slide"></video>
-                                <div id="video-background" class="background-image">
-                                    <img src="<?php echo $website_url?>/admin/a/all-images/body-pix/default.png" alt="Default Image">
-                                </div>
-                            </div>
-                            <input name="sub_video" id="video" onchange="showVideo(this)" type="file" style="display:none;">
+                        <div class="bottom-image-div" title="Click to upload tutorial Video Image">
+                            <div id="view_tutorial_pix"><img id="subject-pix" src="<?php echo $website_url?>/admin/a/all-images/images/default.png" alt="Default Image"></div>
+                            <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);" />
                         </div>
                     </label> 
-                    <script>     
-                        var videoDisplay = document.getElementById('videoDisplay');
-                        var videoInput = document.getElementById('video');
-                        var legendElement = document.querySelector('legend');
-                        
-                        // Add click event listener to the legend element
-                        legendElement.addEventListener('click', function () {
-                            videoInput.click();
-                        });
-                    
-                        videoInput.addEventListener('change', function () {
-                            showVideo(this);
-                        });
-                    
-                        function showVideo(input) {
-                            var videoDisplay = document.getElementById('videoDisplay');
-                            var videoBackground = document.getElementById('video-background');
-                    
-                            if (input.files && input.files[0]) {
-                                var reader = new FileReader();
-                                reader.onload = function (e) {
-                                    videoDisplay.src = e.target.result;
-                                    videoBackground.style.display = 'none'; // Hide the default background image
-                                    videoDisplay.style.display = 'block'; // Show the video
-                                };
-                                reader.readAsDataURL(input.files[0]);
-                            }
-                        }
-                    </script>
-            </div>
+                </div>
 
-            <div class="title">VIDEO DURATION: <span>*</span> (HH:MM:SS)</div>
-            <input id="duration" type="text" class="text_field" placeholder="00:00:00" title="VIDEO DURATION"/>              
-            
-            <div class="pdf-back-div">
-                <div class="title">CLASS MATERIAL (PDF): <span>*</span></div>
-                <legend id="pdf_legend" style="cursor:pointer;">Click to Upload PDF <i class="bi-upload"></i></legend>
-                <div class="div-in" id="pdf_upload_area">
-                    <label>
-                        <div id="pdf_display" class="pdf-container background-display">
-                            <embed id="pdfFile" src="" type="application/pdf" width="100%" height="350px" style="display: none;">                          
-                            <div id="pdf-background" class="background-text" style="cursor:pointer;">
-                                <img src="<?php echo $website_url?>/admin/a/all-images/body-pix/default.png" alt="Default Image">
+
+                <div class="video-img-back-div">
+                    <legend style="cursor:pointer;">Click to Upload Video <i class="bi-upload"></i></legend>
+                        <label>
+                            <div class="img-div video-div" title="Click to upload tutorial Video">
+                                <div id="view_sub_topic_video" class="video-container">
+                                    <video src="" id="videoDisplay" name="sub_video" controls="controls" loop="" class="video-slide"></video>
+                                    <div id="video-background" class="background-image">
+                                        <img src="<?php echo $website_url?>/admin/a/all-images/images/default.png" alt="Default Image">
+                                    </div>
+                                </div>
+                                <input name="sub_video" id="video" onchange="showVideo(this)" type="file" style="display:none;">
                             </div>
-                        </div>
-                        <input type="file" id="material" onchange="showPdf(this)" name="pdf_file" accept=".pdf" style="display: none;">
-                    </label>
+                        </label> 
+                        <script>     
+                            var videoDisplay = document.getElementById('videoDisplay');
+                            var videoInput = document.getElementById('video');
+                            var legendElement = document.querySelector('legend');
+                            
+                            // Add click event listener to the legend element
+                            legendElement.addEventListener('click', function () {
+                                videoInput.click();
+                            });
+                        
+                            videoInput.addEventListener('change', function () {
+                                showVideo(this);
+                            });
+                        
+                            function showVideo(input) {
+                                var videoDisplay = document.getElementById('videoDisplay');
+                                var videoBackground = document.getElementById('video-background');
+                        
+                                if (input.files && input.files[0]) {
+                                    var reader = new FileReader();
+                                    reader.onload = function (e) {
+                                        videoDisplay.src = e.target.result;
+                                        videoBackground.style.display = 'none'; // Hide the default background image
+                                        videoDisplay.style.display = 'block'; // Show the video
+                                    };
+                                    reader.readAsDataURL(input.files[0]);
+                                }
+                            }
+                        </script>
                 </div>
-                <div id="file-list">
-                    <!-- PDF will be displayed here -->
+
+                <div class="title">VIDEO DURATION: <span>*</span> (HH:MM:SS)</div>
+                <input id="duration" type="text" class="text_field" placeholder="00:00:00" title="VIDEO DURATION"/>              
+                
+                <div class="pdf-back-div">
+                    <div class="title">CLASS MATERIAL (PDF): <span>*</span></div>
+                    <legend id="pdf_legend" style="cursor:pointer;">Click to Upload PDF <i class="bi-upload"></i></legend>
+                    <div class="div-in" id="pdf_upload_area">
+                        <label>
+                            <div id="pdf_display" class="pdf-container background-display">
+                                <embed id="pdfFile" src="" type="application/pdf" width="100%" height="350px" style="display: none;">                          
+                                <div id="pdf-background" class="background-text" style="cursor:pointer;">
+                                    <img src="<?php echo $website_url?>/admin/a/all-images/images/default.png" alt="Default Image">
+                                </div>
+                            </div>
+                            <input type="file" id="material" onchange="showPdf(this)" name="pdf_file" accept=".pdf" style="display: none;">
+                        </label>
+                    </div>
+                    <div id="file-list">
+                        <!-- PDF will be displayed here -->
+                    </div>
                 </div>
+
+
+                <script>
+                    var pdfDisplay = document.getElementById('pdf_display');
+                    var pdfInput = document.getElementById('material');
+                    var fileList = document.getElementById('file-list');
+                    var legendElement = document.getElementById('pdf_legend');
+                    var pdfEmbed = document.getElementById('pdfFile');
+
+                    function showPdf(input) {
+                        if (input.files && input.files[0]) {
+                            var file = URL.createObjectURL(input.files[0]);
+                            pdfDisplay.classList.add('embed-display');
+                            pdfDisplay.classList.remove('background-display');
+                            pdfEmbed.style.display = 'block'; // Display the PDF embed
+                            pdfEmbed.src = file;
+                            pdfDisplay.querySelector('.background-text').style.display = 'none';
+
+                            // Show file size
+                            var fileSize = input.files[0].size;
+                            var sizeInMB = (fileSize / (1024 * 1024)).toFixed(2); // Convert to MB with two decimal places
+                            fileList.innerHTML = 'File size: ' + sizeInMB + ' MB';
+                        }
+                    }   
+
+
+                    // Trigger file input click on the legend click
+                    legendElement.addEventListener('click', function() {
+                        pdfInput.click();
+                    });
+
+                    // Drag and drop functionality
+                    pdfDisplay.addEventListener('dragover', function(e) {
+                        e.preventDefault();
+                        pdfDisplay.classList.add('drag-over');
+                    });
+
+                    pdfDisplay.addEventListener('dragleave', function() {
+                        pdfDisplay.classList.remove('drag-over');
+                    });
+
+                    pdfDisplay.addEventListener('drop', function(e) {
+                        e.preventDefault();
+                        pdfDisplay.classList.remove('drag-over');
+                        var file = e.dataTransfer.files[0];
+                        pdfInput.files = e.dataTransfer.files;
+                        showPdf(pdfInput);
+                    });
+
+
+                </script>
+
+                <div class="title">SELECT STATUS: <span>*</span></div>
+                <select id="updt_status_id" class="text_field select_input" title="SELECT STATUS">
+                    <option value="" selected="selected"> SELECT STATUS</option>
+                    <script>_get_select_status('updt_status_id','1,2');</script>
+                </select> 
+
+                <div class="alert alert-success" id="progress-alert">
+                    <span>UPLOADING IN PROGRESS...</span><br>
+                        Please DO NOT close this panel as the process takes some time.
+                    <div class="ajax-progress">0%</div>
+                </div> 
+
+                <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_update_tutorial_video('<?php echo $department_id?>','<?php echo $class_id?>','<?php echo $tutorial_id?>');"> <i class="bi-check"></i> SUBMIT </button>
+
             </div>
-
-
-            <script>
-                var pdfDisplay = document.getElementById('pdf_display');
-                var pdfInput = document.getElementById('material');
-                var fileList = document.getElementById('file-list');
-                var legendElement = document.getElementById('pdf_legend');
-                var pdfEmbed = document.getElementById('pdfFile');
-
-                function showPdf(input) {
-                    if (input.files && input.files[0]) {
-                        var file = URL.createObjectURL(input.files[0]);
-                        pdfDisplay.classList.add('embed-display');
-                        pdfDisplay.classList.remove('background-display');
-                        pdfEmbed.style.display = 'block'; // Display the PDF embed
-                        pdfEmbed.src = file;
-                        pdfDisplay.querySelector('.background-text').style.display = 'none';
-
-                        // Show file size
-                        var fileSize = input.files[0].size;
-                        var sizeInMB = (fileSize / (1024 * 1024)).toFixed(2); // Convert to MB with two decimal places
-                        fileList.innerHTML = 'File size: ' + sizeInMB + ' MB';
-                    }
-                }   
-
-
-                // Trigger file input click on the legend click
-                legendElement.addEventListener('click', function() {
-                    pdfInput.click();
-                });
-
-                // Drag and drop functionality
-                pdfDisplay.addEventListener('dragover', function(e) {
-                    e.preventDefault();
-                    pdfDisplay.classList.add('drag-over');
-                });
-
-                pdfDisplay.addEventListener('dragleave', function() {
-                    pdfDisplay.classList.remove('drag-over');
-                });
-
-                pdfDisplay.addEventListener('drop', function(e) {
-                    e.preventDefault();
-                    pdfDisplay.classList.remove('drag-over');
-                    var file = e.dataTransfer.files[0];
-                    pdfInput.files = e.dataTransfer.files;
-                    showPdf(pdfInput);
-                });
-
-
-            </script>
-
-            <div class="title">SELECT STATUS: <span>*</span></div>
-            <select id="updt_status_id" class="text_field select_input" title="SELECT STATUS">
-                <option value="" selected="selected"> SELECT STATUS</option>
-                <script>_get_select_status('updt_status_id','1,2');</script>
-            </select> 
-
-            <div class="alert alert-success" id="progress-alert">
-                <span>UPLOADING IN PROGRESS...</span><br>
-                    Please DO NOT close this panel as the process takes some time.
-                <div class="ajax-progress">0%</div>
-            </div> 
-
-            <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_update_tutorial_video('<?php echo $ids?>','<?php echo $other_ids?>','<?php echo $other_ids2?>');"> <i class="bi-check"></i> SUBMIT </button>
-
-        </div>
-    </div> 
-</div>
-<script>_get_fetch_each_video_tutorial('<?php echo $other_ids2?>')</script>
-<script>_get_fetch_department_class_subject_form('<?php echo $ids?>','<?php echo $other_ids?>')</script>
-<script>_get_fetch_subject_form('<?php echo $other_ids1?>')</script>
+        </div> 
+    </div>
+    <script>_get_fetch_each_video_tutorial('<?php echo $tutorial_id?>')</script>
+    <script>_get_fetch_department_class_subject_form('<?php echo $department_id?>','<?php echo $class_id?>')</script>
+    <script>_get_fetch_subject_form('<?php echo $subject_id?>')</script>
 <?php } ?>
-
-
-
-
-
 
 
 
 <?php if ($page=='alert-read'){ ?>
-<div class="slide-form-div animated fadeInRight">
-    <div class="fly-title-div">
-        <div class="in">
-            <span id="panel-title"><i class="bi-bell"></i> Notification Details</span>
-            <div class="close" title="Close" onclick="_alert_close2();">X</div>
-        </div>
-    </div>
-
-    <div class="container-back-div sb-container">
-        <div class="inner-div">
-            <div class="alert alert-success">
-                <div class="alert-list-div">
-                    <div class="alert-list">
-                        <div>User ID:</div>
-                        <div><span id="read_user_id">xxxx</span></div>
-                    </div>
-                    <div class="alert-list">
-                        <div>Action Performed By:</div>
-                        <div><span id="user_name">xxxx</span></div>
-                    </div>
-                    <div class="alert-list">
-                        <div>IP Address Used:</div>
-                        <div><span id="ip_address">xxxx</span></div>
-                    </div>
-                    <div class="alert-list">
-                        <div>Computer Used:</div>
-                        <div><span id="system_name">xxxx</span></div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="alert alert-success">
-                <div class="alert-list-div">
-                    <div class="alert-list">
-                        <div>Alert ID:</div>
-                        <div><span id="alert_id">xxxx</span></div>
-                    </div>
-                    <div class="alert-list">
-                        <div>Date:</div>
-                        <div><span id="created_time">xxxx</span></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="title">Alert Details:</div>
-            <div class="alert alert-success" id="alert_detail">xxxx</div>
-
-            <button class="action-btn" onclick="_alert_close2();"> <i class="bi-check"></i> OK </button>
-        </div>
-    </div> 
-</div>
-<script>_fetch_read_alert('<?php echo $ids?>');</script>
-<?php } ?>
-
-
-
-
-<?php if ($page=='faqs_reg'){ ?>
-
-<div class="overlay-off-div">
     <div class="slide-form-div animated fadeInRight">
         <div class="fly-title-div">
             <div class="in">
-                    <span id="panel-title"><i class="bi-plus-square"></i> ADD NEW FAQ</span>               
-                <div class="close" title="Close" onclick="_alert_close();">X</div>
+                <span id="panel-title"><i class="bi-bell"></i> Notification Details</span>
+                <div class="close" title="Close" onclick="_alert_close2();">X</div>
             </div>
         </div>
 
-
         <div class="container-back-div sb-container">
             <div class="inner-div">
+                <div class="alert alert-success">
+                    <div class="alert-list-div">
+                        <div class="alert-list">
+                            <div>User ID:</div>
+                            <div><span id="read_user_id">xxxx</span></div>
+                        </div>
+                        <div class="alert-list">
+                            <div>Action Performed By:</div>
+                            <div><span id="user_name">xxxx</span></div>
+                        </div>
+                        <div class="alert-list">
+                            <div>IP Address Used:</div>
+                            <div><span id="ip_address">xxxx</span></div>
+                        </div>
+                        <div class="alert-list">
+                            <div>Computer Used:</div>
+                            <div><span id="system_name">xxxx</span></div>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="alert">Kindly fill the form below to <span>ADD NEW FAQ</span></div>
 
-            <div class="title">FAQ CATEGORY: <span>*</span></div>
-            <select id="cat_id" class="text_field select_field" title="SELECT FAQ's CATEGORY">
-                <option value=""> SELECT FAQ CATEGORY</option>
-                <script>_get_cat('cat_id');</script>
-            </select>
+                <div class="alert alert-success">
+                    <div class="alert-list-div">
+                        <div class="alert-list">
+                            <div>Alert ID:</div>
+                            <div><span id="alert_id">xxxx</span></div>
+                        </div>
+                        <div class="alert-list">
+                            <div>Date:</div>
+                            <div><span id="created_time">xxxx</span></div>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="title">FAQ QUESTION: <span>*</span></div>
-            <input id="faq_question" type="text" class="text_field" placeholder="Type Question Here" title="Question" title="FULL NAME"/>
-                        
-            <div class="title">FAQ ANSWER: <span>*</span></div>
-                <script src="js/TextEditor.js" referrerpolicy="origin"></script>
-                <script>tinymce.init({selector:'#faq_answer',  // change this value according to your HTML
-                plugins: "link, image, table"
-                });</script>
-                <textarea style="width:100%;" rows="20" id="faq_answer" title="Type Answer Here" placeholder="Type Answer Here"></textarea>
+                <div class="title">Alert Details:</div>
+                <div class="alert alert-success" id="alert_detail">xxxx</div>
 
-            <div class="title">SELECT STATUS: <span>*</span></div>
-            <select id="reg_status_id" class="text_field select_field" title="SELECT STATUS">
-                    <option value="" selected="selected">SELECT STATUS</option>
-                    <script>_get_select_status('reg_status_id','1,2');</script>
-            </select> 
-
-            <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_add_or_register_faq('<?php echo $ids?>');"> <i class="bi-check"></i> SUBMIT </button>
-               
+                <button class="action-btn" onclick="_alert_close2();"> <i class="bi-check"></i> OK </button>
             </div>
         </div> 
     </div>
-</div>
+    <script>_fetch_read_alert('<?php echo $ids?>');</script>
 <?php } ?>
 
+
+<?php if ($page=='faqs_reg'){ ?>
+    <div class="overlay-off-div">
+        <div class="slide-form-div animated fadeInRight">
+            <div class="fly-title-div">
+                <div class="in">
+                        <span id="panel-title"><i class="bi-plus-square"></i> ADD NEW FAQ</span>               
+                    <div class="close" title="Close" onclick="_alert_close();">X</div>
+                </div>
+            </div>
+
+
+            <div class="container-back-div sb-container">
+                <div class="inner-div">
+
+                <div class="alert">Kindly fill the form below to <span>ADD NEW FAQ</span></div>
+
+                <div class="title">FAQ CATEGORY: <span>*</span></div>
+                <select id="cat_id" class="text_field select_field" title="SELECT FAQ's CATEGORY">
+                    <option value=""> SELECT FAQ CATEGORY</option>
+                    <script>_get_cat('cat_id');</script>
+                </select>
+
+                <div class="title">FAQ QUESTION: <span>*</span></div>
+                <input id="faq_question" type="text" class="text_field" placeholder="Type Question Here" title="Question" title="FULL NAME"/>
+                            
+                <div class="title">FAQ ANSWER: <span>*</span></div>
+                    <script src="js/TextEditor.js" referrerpolicy="origin"></script>
+                    <script>tinymce.init({selector:'#faq_answer',  // change this value according to your HTML
+                    plugins: "link, image, table"
+                    });</script>
+                    <textarea style="width:100%;" rows="20" id="faq_answer" title="Type Answer Here" placeholder="Type Answer Here"></textarea>
+
+                <div class="title">SELECT STATUS: <span>*</span></div>
+                    <select id="reg_status_id" class="text_field select_field" title="SELECT STATUS">
+                        <option value="" selected="selected">SELECT STATUS</option>
+                        <script>_get_select_status('reg_status_id','1,2');</script>
+                    </select> 
+
+                <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_add_or_register_faq('<?php echo $ids?>');"> <i class="bi-check"></i> SUBMIT </button>
+                
+                </div>
+            </div> 
+        </div>
+    </div>
+<?php } ?>
 
 
 <!-- <?php //if ($page=='blog_form'){ ?>
@@ -1217,11 +1181,7 @@
     </div>
 <?php //} ?>
 
-
-
-
 <?php //if ($page=='blog_seo_page_details'){?>
-    
     <div class="page-creation-panel">
         <div class="title-div">
             <div class="div-in"><i class="bi-newspaper"></i> <span id="page_title_info"></span>  DETAILS <button class="close-btn" onclick="_alert_close()"><i class="bi-x-lg"></i></button></div>
@@ -1302,8 +1262,6 @@
     </div
 <?php //}?>  -->
 
-
-
 <?php// if ($page=='blog_page_content_details'){?>
     <!-- <div //id="get_details">
         <div class="page-form-div" >
@@ -1376,167 +1334,161 @@
 
 
 <?php if ($page=='user_details'){ ?>
-<div class="overlay-off-div">
-    <div class="user-profile-div user animated fadeInUp">
-        <div class="top-panel-div">
-            <i class="bi-person"></i> USER DETAILS</span>
-            <div class="close" title="Close" onclick="_alert_close();">X</div>
-        </div>
-
-        <div class="profile-content-div sb-container">
-
-            <div class="bg-img">
-                <div class="mini-profile">
-                    <label>
-                        <div class="img-div" id="current_user_pass">
-                        <img src="<?php echo $website_url?>/admin/a/all-images/images/avatar.jpg" alt="Profile Picture">                                
-                        </div> 
-                    </label>
-
-                    <div class="text-div">
-                        <div class="name" id="user_login_fullname"></div>
-                        <div class="text">
-                            STATUS: <strong id="user_status_name"> </strong> | LAST LOGIN DATE: <strong id="user_last_login"> </strong>
-                        </div>               
-                    </div>
-                </div>
+    <div class="overlay-off-div">
+        <div class="user-profile-div user animated fadeInUp">
+            <div class="top-panel-div">
+                <i class="bi-person"></i> USER DETAILS</span>
+                <div class="close" title="Close" onclick="_alert_close();">X</div>
             </div>
 
-            <div class="button-div">
-                <button class="btn-history active-btn" id="next-all" onclick="_get_detail('user_profile_details','<?php echo $ids?>','<?php echo $ids?>', 'all')"><i class="bi-person"></i> PROFILE</button>
-                <button class="btn-history" id="next-trans" onclick="_get_detail('transaction_history_detail','<?php echo $ids?>', 'trans')"><i class="bi-credit-card"></i> TRANSACTION HISTORY</button>
-                <button class="btn-history" id="next-wallet" onclick="_get_detail('wallet_history_details','<?php echo $ids?>', 'wallet')"><i class="bi-credit-card"></i> WALLET HISTORY</button>
-            </div>
+            <div class="profile-content-div sb-container">
 
-            <br clear="all"/>
-            <br clear="all"/>
-            <div class="details-div">
-                <h4>TOTAL WALLET BALANCE</h4>
-                <div class="wallet-details-div">
-                    <div class="inner-div">
-                        <div class="amount">₦ <span id="amount_received">0.00</span> 
-                            <p>TOTAL AMOUNT RECIEVED</p>
-                        </div>
-                    </div>
+                <div class="bg-img">
+                    <div class="mini-profile">
+                        <label>
+                            <div class="img-div" id="current_user_pass">
+                            <img src="<?php echo $website_url?>/admin/a/all-images/images/avatar.jpg" alt="Profile Picture">                                
+                            </div> 
+                        </label>
 
-                    <div class="inner-div">
-                        <div class="amount">₦ <span id="amount_withdraw">0.00</span> 
-                            <p>TOTAL AMOUNT SPENT</p>
-                        </div>
-                    </div>
-                    
-                    <div class="inner-div no-border">
-                        <div class="amount">₦ <span id="wallet_balance">0.00</span> 
-                            <p>AVAILABLE BALANCE</p>
+                        <div class="text-div">
+                            <div class="name" id="user_login_fullname"></div>
+                            <div class="text">
+                                STATUS: <strong id="user_status_name"> </strong> | LAST LOGIN DATE: <strong id="user_last_login"> </strong>
+                            </div>               
                         </div>
                     </div>
                 </div>
-                <br clear="all" /> 
 
-                     
-                <div class="search-details" id="get_detail"> 
-              
-                        <div class="title" style="text-align:left; padding-left:20px;font-size:12px;"><i class="bi-person"></i> USER PROFILE  </div>
-                                      
-                        <div class="user-in">
-                            <div class="title">BASIC INFORMATION</div>
-                    
-                            <div class="profile-segment-div col-3">
-                                <div class="segment-title">FULLNAME:</div>
-                                <div class="text-field-div no-border">
-                                    <input id="updt_fullname" type="text" class="text_field text_field2" placeholder="FULLNAME" title="FULLNAME"/>
-                                </div>
-                            </div>
-
-
-                            <div class="profile-segment-div col-8">
-                                <div class="segment-title">EMAIL:</div>
-                                <div class="text-field-div no-border">
-                                    <input id="updt_email" type="text" class="text_field text_field2" placeholder="EMAIL" title="EMAIL"/>
-                                </div>
-                            </div>
-
-                            <div class="profile-segment-div col-3"><div id="mobile_info" style="float:right;font-size:12px;display:none;color:#f00"><span>Mobile not accepted!</span></div>
-                                <div class="segment-title">PHONE NUMBER:</div>
-                                <div class="text-field-div no-border">
-                                    <input id="updt_mobile" type="text" class="text_field text_field2" onkeypress="isNumber_Check()" placeholder="PHONE NUMBER" title="PHONE NUMBER"/>
-                                </div>
-                            </div>
-
-
-                            <div class="profile-segment-div col-7">
-                                <div class="segment-title">STAFF STATUS:</div>
-                                <div class="text-field-div no-border">
-                                    <select class="text_field text_field2" readonly="readonly" id="updt_status_id" style="background:#fff;" >                       
-                                        <option value="" >SELECT STATUS </option>
-                                        <script> _get_select_status('updt_status_id','1,2');</script>
-                                    </select>
-                                </div>
-                            </div>
-                            <br clear="all" /> 
-                            <br clear="all" /> 
-                            <button class="upt-btn" type="button" id="update_btn" onclick="_update_user_profile('<?php echo $ids?>');"> UPDATE PROFILE <i class="bi-check"></i></button>
-                        </div>         
+                <div class="button-div">
+                    <button class="btn-history active-btn" id="next-all" onclick="_get_detail('user_profile_details','<?php echo $ids?>','<?php echo $ids?>', 'all')"><i class="bi-person"></i> PROFILE</button>
+                    <button class="btn-history" id="next-trans" onclick="_get_detail('transaction_history_detail','<?php echo $ids?>', 'trans')"><i class="bi-credit-card"></i> TRANSACTION HISTORY</button>
+                    <button class="btn-history" id="next-wallet" onclick="_get_detail('wallet_history_details','<?php echo $ids?>', 'wallet')"><i class="bi-credit-card"></i> WALLET HISTORY</button>
                 </div>
-            </div>
-        </div>  
-        
-    </div> 
-</div>
+
+                <br clear="all"/>
+                <br clear="all"/>
+                <div class="details-div">
+                    <h4>TOTAL WALLET BALANCE</h4>
+                    <div class="wallet-details-div">
+                        <div class="inner-div">
+                            <div class="amount">₦ <span id="amount_received">0.00</span> 
+                                <p>TOTAL AMOUNT RECIEVED</p>
+                            </div>
+                        </div>
+
+                        <div class="inner-div">
+                            <div class="amount">₦ <span id="amount_withdraw">0.00</span> 
+                                <p>TOTAL AMOUNT SPENT</p>
+                            </div>
+                        </div>
+                        
+                        <div class="inner-div no-border">
+                            <div class="amount">₦ <span id="wallet_balance">0.00</span> 
+                                <p>AVAILABLE BALANCE</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br clear="all" /> 
+
+                        
+                    <div class="search-details" id="get_detail"> 
+                
+                            <div class="title" style="text-align:left; padding-left:20px;font-size:12px;"><i class="bi-person"></i> USER PROFILE  </div>
+                                        
+                            <div class="user-in">
+                                <div class="title">BASIC INFORMATION</div>
+                        
+                                <div class="profile-segment-div col-3">
+                                    <div class="segment-title">FULLNAME:</div>
+                                    <div class="text-field-div no-border">
+                                        <input id="updt_fullname" type="text" class="text_field text_field2" placeholder="FULLNAME" title="FULLNAME"/>
+                                    </div>
+                                </div>
+
+
+                                <div class="profile-segment-div col-8">
+                                    <div class="segment-title">EMAIL:</div>
+                                    <div class="text-field-div no-border">
+                                        <input id="updt_email" type="text" class="text_field text_field2" placeholder="EMAIL" title="EMAIL"/>
+                                    </div>
+                                </div>
+
+                                <div class="profile-segment-div col-3"><div id="mobile_info" style="float:right;font-size:12px;display:none;color:#f00"><span>Mobile not accepted!</span></div>
+                                    <div class="segment-title">PHONE NUMBER:</div>
+                                    <div class="text-field-div no-border">
+                                        <input id="updt_mobile" type="text" class="text_field text_field2" onkeypress="isNumber_Check()" placeholder="PHONE NUMBER" title="PHONE NUMBER"/>
+                                    </div>
+                                </div>
+
+
+                                <div class="profile-segment-div col-7">
+                                    <div class="segment-title">STAFF STATUS:</div>
+                                    <div class="text-field-div no-border">
+                                        <select class="text_field text_field2" readonly="readonly" id="updt_status_id" style="background:#fff;" >                       
+                                            <option value="" >SELECT STATUS </option>
+                                            <script> _get_select_status('updt_status_id','1,2');</script>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br clear="all" /> 
+                                <br clear="all" /> 
+                                <button class="upt-btn" type="button" id="update_btn" onclick="_update_user_profile('<?php echo $ids?>');"> UPDATE PROFILE <i class="bi-check"></i></button>
+                            </div>         
+                    </div>
+                </div>
+            </div>  
+            
+        </div> 
+    </div>
 <?php } ?>
 
-
 <?php if($page=='user_profile_details'){?>
-
     <div class="search-details" id="get_detail"> 
-              
-              <div class="title" style="text-align:left; padding-left:20px;font-size:12px;"><i class="bi-person"></i> USER PROFILE  </div>
-                            
-              <div class="user-in">
-                  <div class="title">BASIC INFORMATION</div>
-          
-                  <div class="profile-segment-div col-3">
-                      <div class="segment-title">FULLNAME:</div>
-                      <div class="text-field-div no-border">
-                          <input id="updt_fullname" type="text" class="text_field text_field2" placeholder="FULLNAME" title="FULLNAME"/>
-                      </div>
-                  </div>
+             
+        <div class="title" style="text-align:left; padding-left:20px;font-size:12px;"><i class="bi-person"></i> USER PROFILE  </div>
+                        
+        <div class="user-in">
+            <div class="title">BASIC INFORMATION</div>
+    
+            <div class="profile-segment-div col-3">
+                <div class="segment-title">FULLNAME:</div>
+                <div class="text-field-div no-border">
+                    <input id="updt_fullname" type="text" class="text_field text_field2" placeholder="FULLNAME" title="FULLNAME"/>
+                </div>
+            </div>
 
 
-                  <div class="profile-segment-div col-8">
-                      <div class="segment-title">EMAIL:</div>
-                      <div class="text-field-div no-border">
-                          <input id="updt_email" type="text" class="text_field text_field2" placeholder="EMAIL" title="EMAIL"/>
-                      </div>
-                  </div>
+            <div class="profile-segment-div col-8">
+                <div class="segment-title">EMAIL:</div>
+                <div class="text-field-div no-border">
+                    <input id="updt_email" type="text" class="text_field text_field2" placeholder="EMAIL" title="EMAIL"/>
+                </div>
+            </div>
 
-                  <div class="profile-segment-div col-3"><div id="mobile_info" style="float:right;font-size:12px;display:none;color:#f00"><span>Mobile not accepted!</span></div>
-                      <div class="segment-title">PHONE NUMBER:</div>
-                      <div class="text-field-div no-border">
-                          <input id="updt_mobile" type="text" class="text_field text_field2" onkeypress="isNumber_Check()" placeholder="PHONE NUMBER" title="PHONE NUMBER"/>
-                      </div>
-                  </div>
+            <div class="profile-segment-div col-3"><div id="mobile_info" style="float:right;font-size:12px;display:none;color:#f00"><span>Mobile not accepted!</span></div>
+                <div class="segment-title">PHONE NUMBER:</div>
+                <div class="text-field-div no-border">
+                    <input id="updt_mobile" type="text" class="text_field text_field2" onkeypress="isNumber_Check()" placeholder="PHONE NUMBER" title="PHONE NUMBER"/>
+                </div>
+            </div>
 
 
-                  <div class="profile-segment-div col-7">
-                      <div class="segment-title">STAFF STATUS:</div>
-                      <div class="text-field-div no-border">
-                          <select class="text_field text_field2" readonly="readonly" id="updt_status_id" style="background:#fff;" >                       
-                              <option value="" >SELECT STATUS </option>
-                              <script> _get_select_status('updt_status_id','1,2');</script>
-                          </select>
-                      </div>
-                  </div>
-                  <br clear="all" /> 
-                  <br clear="all" /> 
-                  <button class="upt-btn" type="button" id="update_btn" onclick="_update_user_profile('<?php echo $ids?>');"> UPDATE PROFILE <i class="fa fa-check"></i></button>
-
-              </div>   
-   
-      </div>
+            <div class="profile-segment-div col-7">
+                <div class="segment-title">STAFF STATUS:</div>
+                <div class="text-field-div no-border">
+                    <select class="text_field text_field2" readonly="readonly" id="updt_status_id" style="background:#fff;" >                       
+                        <option value="" >SELECT STATUS </option>
+                        <script> _get_select_status('updt_status_id','1,2');</script>
+                    </select>
+                </div>
+            </div>
+            <br clear="all" /> 
+            <br clear="all" /> 
+            <button class="upt-btn" type="button" id="update_btn" onclick="_update_user_profile('<?php echo $ids?>');"> UPDATE PROFILE <i class="fa fa-check"></i></button>
+        </div>   
+    </div>
 <?php }?>
-
-
 
 <?php if($page=='transaction_history_detail'){?>
     <div class="search-details" id="get_detail">
@@ -1590,48 +1542,45 @@
 <?php }?>
 
 
-
-
 <?php if ($page=='transaction_details'){ ?>
-<div class="slide-form-div animated fadeInRight">
-    <div class="fly-title-div">
-        <div class="in">
-            <span id="panel-title"><i class="bi bi-credit-card"></i> TRANSACTIONS</span>
-            <div class="close" title="Close" onclick="_alert_close();">X</div>
-        </div>
-     </div>
-
-    <div class="container-back-div sb-container" >
-         <div class="inner-div">
-
-            <div id="View_transaction_details"> 
-                <div class="alert alert-success">
-                    <span>TRANSACTION DETAILS</span>
-                    <div class="trans-statistics">Transaction ID: <div class="value" id="transaction_id">Xxxx</div><br clear="all" /></div>
-                    <div class="trans-statistics">Transaction Type: <div class="value" id="transaction_type">Xxxx</div><br clear="all" /></div>
-                    <div class="trans-statistics">Transaction Method: <div class="value" id="transaction_method">Xxxx</div><br clear="all" /></div>
-                    <div class="trans-statistics">Amount: <div class="value" id="amount"> Xxxx</div><br clear="all" /></div>
-                    <div class="trans-statistics">Date: <div class="value" id="date">Xxxx</div><br clear="all" /></div>
-                    <div class="trans-statistics">Status: <div class="value" id="status">Xxxx</div><br clear="all" /></div>
-                </div>
-
-                <div class="alert alert-success">
-                    <span>EXAM SUBSCRIPTION DETAILS</span>
-                    <div class="trans-statistics">Exam Name: <div class="value" id="view_abbreviation">Xxxx</div><br clear="all" /></div>
-                    <div class="trans-statistics">Subject Name: <div class="value" id="view_subject_name">Xxxx</div><br clear="all" /></div>
-                    <div class="trans-statistics">Topic Name: <div class="value" id="view_topic_name">Xxxx</div><br clear="all" /></div>
-                    <div class="trans-statistics">Sub-Topic Name: <div class="value" id="view_sub_topic_name">Xxxx</div><br clear="all" /></div>
-                    <div class="trans-statistics">Start Date: <div class="value" id="view_start_date"> Xxxx</div><br clear="all" /></div>
-                    <div class="trans-statistics">Due Date: <div class="value" id="view_due_date">Xxxx</div><br clear="all" /></div>
-                    <div class="trans-statistics">Status: <div class="value" id="view_subcription_status_name">Xxxx</div><br clear="all" /></div>
-                </div> 
-                       
+    <div class="slide-form-div animated fadeInRight">
+        <div class="fly-title-div">
+            <div class="in">
+                <span id="panel-title"><i class="bi bi-credit-card"></i> TRANSACTIONS</span>
+                <div class="close" title="Close" onclick="_alert_close();">X</div>
             </div>
         </div>
-    </div> 
-</div>
-<?php } ?>
 
+        <div class="container-back-div sb-container" >
+            <div class="inner-div">
+
+                <div id="View_transaction_details"> 
+                    <div class="alert alert-success">
+                        <span>TRANSACTION DETAILS</span>
+                        <div class="trans-statistics">Transaction ID: <div class="value" id="transaction_id">Xxxx</div><br clear="all" /></div>
+                        <div class="trans-statistics">Transaction Type: <div class="value" id="transaction_type">Xxxx</div><br clear="all" /></div>
+                        <div class="trans-statistics">Transaction Method: <div class="value" id="transaction_method">Xxxx</div><br clear="all" /></div>
+                        <div class="trans-statistics">Amount: <div class="value" id="amount"> Xxxx</div><br clear="all" /></div>
+                        <div class="trans-statistics">Date: <div class="value" id="date">Xxxx</div><br clear="all" /></div>
+                        <div class="trans-statistics">Status: <div class="value" id="status">Xxxx</div><br clear="all" /></div>
+                    </div>
+
+                    <div class="alert alert-success">
+                        <span>EXAM SUBSCRIPTION DETAILS</span>
+                        <div class="trans-statistics">Exam Name: <div class="value" id="view_abbreviation">Xxxx</div><br clear="all" /></div>
+                        <div class="trans-statistics">Subject Name: <div class="value" id="view_subject_name">Xxxx</div><br clear="all" /></div>
+                        <div class="trans-statistics">Topic Name: <div class="value" id="view_topic_name">Xxxx</div><br clear="all" /></div>
+                        <div class="trans-statistics">Sub-Topic Name: <div class="value" id="view_sub_topic_name">Xxxx</div><br clear="all" /></div>
+                        <div class="trans-statistics">Start Date: <div class="value" id="view_start_date"> Xxxx</div><br clear="all" /></div>
+                        <div class="trans-statistics">Due Date: <div class="value" id="view_due_date">Xxxx</div><br clear="all" /></div>
+                        <div class="trans-statistics">Status: <div class="value" id="view_subcription_status_name">Xxxx</div><br clear="all" /></div>
+                    </div> 
+                        
+                </div>
+            </div>
+        </div> 
+    </div>
+<?php } ?>
 
 <?php if($page=='wallet_history_details'){?>
     <div class="search-details" id="get_detail">
@@ -1695,44 +1644,50 @@
 
 
 
+
 <?php if ($page=='cbt_page_details'){?>
     <div class="cbt-creation-panel">
         <div class="side-bar">
             <div class="div-in">
-                <div class="video-div">
-                    <video src="<?php echo $website_url?>/admin/a/all-images/body-pix/video-slide.mp4" id="videoDisplay" name="sub_video" controls="controls" loop="" class="video-slide"></video>
+                <div class="video-div" id="view_cbt_video">
+                    <video src="<?php echo $website_url?>/admin/a/all-images/body-pix/default.png" id="videoDisplay" name="sub_video" controls="controls" loop="" class="video-slide"></video>
                 </div>
 
                 <div class="text-div">
                     
                     <div class="list-div">
                         <div><i class="bi-buildings"></i> Department:</div>
-                        <span>Junior</span>
+                        <span id="department_name">xxxx</span>
                     </div>
 
                     <div class="list-div">
                         <div><i class="bi-book"></i> Class:</div>
-                        <span>Jss 1</span>
+                        <span id="class_name">xxxx</span>
                     </div>
 
                     <div class="list-div">
                         <div><i class="bi-book"></i> Subject:</div>
-                        <span>Mathematics</span>
+                        <span id="subject_name">xxxx</span>
+                    </div>
+
+                    <div class="list-div">
+                        <div><i class="bi-book"></i> Term:</div>
+                        <span id="term_name">xxxx</span>
                     </div>
 
                     <div class="list-div">
                         <div><i class="bi-book"></i> Week:</div>
-                        <span>Week 1</span>
+                        <span id="week_name">xxxx</span>
                     </div>
 
                     <div class="list-div">
                         <div><i class="bi-book"></i> Topic:</div>
-                       <span>HCM</span>
+                       <span id="topic">xxxx</span>
                     </div>
 
                     <div class="list-div no-border">
                         <div><i class="bi-clock"></i> Class Duration:</div>
-                        <span>00:01:04</span>
+                        <span id="duration">xxxx</span>
                     </div>
                     
                 </div>
@@ -1746,7 +1701,7 @@
                     <li class="active-li" title="Question Bank" id="main_page_contents" onclick="_get_page_contents('question_bank_details','main_page_contents','')">Question Bank </li>
                     <li title="Quiz Questions" id="quiz_question_page" onclick="_get_page_contents('quiz_question','quiz_question_page','')">Quiz Questions</li>
                     <li title="Load Question Manually" id="load_questions_manu_page" onclick="_get_page_contents('load_questions_manually','load_questions_manu_page','')">Load Questions Manually</li>
-                    <li title="Load Question Automatically" id="" onclick="_get_page_contents()">Load Questions Automatically</li>
+                    <li title="Load Question Automatically" id="load_questions_auto_page" onclick="_get_page_contents('load_questions_automatically','load_questions_auto_page','')">Load Questions Automatically</li>
                 </ul>
                 <button class="close-btn" onclick="_alert_close()" title="Close"><i class="bi-x-lg"></i></button> 
             </div>
@@ -1941,8 +1896,7 @@
                                             
                                         </div>
                                     </div>
-                                </div>
-                                
+                                </div>                        
                             </div>
                         </div>
                     </div>
@@ -1950,8 +1904,8 @@
             </div>    
         </div>      
     </div>
+    <script>_get_fetch_quiz_details('<?php echo $ids?>')</script>
 <?php }?>
-
 
 <?php if ($page=='question_bank_details'){ ?>
     <div id="get_page_details">
@@ -2152,7 +2106,6 @@
     </div>
 <?php }?>
 
-
 <?php if ($page=='quiz_question'){ ?>
     <div id="get_page_details">
         <div class="question-back-div">
@@ -2344,6 +2297,8 @@
 <?php }?>
 
 <?php if ($page=='load_questions_manually'){ ?>
+    <script src="js/TextEditor.js" referrerpolicy="origin"></script>
+
     <div id="get_page_details">
         <div class="question-back-div">
             <div class="top-div">
@@ -2354,64 +2309,156 @@
 
             <div class="question-body-div">
                 <div class="question-div">
-                    <div class="div-in quest-manual-div-in">                      
-                        <div class="img-back-div">
-                            <legend>Click to Upload Quiz Image <i class="bi-upload"></i></legend>
+                    <div class="div-in">
+                        <div class="check-div">
                             <label>
-                                <div class="img-div" title="Click to Upload Quiz Image">
-                                    <img id="subject-pix" src="all-images/body-pix/default.png" alt="Default Image">
-                                    <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);" />
-                                </div>
-                            </label> 
+                                <span>Set Question</span>
+                            </label>
                         </div>
 
-                        <script src="js/TextEditor.js" referrerpolicy="origin"></script>
-                        <script>tinymce.init({selector:'#summary',  // change this value according to your HTML
-                        plugins: "link, image, table"
-                        });</script>
-                        <textarea style="width: 100%;" rows="20" id="summary" title="CLASS SUMMARY" placeholder="CLASS SUMMARY"></textarea>
-                    </div>
-                </div>
-
-                <div class="question-div">
-                    <div class="div-in">
                         <div class="each-question">
-                            <div class="text-div">
-                                <div class="options-div">
-                                    
-                                    <div class="each-option">
-                                        <div class="letter">A</div>
-                                        <div>House</div>
-                                    </div>
-
-                                    <div class="each-option">
-                                        <div class="letter">B</div>
-                                        <div>House</div>
-                                    </div>
-
-                                    <div class="each-option">
-                                        <div class="letter">C</div>
-                                        <div>House</div>
-                                    </div>
-
-                                    <div class="each-option">
-                                        <div class="letter">D</div>
-                                        <div>House</div>
-                                    </div>
-                                    
-                                </div>
+                            <div class="pix-div">
+                                <label>
+                                    <img id="subject-pix" src="all-images/body-pix/default.png" alt="Default Image">
+                                    <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);" />
+                                </label>
                             </div>
-                        </div>                
+
+                            <div class="text-div">                             
+                                <script>tinymce.init({selector:'#set_question',  // change this value according to your HTML
+                                plugins: "link, image, table"
+                                });</script>
+                                <textarea style="width: 100%;" rows="10" id="set_question" title="CLASS SUMMARY" placeholder="CLASS SUMMARY"></textarea>
+                            </div>
+                        </div>                      
+                    </div>
+                </div>
+
+
+                <div class="question-div">
+                    <div class="div-in">
+                        <div class="check-div">
+                            <label>
+                                <span>Option A</span>
+                            </label>
+                        </div>
+
+                        <div class="each-question">
+                            <div class="pix-div">
+                                <label>
+                                    <img id="subject-pix" src="all-images/body-pix/default2.png" alt="Default Image">
+                                    <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);" />
+                                </label>
+                            </div>
+
+                            <div class="text-div">
+                               
+                                <script>tinymce.init({selector:'#option_a',  // change this value according to your HTML
+                                plugins: "link, image, table"
+                                });</script>
+                                <textarea style="width: 100%;" rows="10" id="option_a" title="CLASS SUMMARY" placeholder="CLASS SUMMARY"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="question-div">
+                    <div class="div-in">
+                        <div class="check-div">
+                            <label>
+                                <span>Option B</span>
+                            </label>
+                        </div>
+
+                        <div class="each-question">
+                            <div class="pix-div">
+                                <label>
+                                    <img id="subject-pix" src="all-images/body-pix/default2.png" alt="Default Image">
+                                    <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);" />
+                                </label>
+                            </div>
+
+                            <div class="text-div">
+                               
+                                <script>tinymce.init({selector:'#option_b',  // change this value according to your HTML
+                                plugins: "link, image, table"
+                                });</script>
+                                <textarea style="width: 100%;" rows="10" id="option_b" title="CLASS SUMMARY" placeholder="CLASS SUMMARY"></textarea>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
 
                 <div class="question-div">
                     <div class="div-in">
-                        <div class="title">QUIZ ANSWER: <span>*</span> (A, B, C, D)</div>
+                        <div class="check-div">
+                            <label>
+                                <span>Option C</span>
+                            </label>
+                        </div>
+
+                        <div class="each-question">
+                            <div class="pix-div">
+                                <label>
+                                    <img id="subject-pix" src="all-images/body-pix/default2.png" alt="Default Image">
+                                    <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);" />
+                                </label>
+                            </div>
+
+                            <div class="text-div">
+                               
+                                <script>tinymce.init({selector:'#option_c',  // change this value according to your HTML
+                                plugins: "link, image, table"
+                                });</script>
+                                <textarea style="width: 100%;" rows="10" id="option_c" title="CLASS SUMMARY" placeholder="CLASS SUMMARY"></textarea>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="question-div">
+                    <div class="div-in">
+                        <div class="check-div">
+                            <label>
+                                <span>Option D</span>
+                            </label>
+                        </div>
+
+                        <div class="each-question">
+                            <div class="pix-div">
+                                <label>
+                                    <img id="subject-pix" src="all-images/body-pix/default2.png" alt="Default Image">
+                                    <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);" />
+                                </label>
+                            </div>
+
+                            <div class="text-div">
+                               
+                                <script>tinymce.init({selector:'#option_d',  // change this value according to your HTML
+                                plugins: "link, image, table"
+                                });</script>
+                                <textarea style="width: 100%;" rows="10" id="option_d" title="CLASS SUMMARY" placeholder="CLASS SUMMARY"></textarea>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="question-div">
+                    <div class="div-in">
+                        <div class="check-div">
+                            <label>
+                                <span>Set Correct Option</span>
+                            </label>
+                        </div>
+                                
                         <input id="duration" type="text" class="text_field" placeholder="A, B, C, D" title="QUIZ ANSWER"/>               
                         
                         <div>
-                            <button class="btn" title="Submit" onClick=""><i class="bi-check2-circle"></i> Submit</button>
+                            <button class="btn" title="Upload Questions" onClick=""><i class="bi-cloud-upload"></i> Upload Questions</button>
                         </div>
                     </div>
                 </div>
@@ -2420,25 +2467,75 @@
     </div> 
 <?php }?>
 
+<?php if ($page=='load_questions_automatically'){ ?>
+    <div id="get_page_details">
+        <div class="question-back-div">
+            <div class="top-div">
+                <label>
+                    <span>Load Questions Automatically</span>
+                </label>
+            </div>
+
+            <div class="question-body-div">
+                <div class="question-div">
+                    <div class="div-in">
+                        <div class="check-div">
+                            <label>
+                                <span>Upload <i>(CSV Format Only)</i></span>
+                            </label>
+                            <div>
+                                <button class="btn" title="Download Question Format" onClick=""><i class="bi-download"></i> Download Question Format</button>
+                            </div>
+                        </div>
+                        
+                        <input id="fileUpload" type="file" class="text_field" title="Click to upload"/>  
+                        <div>
+                            <button class="btn" title="Upload Questions" onClick=""><i class="bi-cloud-upload"></i> Upload Questions</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div> 
+<?php }?>
 
 <?php if ($page=='set_quiz_time_form'){?>
 	<div class="caption-div animated zoomIn">
         <div class="title-div">
-            <div class="title-text">CBT QUIZ TIME FORM</div>
+            <div class="title-text">SET QUIZ DURATION</div>
             <button class="close-btn" onclick="_alert_secondary_close()"><i class="bi-x-lg"></i></button>
         </div>
 
         <div class="div-in animated fadeIn">
             <div class="alert alert-success"> Hi, you are about to set <strong><span>Quiz Questions</span></strong> time. <br/> Kindly input <strong>Hour</strong>, <strong>Minutes</strong>, and <strong>Seconds</strong> to continue.</div>
-            <div class="title">SET QUIZ TIME: <span>*</span></div>
-            <input id="" type="text"  class="text_field" placeholder="HH:MM:SS" title="HH:MM:SS"/>
+            <div class="input-div">
+                <div class="input-div-in">
+                    <div class="title">Hour</div>
+                    <select id="hours_id" class="text_field selectinputs" title="00:">
+                        <option value="" selected="selected"> -- </option>
+                        <script>_fetchTimeCountOption('hours_id', 12);</script>
+                    </select>
+                </div>
+                <div class="input-div-in">
+                    <div class="title">Minutes</div>
+                    <select id="minutes_id" class="text_field selectinputs" title="00:">
+                        <option value="" selected="selected"> -- </option>
+                        <script>_fetchTimeCountOption('minutes_id', 60);</script>
+                    </select>
+                </div>
+                <div class="input-div-in">
+                    <div class="title">Seconds</div>
+                    <select id="seconds_id" class="text_field selectinputs" title="00;">
+                        <option value="" selected="selected"> -- </option>
+                        <script>_fetchTimeCountOption('seconds_id', 60);</script>
+                    </select>
+                </div>
+            </div>          
             <button class="btn" type="button" id="submit_btn"  title="Proceed"  onclick=""><i class="bi-check"></i> PROCEED </button>
         </div>
     </div>
-<?php } ?>
 
-
-
+<?php }?>
 
 
 

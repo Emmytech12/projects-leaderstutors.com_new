@@ -1076,9 +1076,13 @@
 .faq-back-div .status-div{
 	color: var(--active-color);
 	text-align: center;
-	font-size: 12px;
+	font-size: 11px;
 }
 
+.faq-back-div .duration{
+	text-align: center;
+	font-size: 11px;
+}
 
 .faq-back-div .count-div{
 	color: var(--subactive-color);
@@ -3855,7 +3859,7 @@ transition:all 0.2s ease-in 0.2s;
 .cbt-creation-panel .question-back-div .question-body-div .question-div .div-in .btn{
 	border: none;
 	height: 35px;
-	background:var(--sub-body-color);
+	background:var(--main-color);
 	padding: 0px 20px;
 	font-family: body-font;
 	color: var(--white-color);
@@ -3869,7 +3873,7 @@ transition:all 0.2s ease-in 0.2s;
 }
 
 .cbt-creation-panel .question-back-div .question-body-div .question-div .div-in .btn:hover{
-	opacity: .8;
+	background:var(--subactive-color);
 }
 
 
@@ -3882,11 +3886,17 @@ transition:all 0.2s ease-in 0.2s;
 	border-bottom: rgba(0,0,0,.2) 1px solid;
 }
 
+
 .cbt-creation-panel .question-back-div .question-body-div .question-div .div-in .check-div label{
 	font-weight: bold;
 	display: flex;
 	gap: 5px;
 	cursor: pointer;
+}
+
+.cbt-creation-panel .question-back-div .question-body-div .question-div .div-in .check-div span i{
+	font-size: 12px;
+	font-family: body-font;
 }
 
 .cbt-creation-panel .question-back-div .question-body-div .question-div .div-in .check-div .btn{
@@ -4010,64 +4020,6 @@ transition:all 0.2s ease-in 0.2s;
 
 
 
-
-
-
-
-
-
-
-
-
-.cbt-creation-panel .question-back-div .question-body-div .question-div .quest-manual-div-in{
-	display: flex;
-	flex-direction: row;
-	gap: 40px;
-}
-
-.cbt-creation-panel .question-back-div .question-body-div .question-div .quest-manual-div-in .img-back-div{
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-}
-
-.cbt-creation-panel .question-back-div .question-body-div .question-div .quest-manual-div-in .img-back-div legend{
-	color: var(--subactive-color);
-	font-size: 12px;
-	font-family: body-font;
-}
-
-.cbt-creation-panel .question-back-div .question-body-div .question-div .quest-manual-div-in .img-back-div .img-div{
-	width: 300px;
-	height: 300px;
-	border-radius: 10px;
-	cursor: pointer;
-}
-
-.cbt-creation-panel .question-back-div .question-body-div .question-div .quest-manual-div-in .img-back-div .img-div img{
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	border-radius: 10px;
-	transition: all 2000ms cubic-bezier(.19,1,.22,1) 0ms;
-}
-
-.cbt-creation-panel .question-back-div .question-body-div .question-div .quest-manual-div-in .img-back-div .img-div:hover img{
-	-webkit-transform: scale(1.10);
-	-moz-transform: scale(1.10);
-	transform: scale(1.10);
-}
-
-
-.cbt-creation-panel .question-back-div .question-body-div .question-div .div-in .title{
-	font-size:12px;
-	font-family: body-font;
-}
-
-.cbt-creation-panel .question-back-div .question-body-div .question-div .div-in .title span{
-	color: var(--subactive-color);
-}
-
 .cbt-creation-panel .question-back-div .question-body-div .question-div .div-in .text_field{
 	border-radius: 5px;
 	border: rgba(0,0,0,.2) 1px solid;
@@ -4082,3 +4034,6 @@ transition:all 0.2s ease-in 0.2s;
 	outline: none !important;
 }
 
+.cbt-creation-panel .question-back-div .question-body-div .question-div .div-in input{
+	cursor: pointer;
+}

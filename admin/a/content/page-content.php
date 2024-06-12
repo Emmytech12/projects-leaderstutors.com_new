@@ -195,11 +195,6 @@
 <?php }?>
 
 
-
-
-
-
-
 <?php if ($page=='system_alert'){ ?> 
     <div class="search-div">
         <!--------------------------------all search select------------------------->
@@ -264,7 +259,6 @@
 <?php }?>
  
 
-
 <?php if ($page=='view_staff'){?>
     <div class="search-div">
         <!--------------------------------network search select------------------------->
@@ -297,9 +291,6 @@
     </script>
 
 <?php } ?>
-
-
-
 
 
 <?php if ($page=='all_subject'){ ?>
@@ -344,7 +335,7 @@
         <!--------------------------------all search select------------------------->
         <input id="search_keywords" onkeyup="_get_fetch_all_classes('fetch_classes');" type="text" class="text_field utext" placeholder="Type here to search..." title="Type here to search" />
     </div>
-        <div class="alert alert-success"> <span><i class="bi-book"></i></span> CLASSES LIST <button class="btn" onClick="_get_form_with_id('add_classes')"><i class="bi-plus-square"></i> ADD NEW CLASS</button></div>
+        <div class="alert alert-success"> <span><i class="bi-book"></i></span> CLASSES LIST <button class="btn" onClick="_get_form('add_classes')"><i class="bi-plus-square"></i> ADD NEW CLASS</button></div>
         
         <div class="fetch-div animated fadeIn">			
             <div class="fetch" id="fetch_classes">
@@ -444,13 +435,12 @@
 <?php } ?>
 
 
-
 <?php if ($page=='all_subj_class'){?>
-    <div class="alert alert-success"> <span><i class="bi-book"></i></span> DEPARTMENT / <span id="department_name" onClick="_get_page_with_id('all_class_dept','<?php echo $ids?>');" title="click to back">xxxx</span> / <span id="class_name">xxxx</span> / SUBJECT LIST <button class="btn" onClick="_get_form_with_id('add_subject_class','<?php echo $ids?>','<?php echo $other_ids?>')"><i class="bi-plus-square"></i> ADD A NEW SUBJECT</button></div>
+    <div class="alert alert-success"> <span><i class="bi-book"></i></span> DEPARTMENT / <span id="department_name" onClick="_get_page_with_id('all_class_dept','<?php echo $department_id?>');" title="click to back">xxxx</span> / <span id="class_name">xxxx</span> / SUBJECT LIST <button class="btn" onClick="_get_subject_form_with_id('add_subject_class','<?php echo $department_id?>','<?php echo $class_id?>')"><i class="bi-plus-square"></i> ADD A NEW SUBJECT</button></div>
        
         <div class="fetch-div animated fadeIn">	 
             <div class="fetch" id="fetch_all_class_subject">
-                <script> _get_fetch_all_class_subject('<?php echo $ids?>','<?php echo $other_ids?>');</script>
+                <script> _get_fetch_all_class_subject('<?php echo $department_id?>','<?php echo $class_id?>');</script>
             </div>
         </div> 
         <!-- <div class="record-content-div">
@@ -479,7 +469,7 @@
         <div class="faq-back-div">
 
             <div class="fetch" id="fetch_department_class_subject">
-                <script> _get_fetch_department_class_subject('<?php echo $ids?>','<?php echo $other_ids?>');</script>
+                <script> _get_fetch_department_class_subject('<?php echo $department_id?>','<?php echo $class_id?>');</script>
             </div>
 
             <!-- <div class="quest-faq-div">
@@ -495,68 +485,61 @@
                 </div>
             </div> -->
         </div>
-
-   
 <?php } ?>
-
 
 
 <?php if ($page=='video_page'){ ?>
     <div class="alert alert-success"> <i class="bi-book"></i></span> TUTORIAL / <span id="tutorial_department_name">xxxx</span> / <span id="tutorial_class_name">xxxx</span> / <span id="tutorial_subject_name">xxxx</span> /  <span id="tutorial_term_name">xxxx</span> / VIDEO'S LIST <button class="btn" onClick="_get_form('cbt_page_details')"><i class="bi-plus-square"></i> TERMINAL EXAM</button></div>
-           	
-        <div class="faq-back-div">
-            <div class="fetch" id="fetch_tutorial_video_page">
-                <script> _fetch_tutorial_video_page('<?php echo $ids?>','<?php echo $other_ids?>','<?php echo $other_ids1?>','<?php echo $other_ids2?>');</script>
-            </div>
-            <!-- <div class="quest-faq-div">
-                <div class="faq-title-text v-faq-text" onclick="_collapse('faq1')">
-                    <h3>WEEK 1 </h3>
-                    <div class="expand-div" id="faq1num">&nbsp;<i class="bi-plus"></i>&nbsp;</div> 
-                </div>
-                <div class="faq-answer-div">
-                    <span>Status: &nbsp;<span class="status-div">ACTIVE</span></span>&nbsp; &nbsp; 
-                    <span>Videos: &nbsp;<span class="count-div">10</span></span>                         
-                </div>
-
-                <div class="faq-answer-div" id="faq1answer" style="display: none;">  
-                    <div class="topics-content-div">
-                        <div class="image-div"><img src="<?php echo $website_url?>/admin/a/all-images/body-pix/lcm.jpg" alt="'"/>
-                        </div>
-
-                        <div class="text">
-                            <h4>LCM</h4>
-                            <p>Unlock the power of least common multiple (LCM) in mathematics with our comprehensive guide. Learn how to find the smallest common multiple of two or more numbers effortlessly.</p>
-                            <hr></hr>
-                            <div class="bottom-div">
-                                <button class="btn edit" title="EDIT SUB-TOPIC" onClick="_get_form_with_id();"><i class="bi-pencil-square"></i> EDIT</button>
-                                <button class="btn" title="VIEW VIDEOS" onClick="_get_page_with_id();"> <span class="count">0</span> CBT </button>
-                            </div>
-                        </div>
-                        
-                    </div>
-
-                    <div class="topics-content-div">
-                        <div class="image-div"><img src="<?php echo $website_url?>/admin/a/all-images/body-pix/lcm.jpg" alt="'"/>
-                        </div>
-
-                        <div class="text">
-                            <h4>HCM</h4>
-                            <p>Unlock the power of least common multiple (LCM) in mathematics with our comprehensive guide. Learn how to find the smallest common multiple of two or more numbers effortlessly.</p>
-                            <hr></hr>
-                            <div class="bottom-div">
-                                <button class="btn edit" title="EDIT SUB-TOPIC" onClick="_get_form_with_id();"><i class="bi-pencil-square"></i> EDIT</button>
-                                <button class="btn" title="VIEW VIDEOS" onClick="_get_page_with_id();"> <span class="count">0</span> CBT </button>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div> -->
+    <div class="faq-back-div">
+        <div class="fetch" id="fetch_tutorial_video_page">
+            <script> _fetch_tutorial_video_page('<?php echo $department_id?>','<?php echo $class_id?>','<?php echo $subject_id?>','<?php echo $term_id?>');</script>
         </div>
-   
+        <!-- <div class="quest-faq-div">
+            <div class="faq-title-text v-faq-text" onclick="_collapse('faq1')">
+                <h3>WEEK 1 </h3>
+                <div class="expand-div" id="faq1num">&nbsp;<i class="bi-plus"></i>&nbsp;</div> 
+            </div>
+            <div class="faq-answer-div">
+                <span>Status: &nbsp;<span class="status-div">ACTIVE</span></span>&nbsp; &nbsp; 
+                <span>Videos: &nbsp;<span class="count-div">10</span></span>                         
+            </div>
+
+            <div class="faq-answer-div" id="faq1answer" style="display: none;">  
+                <div class="topics-content-div">
+                    <div class="image-div"><img src="<?php echo $website_url?>/admin/a/all-images/body-pix/lcm.jpg" alt="'"/>
+                    </div>
+
+                    <div class="text">
+                        <h4>LCM</h4>
+                        <p>Unlock the power of least common multiple (LCM) in mathematics with our comprehensive guide. Learn how to find the smallest common multiple of two or more numbers effortlessly.</p>
+                        <hr></hr>
+                        <div class="bottom-div">
+                            <button class="btn edit" title="EDIT SUB-TOPIC" onClick="_get_form_with_id();"><i class="bi-pencil-square"></i> EDIT</button>
+                            <button class="btn" title="VIEW VIDEOS" onClick="_get_page_with_id();"> <span class="count">0</span> CBT </button>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="topics-content-div">
+                    <div class="image-div"><img src="<?php echo $website_url?>/admin/a/all-images/body-pix/lcm.jpg" alt="'"/>
+                    </div>
+
+                    <div class="text">
+                        <h4>HCM</h4>
+                        <p>Unlock the power of least common multiple (LCM) in mathematics with our comprehensive guide. Learn how to find the smallest common multiple of two or more numbers effortlessly.</p>
+                        <hr></hr>
+                        <div class="bottom-div">
+                            <button class="btn edit" title="EDIT SUB-TOPIC" onClick="_get_form_with_id();"><i class="bi-pencil-square"></i> EDIT</button>
+                            <button class="btn" title="VIEW VIDEOS" onClick="_get_page_with_id();"> <span class="count">0</span> CBT </button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div> -->
+    </div>
 <?php } ?>
-
-
 
 
 <?php if ($page=='active_users'){ ?>
@@ -595,10 +578,7 @@
         }
     });
     </script>
-  
 <?php } ?>
-
-
 
 
 <?php if ($page=='faqs'){ ?>
@@ -611,6 +591,7 @@
         <!--------------------------------all search select------------------------->
         <input id="search_txt" onkeyup="" type="text" class="text_field utext" placeholder="Type here to search..." title="Type here to search" />
     </div>
+
     <div class="alert alert-success"> <span><i class="bi-newspaper"></i></span> FAQ's LIST <button class="btn" onClick="_get_form('faqs_reg')"><i class="bi-plus-square"></i> ADD NEW FAQ</button></div>
                     
         <div class="faq-back-div" >
@@ -664,9 +645,6 @@
                 </div>                           
             </div>
         </div>
-
-    
-
      <script>
         superplaceholder({el: search_txt,
             sentences: ['Type here to search...', 'Top ID e.g TOP00000','Top Name e.g Statistic, Geometry'],
@@ -676,9 +654,8 @@
             startOnFocus: false
         }
     });
-    </script>
+    </script>   
 <?php } ?>
-
 
 
 <?php if ($page=='blogs'){ ?>
@@ -760,9 +737,6 @@
                 <br>
             </div>
         </div>
-
-    
-
      <script>
         superplaceholder({el: search_txt,
             sentences: ['Type here to search...', 'Top ID e.g TOP00000','Top Name e.g Statistic, Geometry'],

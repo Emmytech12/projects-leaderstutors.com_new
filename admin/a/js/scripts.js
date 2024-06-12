@@ -145,24 +145,6 @@ function _get_active_detail(text){
 }
 
 
-
-function _get_detail(page,ids,text){
-	_get_active_detail(text);
-	var action='get_detail';
-	$('#get_detail').html('<div class="ajax-loader"><img src="' +website_url +'/all-images/images/ajax-loader.gif"/></div>').fadeIn("fast");
-	var dataString ='action='+ action+'&page='+ page+'&ids='+ ids;
-	$.ajax({
-	type: "POST",
-	url: admin_local_portal_url,
-	data: dataString,
-	cache: false,
-	success: function(html){
-		$('#get_detail').html(html);
-	}
-	});
-}
-
-
 function _get_page(page, divid) {
   _get_active_link(divid);
   $("#page-content").html('<div class="ajax-loader"><img src="' +website_url +'/all-images/images/ajax-loader.gif"/></div>').fadeIn("fast");
@@ -183,10 +165,10 @@ function _get_page(page, divid) {
 }
 
 
-function _get_page_with_id(page, ids, other_ids, other_ids1, other_ids2) {
+function _get_page_with_id(page, ids) {
   $("#page-content").html('<div class="ajax-loader"><img src="' +website_url + '/all-images/images/ajax-loader.gif"/></div>').fadeIn("fast");
   var action = "get_page_with_id";
-  var dataString = "action=" + action + "&page=" + page + "&ids=" + ids + "&other_ids=" + other_ids + "&other_ids1=" + other_ids1 + "&other_ids2=" + other_ids2;
+  var dataString = "action=" + action + "&page=" + page + "&ids=" + ids;
   $.ajax({
     type: "POST",
     url: admin_local_portal_url,
@@ -200,15 +182,42 @@ function _get_page_with_id(page, ids, other_ids, other_ids1, other_ids2) {
 
 
 
+function _get_class_page_with_id(page, department_id, class_id) {
+  $("#page-content").html('<div class="ajax-loader"><img src="' +website_url + '/all-images/images/ajax-loader.gif"/></div>').fadeIn("fast");
+  var action = "get_class_page_with_id";
+  var dataString = "action=" + action + "&page=" + page + "&department_id=" + department_id + "&class_id=" + class_id;
+  $.ajax({
+    type: "POST",
+    url: admin_local_portal_url,
+    data: dataString,
+    cache: false,
+    success: function (html) {
+      $("#page-content").html(html);
+    },
+  });
+}
+
+
+function _get_video_page_with_id(page, department_id, class_id, subject_id, term_id) {
+  $("#page-content").html('<div class="ajax-loader"><img src="' +website_url + '/all-images/images/ajax-loader.gif"/></div>').fadeIn("fast");
+  var action = "get_video_page_with_id";
+  var dataString = "action=" + action + "&page=" + page + "&department_id=" + department_id + "&class_id=" + class_id + "&subject_id=" + subject_id + "&term_id=" + term_id;
+  $.ajax({
+    type: "POST",
+    url: admin_local_portal_url,
+    data: dataString,
+    cache: false,
+    success: function (html) {
+      $("#page-content").html(html);
+    },
+  });
+}
+
+
+
+
 function _get_form(page) {
-  $("#get-more-div")
-  .html('<div class="ajax-loader"><img src="'+website_url+'/all-images/images/ajax-loader.gif"/></div>')
-  .css({
-      'display': 'flex',
-      'justify-content': 'center',
-      'align-items': 'center'
-  })
-  .fadeIn(500);
+  $("#get-more-div").html('<div class="ajax-loader"><img src="'+website_url+'/all-images/images/ajax-loader.gif"/></div>').css({'display': 'flex','justify-content': 'center','align-items': 'center'}).fadeIn(500);
   var action = "get_form";
   var dataString = "action=" + action + "&page=" + page;
   $.ajax({
@@ -223,17 +232,10 @@ function _get_form(page) {
 }
 
 
-function _get_form_with_id(page, ids, other_ids, other_ids1, other_ids2) {
-  $("#get-more-div")
-  .html('<div class="ajax-loader"><img src="'+website_url+'/all-images/images/ajax-loader.gif"/></div>')
-  .css({
-      'display': 'flex',
-      'justify-content': 'center',
-      'align-items': 'center'
-  })
-  .fadeIn(500);
+function _get_form_with_id(page, ids) {
+  $("#get-more-div").html('<div class="ajax-loader"><img src="'+website_url+'/all-images/images/ajax-loader.gif"/></div>').css({'display': 'flex','justify-content': 'center','align-items': 'center'}).fadeIn(500);
   var action = "get_form_with_id";
-  var dataString = "action=" + action + "&page=" + page + "&ids=" + ids + "&other_ids=" + other_ids + "&other_ids1=" + other_ids1 + "&other_ids2=" + other_ids2;
+  var dataString = "action=" + action + "&page=" + page + "&ids=" + ids;
   $.ajax({
     type: "POST",
     url: admin_local_portal_url,
@@ -246,17 +248,40 @@ function _get_form_with_id(page, ids, other_ids, other_ids1, other_ids2) {
 }
 
 
+function _get_subject_form_with_id(page, department_id, class_id) {
+  $("#get-more-div").html('<div class="ajax-loader"><img src="'+website_url+'/all-images/images/ajax-loader.gif"/></div>').css({'display': 'flex','justify-content': 'center','align-items': 'center'}).fadeIn(500);
+  var action = "get_subject_form_with_id";
+  var dataString = "action=" + action + "&page=" + page + "&department_id=" + department_id + "&class_id=" + class_id;
+  $.ajax({
+    type: "POST",
+    url: admin_local_portal_url,
+    data: dataString,
+    cache: false,
+    success: function (html) {
+      $("#get-more-div").html(html);
+    },
+  });
+}
+
+
+function _get_video_form_with_id(page, department_id, class_id, subject_id, tutorial_id) {
+  $("#get-more-div").html('<div class="ajax-loader"><img src="'+website_url+'/all-images/images/ajax-loader.gif"/></div>').css({'display': 'flex','justify-content': 'center','align-items': 'center'}).fadeIn(500);
+  var action = "get_video_form_with_id";
+  var dataString = "action=" + action + "&page=" + page + "&department_id=" + department_id + "&class_id=" + class_id + "&subject_id=" + subject_id + "&tutorial_id=" + tutorial_id;
+  $.ajax({
+    type: "POST",
+    url: admin_local_portal_url,
+    data: dataString,
+    cache: false,
+    success: function (html) {
+      $("#get-more-div").html(html);
+    },
+  });
+}
 
 
 function _get_secondary_form_with_id(page, ids) {
-  $("#get-more-div-secondary")
-    .html('<div class="ajax-loader"><img src="'+website_url+'/all-images/images/ajax-loader.gif"/></div>')
-    .css({
-        'display': 'flex',
-        'justify-content': 'center',
-        'align-items': 'center'
-    })
-    .fadeIn(500);
+  $("#get-more-div-secondary").html('<div class="ajax-loader"><img src="'+website_url+'/all-images/images/ajax-loader.gif"/></div>').css({'display': 'flex','justify-content': 'center','align-items': 'center'}) .fadeIn(500);
   var action = "get_secondary_form_with_id";
   var dataString = "action=" + action + "&page=" + page + "&ids=" + ids;
   $.ajax({
@@ -271,14 +296,29 @@ function _get_secondary_form_with_id(page, ids) {
 }
 
 
-function _get_page_contents(page, actid, ids) {
-	if (page == '') {
-		//do nothing
-	} else {
-		$('#main_page_contents, #quiz_question_page, #load_questions_manu_page').removeClass('active-li');
-		$('#' + actid).addClass('active-li');
+function _get_detail(page,ids,text){
+	_get_active_detail(text);
+	var action='get_detail';
+	$('#get_detail').html('<div class="ajax-loader"><img src="' +website_url +'/all-images/images/ajax-loader.gif"/></div>').fadeIn("fast");
+	var dataString ='action='+ action+'&page='+ page+'&ids='+ ids;
+	$.ajax({
+	type: "POST",
+	url: admin_local_portal_url,
+	data: dataString,
+	cache: false,
+	success: function(html){
+		$('#get_detail').html(html);
+	}
+	});
+}
+
+
+
+function _get_page_contents(page, active_id, ids) {
+		$('#main_page_contents, #quiz_question_page, #load_questions_manu_page, #load_questions_auto_page').removeClass('active-li');
+		$('#' + active_id).addClass('active-li');
 		
-			$('#get_page_details').html('<div class="ajax-loader cbt-ajax-loader"><img src="all-images/images/ajax-loader2.gif"/></div>').fadeIn(500);
+		$('#get_page_details').html('<div class="ajax-loader cbt-ajax-loader"><img src="all-images/images/ajax-loader2.gif"/></div>').fadeIn(500);
 	
 		var action = 'get_page_details';
 		var dataString = 'action=' + action + '&page=' + page + '&ids=' + ids;
@@ -292,9 +332,6 @@ function _get_page_contents(page, actid, ids) {
 			}
 		});
 	}
-
-}
-
 
 
 
@@ -438,6 +475,12 @@ function _get_header_pix(documentStoragePath, profile_pix) {
 }
 
 
+
+function _fetchTimeCountOption(select_id, maxValue) {
+  for (let minValue = 1; minValue <= maxValue; minValue++) {
+    $('#' + select_id).append('<option value="' + minValue + '">' + minValue + '</option>');
+  }
+}
 
 
 
@@ -2151,7 +2194,7 @@ function _get_fetch_all_class_dept(department_id) {
                         '<p>'+ seo_description +'</p>'+
                         '<div class="count-div">'+
                             '<div class="count-in"></div>'+
-                            '<button class="btn btn2" title="Click to View Subjects" onClick="_get_page_with_id(' + "'all_subj_class'" + "," +"'" + department_id +"'"  + "," +"'" + class_id +"'" +')"><i class="bi-journals"></i> Number of subjects <span>' + no_of_subjects + '</span></button>'+
+                            '<button class="btn btn2" title="Click to View Subjects" onClick="_get_class_page_with_id(' + "'all_subj_class'" + "," +"'" + department_id +"'"  + "," +"'" + class_id +"'" +')"><i class="bi-journals"></i> Number of subjects <span>' + no_of_subjects + '</span></button>'+
                         '</div>'+
                     '</div>'+
                 '</div> '+
@@ -2286,7 +2329,7 @@ function _get_fetch_all_class_subject(department_id, class_id) {
         var message = info.message;
         var department_name = info.department_name;
         var class_name = info.class_name;
-
+        
         var text = '';
         if (success == true) {
           if (!fetch || (Array.isArray(fetch) && fetch.length === 0)) {
@@ -2422,7 +2465,7 @@ function _add_subject_class(department_id, class_id) {
           });
           $("#success-div").html('<div><i class="bi-check"></i></div> ' + message +"" ).fadeIn(500).delay(5000).fadeOut(100);
           _alert_close();
-          _get_page_with_id('all_subj_class', department_id, class_id);
+          _get_class_page_with_id('all_subj_class', department_id, class_id);
         }else {
 					$('#warning-div').html('<div><i class="bi-exclamation-circle"></i></div>' + message + '').fadeIn(500).delay(3000).fadeOut(100);
 				}
@@ -2438,7 +2481,7 @@ function _add_subject_class(department_id, class_id) {
 
 
 
-function _fetch_department_class_subject(department_id, class_id) {
+function _fetch_department_class_subject() {
 	var department_id = $('#department_id').val();
   var class_id = $('#class_id').val();
 	$('#department_id, #class_id').removeClass('complain');
@@ -2481,7 +2524,7 @@ function _fetch_department_class_subject(department_id, class_id) {
 			  if (success == true) {
 				   $("#success-div").html('<div><i class="bi-check"></i></div> <span>Subject Successfully Retrieved</span> ').fadeIn(500).delay(5000).fadeOut(100);
 					_alert_close();
-					_get_page_with_id('tutorial', department_id, class_id);
+					_get_class_page_with_id('tutorial', department_id, class_id);
         } else {
             $("#warning-div").html('<div><i class="bi-exclamation-octagon-fill"></i></div> ' + message +" <br /><span>").fadeIn(500).delay(5000).fadeOut(100);
             $("#submit_btn").html(btn_text);
@@ -2536,7 +2579,7 @@ function _get_fetch_department_class_subject(department_id, class_id) {
               text +=
                 '<div class="quest-faq-div animated fadeIn">' +
                 '<div class="faq-title-text">' +
-                '<h3>' + subject_name + '<button class="btn-2" title="Add New Video" onClick="_get_form_with_id(' + "'video_reg'" + "," + "'" + department_id + "'" + "," + "'" + class_id + "'" + "," + "'" + subject_id + "'" + ');"><i class="bi-plus-square"></i> ADD NEW VIDEO</button> </h3>' +
+                '<h3>' + subject_name + '<button class="btn-2" title="Add New Video" onClick="_get_video_form_with_id(' + "'video_reg'" + "," + "'" + department_id + "'" + "," + "'" + class_id + "'" + "," + "'" + subject_id + "'" + ');"><i class="bi-plus-square"></i> ADD NEW VIDEO</button> </h3>' +
                 '<div class="expand-div" id="' + "view" + no + "num" + '" title="Click to View Terms" onclick="_collapse(' + "'" + 'view' + no + "'" + ')">&nbsp;<i class="bi-chevron-down"></i>&nbsp;</div>' +
                 '</div>';
           
@@ -2546,7 +2589,7 @@ function _get_fetch_department_class_subject(department_id, class_id) {
                   var term_id = terms[j].term_id;
                   var term_name = terms[j].term_name;
                   var total_number_of_videos = terms[j].total_number_of_videos;
-                  text += '<button class="btn" title="'+ term_name +'" onClick="_get_page_with_id(' + "'video_page'" + "," +"'" + department_id +"'" +"," +"'" + class_id +"'" +"," +"'" + subject_id +"'" +"," +"'" + term_id + "'" +')"><i class="bi-pencil-square"></i> '+ term_name +' &nbsp; <span>'+ total_number_of_videos +'</span>&nbsp;<i class="bi-play-btn-fill"></i></button>';                                   
+                  text += '<button class="btn" title="'+ term_name +'" onClick="_get_video_page_with_id(' + "'video_page'" + "," +"'" + department_id +"'" +"," +"'" + class_id +"'" +"," +"'" + subject_id +"'" +"," +"'" + term_id + "'" +')"><i class="bi-pencil-square"></i> '+ term_name +' &nbsp; <span>'+ total_number_of_videos +'</span>&nbsp;<i class="bi-play-btn-fill"></i></button>';                                   
               }
           
               text += '</div>' + '</div>';
@@ -2792,7 +2835,7 @@ function _create_tutorial_folder(department_id, class_id, tutorial_id, urls, dep
     success: function (html) {
       $("#success-div").html('<div><i class="bi-check"></i></div> ' + message +"" ).fadeIn(500).delay(5000).fadeOut(100);
       _alert_close();
-      _get_page_with_id('tutorial', department_id, class_id);
+      _get_class_page_with_id('tutorial', department_id, class_id);
       },
     });
 }
@@ -2879,6 +2922,7 @@ function _fetch_tutorial_video_page(department_id, class_id, subject_id, term_id
                     var summary = week_videos[j].summary.substr(0, 138);
                     var thumbnail = week_videos[j].thumbnail;
                     var status_name = week_videos[j].status_name;
+                    var duration = week_videos[j].duration;
                     var documentStoragePath = week_videos[j].documentStoragePath;
 
                     text +=
@@ -2891,9 +2935,10 @@ function _fetch_tutorial_video_page(department_id, class_id, subject_id, term_id
                             '<p>'+ summary +'</p>'+
                             '<hr></hr>'+
                             '<div class="bottom-div">'+
-                                '<button class="btn edit" title="EDIT VIDEO" onClick="_get_form_with_id(' +"'update_video'" +"," +"'" + department_id +"'" +"," +"'" + class_id +"'" +"," +"'" + subject_id +"'" +"," +"'" + tutorial_id + "'" +');"><i class="bi-pencil-square"></i> EDIT</button>'+
-                                '<button class="btn" title="VIEW CBT" onClick="_get_form_with_id(' +"'cbt_page_details'" +');"> <span class="count">0</span> CBT </button>'+
-                                '<span>Status: &nbsp;<span class="status-div '+ status_name +'">'+ status_name +'</span></span>&nbsp; &nbsp;'+
+                                '<button class="btn edit" title="EDIT VIDEO" onClick="_get_video_form_with_id(' +"'update_video'" +"," +"'" + department_id +"'" +"," +"'" + class_id +"'" +"," +"'" + subject_id +"'" +"," +"'" + tutorial_id + "'" +');"><i class="bi-pencil-square"></i> EDIT</button>'+
+                                '<button class="btn" title="VIEW CBT" onClick="_get_form_with_id(' +"'cbt_page_details'" +"," +"'" + tutorial_id +"'" +');"> <span class="count">0</span> CBT </button>'+
+                                '<span>Status: &nbsp;<span class="status-div '+ status_name +'">'+ status_name +'</span></span>&nbsp; &nbsp; &nbsp;'+
+                                '<span>Duration: &nbsp;<span class="duration">'+ duration +'</span></span>&nbsp; &nbsp;'+
                             '</div>'+
                         '</div>'+                    
                       '</div>';                       
@@ -2980,6 +3025,52 @@ function _get_fetch_each_video_tutorial(tutorial_id) {
     },
   });
 }
+
+
+
+
+function _get_fetch_quiz_details(tutorial_id) {
+  var dataString = "tutorial_id=" + tutorial_id;
+  $.ajax({
+    type: "POST",
+    url: endPoint + '/admin/tutorials/fetch-tutorial',
+    data: dataString,
+    dataType: "json",
+    cache: false,
+    headers: {
+      'apiKey': apiKey,  
+      'Authorization': 'Bearer '+ login_access_key
+    },
+    success: function (info) {
+      var success = info.success;
+    
+      if (success == true) {
+        var data = info.data[0];
+        var department_name = data.department_name;
+        var class_name = data.class_name;
+        var subject_name = data.subject_name;
+        var term_name = data.term_name;
+        var week_name = data.week_name;
+        var topic = data.topic;
+        var duration = data.duration;
+        var video = data.video;
+        var documentStoragePath_video = data.documentStoragePath_video;
+        
+        $('#department_name').html(department_name);
+        $('#class_name').html(class_name);
+        $('#subject_name').html(subject_name);
+        $('#term_name').html(term_name);
+        $('#week_name').html(week_name);
+        $('#topic').html(topic);
+        $('#duration').html(duration);
+        $('#view_cbt_video').html('<video src="'+ documentStoragePath_video +"/" + video +'" id="videoDisplay" name="sub_video" controls="controls" loop="" class="video-slide"></video>');
+      } else {
+        $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
+      }
+    },
+  });
+}
+
 
 
 
@@ -3190,7 +3281,7 @@ function _update_tutorial_video_folder(tutorial_id, urls, db_urls, department_ur
       success: function (html) {
         $("#success-div").html('<div><i class="bi-check"></i></div> ' + message +"" ).fadeIn(500).delay(5000).fadeOut(100);
         _alert_close();
-        _get_page_with_id('video_page', department_id, class_id, subject_id);
+        _get_video_page_with_id('video_page', department_id, class_id, subject_id);
       },
     });
 

@@ -840,12 +840,31 @@ transition:all 0.2s ease-in 0.2s;
 	padding:15px 40px 40px 40px;
 }
 
+.caption-div .div-in .input-div{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0px;
+	margin-top: 10px;
+}
+
+.caption-div .div-in .input-div .input-div-in{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	width: 100%;
+}
+
+.caption-div .div-in .input-div .input-div-in .title{
+	font-family: sub-title-font;
+}
 
 .caption-div .div-in .title{
 	padding:8px;
 	font-size:13px;
 	color:var(--sub-body-color);
 }
+
 .caption-div .div-in .title span{
 	color:#F00;
 	font-size:16px;
@@ -871,11 +890,19 @@ transition:all 0.2s ease-in 0.2s;
 	outline: none !important;
 }
 
+
 .caption-div .div-in .selectinput{
 	width:100%;
-	font-size:13px;
+	font-size: 13px;
 	background: var(--white-color);
 }
+
+.caption-div .div-in .input-div .input-div-in .selectinputs{
+	width:80%;
+	padding:10px 10% 10px 10%;
+	background: var(--white-color);
+}
+
 .caption-div .div-in .text_field:focus{
 	border:var(--main-color) 1px solid;
 }
@@ -908,7 +935,7 @@ transition:all 0.2s ease-in 0.2s;
 	margin-top:10px;
 	height:50px;
 	width:100%;
-	background:var(--sub-body-color);
+	background:var(--main-color);
 	color:#FFF;
 	border-radius:5px;
 	font-family:sub-title-font;
@@ -921,7 +948,7 @@ transition:all 0.2s ease-in 0.2s;
 	cursor:pointer;
 }
 .caption-div .div-in .btn:hover{
-	background:var(--sub-body-color);
+	background:var(--subactive-color);
 }
 
 
