@@ -1261,31 +1261,59 @@
 
 
 
-.faq-back-div .main-faqs{
+
+
+
+.main-faq-back-div{
+	width: 99.5%;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+
+.main-faq-back-div .main-faq-div{
 	padding: 0px;
 	text-align: center;
 	border: #202641 1px solid;
+	display: flex;
+	flex-direction: column;
+	border-radius: 5px 5px 0px 0px;
 }
 
-.faq-back-div .quest-faq-div .main-faqs-title-div{
+.main-faq-back-div .main-faq-div .main-faq-title-back-div{
+	display: flex;
+	align-items: center;
+	background-color: #202641;
+	gap: 10px;
+}
+
+.main-faq-back-div .main-faq-div .main-faq-title-back-div .main-faqs-title-div{
 	width: 40px;
 	min-height: 50px;
-	line-height: 50px;
-	vertical-align: top;
-	display: inline-block;
-	text-align: center;
-	background-color: #202641;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	color: var(--white-color);
 	border-right: var(--white-color) 1px solid;
 }
 
+.main-faq-back-div .main-faq-div .main-faq-title-back-div .main-faq-title{
+	width: calc(100% - 40px);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
 
-.faq-back-div .quest-faq-div .main-faqs-title-div2{
-	width: calc(100% - 51px);
-	padding-left: 10px;
-	text-align: left;
-	float: right;
-	border-right: none;
+.main-faq-back-div .main-faq-div .main-faq-title-back-div .main-faq-title span{
+	font-family: body-font;
+	color: var(--white-color);
+	font-size: 15px;
+}
+
+.main-faq-back-div .main-faq-div .main-faq-title-back-div .main-faq-title span i{
+	color: var(--white-color);
+	margin-right: 5px;
 }
 
 .faq-back-div .quest-faq-div .main-faqs-title-div2 .btn{
@@ -1298,12 +1326,12 @@
 	text-align: left;
 }
 
-.main-faqs-title-div .expand-div{
+.main-faq-back-div .main-faq-div .main-faq-title-back-div .main-faq-title .expand-div{
 	height: 30px;
     width: 40px;
-    float: right;
-	margin-top: 6px;
-	line-height: 0px;
+   	display: flex;
+	align-items: center;
+	justify-content: center;
     font-size: 25px;
 	color: var(--white-color);
 	cursor: pointer;
@@ -3899,7 +3927,12 @@ transition:all 0.2s ease-in 0.2s;
 	font-family: body-font;
 }
 
-.cbt-creation-panel .question-back-div .question-body-div .question-div .div-in .check-div .btn{
+.cbt-creation-panel .question-back-div .question-body-div .question-div .div-in .check-div .btn-div{
+	display: flex;
+	gap: 5px;
+}
+
+.cbt-creation-panel .question-back-div .question-body-div .question-div .div-in .check-div .btn-div .btn{
 	border: none;
 	height: 30px;
 	background: var(--active-color2);
@@ -3915,7 +3948,11 @@ transition:all 0.2s ease-in 0.2s;
     -o-transition: all 0.2s ease-in 0.2s;
 }
 
-.cbt-creation-panel .question-back-div .question-body-div .question-div .div-in .check-div .btn:hover{
+.cbt-creation-panel .question-back-div .question-body-div .question-div .div-in .check-div .btn-div .delete-btn{
+	background: #FF7E7C;
+}
+
+.cbt-creation-panel .question-back-div .question-body-div .question-div .div-in .check-div .btn-div .btn:hover{
 	opacity: .8;
 }
 

@@ -22,8 +22,7 @@ function capitalizeFirstLetterOfEachWord(inputText) {
   return result;
 }
 
-
-
+ 
 function handleAdminClick() {
   if (login_role_id > 1) {     
     var text =        
@@ -36,8 +35,6 @@ function handleAdminClick() {
     $('#adminstrator_link').html(text)
   }
 }
-
-
 
 
 function _side_admin_check() {
@@ -64,8 +61,6 @@ function srch_custom(text){
   $('#srch-text').html(text);
   $('.custom-srch-div').fadeIn(500);
 };
-
-
 
 function _next_page(next_id, icon, divid) {
   $("#account_settings_id,#account_detail,#channge_password").hide();
@@ -181,7 +176,6 @@ function _get_page_with_id(page, ids) {
 }
 
 
-
 function _get_class_page_with_id(page, department_id, class_id) {
   $("#page-content").html('<div class="ajax-loader"><img src="' +website_url + '/all-images/images/ajax-loader.gif"/></div>').fadeIn("fast");
   var action = "get_class_page_with_id";
@@ -212,7 +206,6 @@ function _get_video_page_with_id(page, department_id, class_id, subject_id, term
     },
   });
 }
-
 
 
 
@@ -312,14 +305,14 @@ function _get_detail(page,ids,text){
 	});
 }
 
+function _get_active_modal_link(page){
+  $('#question_bank_details, #quiz_question, #load_questions_manually, #load_questions_automatically').removeClass('active-li');
+  $('#' + page).addClass('active-li');
+}
 
-
-function _get_page_contents(page, active_id, ids) {
-		$('#main_page_contents, #quiz_question_page, #load_questions_manu_page, #load_questions_auto_page').removeClass('active-li');
-		$('#' + active_id).addClass('active-li');
-		
+function _get_page_contents(page, ids) {
+   _get_active_modal_link(page);
 		$('#get_page_details').html('<div class="ajax-loader cbt-ajax-loader"><img src="all-images/images/ajax-loader2.gif"/></div>').fadeIn(500);
-	
 		var action = 'get_page_details';
 		var dataString = 'action=' + action + '&page=' + page + '&ids=' + ids;
 		$.ajax({
@@ -332,7 +325,6 @@ function _get_page_contents(page, active_id, ids) {
 			}
 		});
 	}
-
 
 
 
@@ -378,8 +370,112 @@ $(function () {
 });
 
 
-function _get_dashboard_count() {
 
+
+$(function () {
+  quiz_question_pix_preview = {
+    UpdatePreview: function (obj) {
+      // if IE < 10 doesn't support FileReader
+      if (!window.FileReader) {
+        // don't know how to proceed to assign src to image tag
+      } else {
+        var reader = new FileReader();
+        var target = null;
+
+        reader.onload = function (e) {
+          target = e.target || e.srcElement;
+          $("#quiz_question_pix").prop("src", target.result);
+        };
+        reader.readAsDataURL(obj.files[0]);
+      }
+    },
+  };
+});
+
+
+$(function () {
+  quiz_option_a_pix_preview = {
+    UpdatePreview: function (obj) {
+      // if IE < 10 doesn't support FileReader
+      if (!window.FileReader) {
+        // don't know how to proceed to assign src to image tag
+      } else {
+        var reader = new FileReader();
+        var target = null;
+
+        reader.onload = function (e) {
+          target = e.target || e.srcElement;
+          $("#quiz_option_a_pix").prop("src", target.result);
+        };
+        reader.readAsDataURL(obj.files[0]);
+      }
+    },
+  };
+});
+
+$(function () {
+  quiz_option_b_pix_preview = {
+    UpdatePreview: function (obj) {
+      // if IE < 10 doesn't support FileReader
+      if (!window.FileReader) {
+        // don't know how to proceed to assign src to image tag
+      } else {
+        var reader = new FileReader();
+        var target = null;
+
+        reader.onload = function (e) {
+          target = e.target || e.srcElement;
+          $("#quiz_option_b_pix").prop("src", target.result);
+        };
+        reader.readAsDataURL(obj.files[0]);
+      }
+    },
+  };
+});
+
+
+$(function () {
+  quiz_option_c_pix_preview = {
+    UpdatePreview: function (obj) {
+      // if IE < 10 doesn't support FileReader
+      if (!window.FileReader) {
+        // don't know how to proceed to assign src to image tag
+      } else {
+        var reader = new FileReader();
+        var target = null;
+
+        reader.onload = function (e) {
+          target = e.target || e.srcElement;
+          $("#quiz_option_c_pix").prop("src", target.result);
+        };
+        reader.readAsDataURL(obj.files[0]);
+      }
+    },
+  };
+});
+
+$(function () {
+  quiz_option_d_pix_preview = {
+    UpdatePreview: function (obj) {
+      // if IE < 10 doesn't support FileReader
+      if (!window.FileReader) {
+        // don't know how to proceed to assign src to image tag
+      } else {
+        var reader = new FileReader();
+        var target = null;
+
+        reader.onload = function (e) {
+          target = e.target || e.srcElement;
+          $("#quiz_option_d_pix").prop("src", target.result);
+        };
+        reader.readAsDataURL(obj.files[0]);
+      }
+    },
+  };
+});
+
+
+function _get_dashboard_count() {
   var dataString = '';
   $.ajax({
     type: "POST",
@@ -459,8 +555,7 @@ function _get_staff_login() {
           _logout();
         }else{
           $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
-        }
-       
+        }     
       }
       
     },
@@ -584,9 +679,14 @@ function _get_select_week(select_id){
                 var week_name = fetch[i].week_name;
                 $('#'+ select_id).append('<option value="'+ week_id +'">'+ week_name +'</option>');
               }
-          }else{
-            $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
-          }
+            } else {
+              var response = info.response;
+              if(response<100){
+                _logout();
+              }else{
+                $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
+              }
+            }
         }, 
     });
 }
@@ -615,8 +715,13 @@ function _get_select_term(select_id) {
           var term_name = fetch[i].term_name;
           $('#'+ select_id).append('<option value="'+ term_id +'">'+ term_name +'</option>');
         }
-      }else{
-        $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
+      } else {
+        var response = info.response;
+        if(response<100){
+          _logout();
+        }else{
+          $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
+        }
       }
     }
 	});
@@ -624,35 +729,35 @@ function _get_select_term(select_id) {
 
 
 
-function _get_select_series(select_id){
-  var dataString = '';
-  $.ajax({
-      type: "POST",
-      url: endPoint + '/setups/video-series',
-      data: dataString,
-      dataType: 'json',
-      cache: false,
-      headers: {
-          'apiKey': apiKey,
-          'Authorization': 'Bearer ' + login_access_key
-      },
-      success: function(info){
-          var success = info.success;
-          var message = info.message;
-          var fetch = info.data;
+// function _get_select_series(select_id){
+//   var dataString = '';
+//   $.ajax({
+//       type: "POST",
+//       url: endPoint + '/setups/video-series',
+//       data: dataString,
+//       dataType: 'json',
+//       cache: false,
+//       headers: {
+//           'apiKey': apiKey,
+//           'Authorization': 'Bearer ' + login_access_key
+//       },
+//       success: function(info){
+//           var success = info.success;
+//           var message = info.message;
+//           var fetch = info.data;
 
-          if (success == true) {
-              for (var i = 0; i < fetch.length; i++) {
-                var series_id = fetch[i].series_id;
-                var series_name = fetch[i].series_name;
-                $('#'+ select_id).append('<option value="'+ series_id +'">'+ series_name +'</option>');
-              }        
-          }else{
-            $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
-          }
-        }, 
-    });
-}
+//           if (success == true) {
+//               for (var i = 0; i < fetch.length; i++) {
+//                 var series_id = fetch[i].series_id;
+//                 var series_name = fetch[i].series_name;
+//                 $('#'+ select_id).append('<option value="'+ series_id +'">'+ series_name +'</option>');
+//               }        
+//           }else{
+//             $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
+//           }
+//         }, 
+//     });
+// }
 
 
 
@@ -719,8 +824,13 @@ function _get_class(dept_input, class_input){
 				  var class_name = data[i].class_name;
 					$('#'+class_input).append('<option value="'+ class_id +'">'+ class_name +'</option>');
 				}
-      }else{
-        $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
+      } else {
+        var response = info.response;
+        if(response<100){
+          _logout();
+        }else{
+          $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
+        }
       }
 		}
 	});
@@ -777,7 +887,8 @@ function _get_login_staff_profile() {
         },
     success: function (info) {
       var success = info.success;
-    
+      var message = info.message;
+
       if (success == true) {
         var data = info.data[0];
         var staff_id = data.staff_id;
@@ -1186,9 +1297,7 @@ function _get_fetch_all_staff() {
 
 
 
-
-
-function _add_staff(staff_id) {
+function _add_staff() {
   var fullname = $('#reg_fullname').val();
   var email = $('#reg_email').val();
   var mobile = $('#reg_mobile').val();
@@ -1229,7 +1338,7 @@ function _add_staff(staff_id) {
     $("#submit_btn").html('<i class="fa fa-spinner fa-spin"></i> PROCESSING');
     document.getElementById("submit_btn").disabled = true;
 
-    var dataString ='staff_id=' + staff_id +'&fullname='+ fullname + '&email=' + email + '&mobile=' + mobile + ' &address=' + address +'&role_id=' + role_id +' &status_id=' +status_id;
+    var dataString ='fullname='+ fullname + '&email=' + email + '&mobile=' + mobile + ' &address=' + address +'&role_id=' + role_id +' &status_id=' +status_id;
     $.ajax({
       type: "POST",
       url: endPoint + '/admin/staff/add-staff',
@@ -1957,6 +2066,10 @@ function _get_fetch_all_department() {
         }
           $('#fetch_all_department').html(text);
         } else {
+          var response = info.response;
+          if (response < 100) {
+            _logout();
+          }
           text +=
             '<div class="false-notification-div">' +
               "<p> " + message +" </p>" +
@@ -2204,6 +2317,10 @@ function _get_fetch_all_class_dept(department_id) {
      
           $('#fetch_all_class_dept').html(text);
         } else {
+          var response = info.response;
+          if (response < 100) {
+            _logout();
+          }
           text +=
             '<div class="false-notification-div">' +
               "<p> " + message +" </p>" +
@@ -2366,6 +2483,10 @@ function _get_fetch_all_class_subject(department_id, class_id) {
           $('#class_name').html(class_name);
           $('#fetch_all_class_subject').html(text);
         } else {
+          var response = info.response;
+          if (response < 100) {
+            _logout();
+          }
           text +=
             '<div class="false-notification-div">' +
               "<p> " + message +" </p>" +
@@ -2522,7 +2643,6 @@ function _fetch_department_class_subject() {
 			  var message = info.message;
 
 			  if (success == true) {
-				   $("#success-div").html('<div><i class="bi-check"></i></div> <span>Subject Successfully Retrieved</span> ').fadeIn(500).delay(5000).fadeOut(100);
 					_alert_close();
 					_get_class_page_with_id('tutorial', department_id, class_id);
         } else {
@@ -2601,6 +2721,10 @@ function _get_fetch_department_class_subject(department_id, class_id) {
           $('#tut_class_name').html(class_name);
           $('#fetch_department_class_subject').html(text);
         } else {
+          var response = info.response;
+          if (response < 100) {
+            _logout();
+          }
           text +=
             '<div class="false-notification-div">' +
               "<p> " + message +" </p>" +
@@ -2670,7 +2794,8 @@ function _add_tutorial_video(department_id, class_id, subject_id) {
   tinyMCE.triggerSave();
   var term_id = $('#term_id').val();
   var week_id = $('#week_id').val();
-  var series_id = $('#series_id').val();
+  //var series_id = $('#series_id').val();
+  var series_id = 1;
   var topic = $('#topic').val();
   var urls = $('#urls').val();
   var seo_keywords = $('#seo_keywords').val();
@@ -2682,7 +2807,7 @@ function _add_tutorial_video(department_id, class_id, subject_id) {
   var new_material = $('#material').prop('files')[0];
   var status_id = $('#reg_status_id').val();
 
-  $('#term_id, #week_id, #series_id, #topic, #urls, #seo_keywords, #seo_description, #summary, #thumbnail, #video, #duration, #material, #status_id').removeClass('complain');
+  $('#term_id, #week_id, #topic, #urls, #seo_keywords, #seo_description, #summary, #thumbnail, #video, #duration, #material, #status_id').removeClass('complain');
 
   if (term_id == '') {
       $('#term_id').addClass('complain');
@@ -2691,10 +2816,6 @@ function _add_tutorial_video(department_id, class_id, subject_id) {
     } else if (week_id == '') {
       $('#week_id').addClass("complain");
       $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> WEEK ERROR!<br /><span>Check Week And Try Again <span>').fadeIn(500).delay(3000).fadeOut(100);
-
-  } else if (series_id == '') {
-      $('#series_id').addClass('complain');
-      $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> VIDEO SERIES ERROR!<br /><span>Check Video Series And Try Again</span>').fadeIn(500).delay(3000).fadeOut(100);
 
   } else if (topic == '') {
       $('#topic').addClass("complain");
@@ -2737,7 +2858,7 @@ function _add_tutorial_video(department_id, class_id, subject_id) {
       $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> STATUS ERROR!<br /><span>Check Status And Try Again <span>').fadeIn(500).delay(3000).fadeOut(100);
 
   } else {
-    $('#term_id, #week_id, #series_id, #topic, #urls, #seo_keywords, #seo_description, #summary, #thumbnail, #video, #duration, #material, #status_id').removeClass('complain');
+    $('#term_id, #week_id, #topic, #urls, #seo_keywords, #seo_description, #summary, #thumbnail, #video, #duration, #material, #status_id').removeClass('complain');
 
       if (confirm("Confirm!!\n\n Are you sure to PERFORM THIS ACTION?")) {
           $("#submit_btn").hide();
@@ -2815,7 +2936,6 @@ function _add_tutorial_video(department_id, class_id, subject_id) {
 
 function _create_tutorial_folder(department_id, class_id, tutorial_id, urls, department_urls, class_urls, subject_urls, thumbnail, message) {
     var action = "create_tutorial_folder";
-
     var form_data = new FormData();
     form_data.append("action", action);
     form_data.append("tutorial_id", tutorial_id);
@@ -2839,22 +2959,6 @@ function _create_tutorial_folder(department_id, class_id, tutorial_id, urls, dep
       },
     });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2952,6 +3056,10 @@ function _fetch_tutorial_video_page(department_id, class_id, subject_id, term_id
           $('#tutorial_term_name').html(term_name);
           $('#fetch_tutorial_video_page').html(text);
         } else {
+          var response = info.response;
+          if (response < 100) {
+            _logout();
+          }
           text +=
             '<div class="false-notification-div">' +
               "<p> " + message +" </p>" +
@@ -2979,6 +3087,7 @@ function _get_fetch_each_video_tutorial(tutorial_id) {
     },
     success: function (info) {
       var success = info.success;
+      var message = info.message
     
       if (success == true) {
         var data = info.data[0];
@@ -2988,8 +3097,6 @@ function _get_fetch_each_video_tutorial(tutorial_id) {
         var term_name = data.term_name;
         var week_id = data.week_id;
         var week_name = data.week_name;
-        var series_id = data.series_id;
-        var series_name = data.series_name;
         var topic = data.topic;
         var urls = data.urls;
         var seo_keywords = data.seo_keywords;
@@ -3007,19 +3114,24 @@ function _get_fetch_each_video_tutorial(tutorial_id) {
      
         $('#subject_id').append('<option value="' + subject_id +'" selected="selected">' + subject_name +"</option>");
         $('#term_id').append('<option value="' + term_id +'" selected="selected">' + term_name +"</option>");
-        $('#week_id').append('<option value="' + week_id +'" selected="selected">' + week_name +"</option>");
-        $('#series_id').append('<option value="' + series_id +'" selected="selected">' + series_name +"</option>");
+        $('#week_id').append('<option value="' + week_id +'" selected="selected">' + week_name +"</option>");     
         $('#topic').val(topic);
         $('#urls').val(urls);
         $('#seo_keywords').val(seo_keywords);
         $('#seo_description').val(seo_description);
         $('#duration').val(duration);
-        $('#summary').html(summary);
+        setTimeout(function() {
+          tinymce.get('summary').setContent(summary);
+        }, 2000);
         $('#updt_status_id').append('<option value="' + status_id +'" selected="selected">' + status_name +"</option>");
         $('#view_tutorial_pix').html('<img src="'+ documentStoragePath_pix +"/" + thumbnail +'" id="subject-pix" alt="'+ topic +'"/>');
         _get_tutorial_pdf(documentStoragePath_material, material);
         _get_tutorial_video(documentStoragePath_video, video);
       } else {
+        var response = info.response;
+        if (response < 100) {
+          _logout();
+        }
         $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
       }
     },
@@ -3043,9 +3155,10 @@ function _get_fetch_quiz_details(tutorial_id) {
     },
     success: function (info) {
       var success = info.success;
-    
+      var message = info.message;
+
       if (success == true) {
-        var data = info.data[0];
+        var data = info.data[0];  
         var department_name = data.department_name;
         var class_name = data.class_name;
         var subject_name = data.subject_name;
@@ -3064,8 +3177,13 @@ function _get_fetch_quiz_details(tutorial_id) {
         $('#topic').html(topic);
         $('#duration').html(duration);
         $('#view_cbt_video').html('<video src="'+ documentStoragePath_video +"/" + video +'" id="videoDisplay" name="sub_video" controls="controls" loop="" class="video-slide"></video>');
-      } else {
-        $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
+      }else{
+        var response = info.response;
+        if(response<100){
+          _logout();
+        }else{
+          $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
+        }
       }
     },
   });
@@ -3103,7 +3221,7 @@ function _update_tutorial_video(department_id,class_id,tutorial_id) {
   var subject_id = $('#subject_id').val();
   var term_id = $('#term_id').val();
   var week_id = $('#week_id').val();
-  var series_id = $('#series_id').val();
+  var series_id = 1;
   var topic = $('#topic').val();
   var urls = $('#urls').val();
   var seo_keywords = $('#seo_keywords').val();
@@ -3115,7 +3233,7 @@ function _update_tutorial_video(department_id,class_id,tutorial_id) {
   var new_material = $('#material').prop('files')[0];
   var status_id = $('#updt_status_id').val();
 
-  $('#term_id, #week_id, #series_id, #topic, #urls, #seo_keywords, #seo_description, #summary, #thumbnail, #video, #duration, #material, #updt_status_id').removeClass('complain');
+  $('#term_id, #week_id, #topic, #urls, #seo_keywords, #seo_description, #summary, #thumbnail, #video, #duration, #material, #updt_status_id').removeClass('complain');
 
   if (subject_id == '') {
     $('#subject_id').addClass('complain');
@@ -3128,10 +3246,6 @@ function _update_tutorial_video(department_id,class_id,tutorial_id) {
   } else if (week_id == '') {
       $('#week_id').addClass("complain");
       $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> WEEK ERROR!<br /><span>Check Week And Try Again <span>').fadeIn(500).delay(3000).fadeOut(100);
-
-  } else if (series_id == '') {
-      $('#series_id').addClass('complain');
-      $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> VIDEO SERIES ERROR!<br /><span>Check Video Series And Try Again</span>').fadeIn(500).delay(3000).fadeOut(100);
 
   } else if (topic == '') {
       $('#topic').addClass("complain");
@@ -3174,7 +3288,7 @@ function _update_tutorial_video(department_id,class_id,tutorial_id) {
       $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> STATUS ERROR!<br /><span>Check Status And Try Again <span>').fadeIn(500).delay(3000).fadeOut(100);
 
   } else {
-    $('#term_id, #week_id, #series_id, #topic, #urls, #seo_keywords, #seo_description, #summary, #thumbnail, #video, #duration, #material, #updt_status_id').removeClass('complain');
+    $('#term_id, #week_id, #topic, #urls, #seo_keywords, #seo_description, #summary, #thumbnail, #video, #duration, #material, #updt_status_id').removeClass('complain');
 
       if (confirm("Confirm!!\n\n Are you sure to PERFORM THIS ACTION?")) {
         $("#submit_btn").hide();
@@ -3337,6 +3451,10 @@ function _fetch_dashboard_alert() {
         $('#fetch_dashboard_alert').html(text);
       
       } else {
+        var response = info.response;
+        if (response < 100) {
+          _logout();
+        }
         text +=
           '<div class="false-notification-div">' +
             "<p> " + message +" </p>" +
@@ -3371,7 +3489,10 @@ function get_notification_number() {
             $('.bell_notification').html('<i class="bi-bell"></i><div>' + unread_alert + '</div>');
           }
         } else {
-          ///
+          var response = info.response;
+          if (response < 100) {
+            _logout();
+          }
         }
       }
   });
@@ -3425,6 +3546,10 @@ function _fetch_read_alert(alert_id) {
         _read_alert(alert_id);
         get_notification_number();
       } else {
+        var response = info.response;
+        if (response < 100) {
+          _logout();
+        }
         $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
       }
     },
@@ -3503,6 +3628,10 @@ function _fetch_system_alert(dataString) {
           $('#view_to').html(view_to);
           $('#all_record_count').html(all_record_count);
         } else {
+          var response = info.response;
+          if (response < 100) {
+            _logout();
+          }
           text +=
             '<div class="false-notification-div">' +
             "<p> " + message + " </p>" +
@@ -3605,7 +3734,8 @@ function _fetch_settings() {
     },
     success: function (info) {
       var success = info.success;
-    
+      var message = info.message;
+
       if (success == true) {
         var data = info.data[0];
         var sender_name = data.sender_name;
@@ -3627,6 +3757,10 @@ function _fetch_settings() {
         $('#subcription_amount').val(subcription_amount);
         $('#paystack_payment_key').val(paystack_payment_key);
       } else {
+        var response = info.response;
+        if (response < 100) {
+          _logout();
+        }
         $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
       }
     },
@@ -3741,8 +3875,6 @@ function _check_password_match() {
 }
 
 
-
-
 function _update_user_password() {
   var old_password=$('#old_password').val();
   var new_password=$('#new_password').val();
@@ -3818,18 +3950,447 @@ function _update_user_password() {
   }
 }
 
+function _add_questions_manually(tutorial_id) {
+  tinyMCE.triggerSave();
+  const question_text = $('#question_text').val();
+  const question_pix_file = $('#question_pix').prop('files')[0];
+  const option_a = $('#option_a').val();
+  const option_a_pix_file = $('#option_a_pix').prop('files')[0];
+  const option_b = $('#option_b').val();
+  const option_b_pix_file = $('#option_b_pix').prop('files')[0];
+  const option_c = $('#option_c').val();
+  const option_c_pix_file = $('#option_c_pix').prop('files')[0];
+  const option_d = $('#option_d').val();
+  const option_d_pix_file = $('#option_d_pix').prop('files')[0];
+  const answer = $('#answer').val();
+
+  $('#question_text, #question_pix, #option_a, #option_a_pix, #option_b, #option_b_pix, #answer').removeClass('complain');
+
+  if ((!question_text) && (!question_pix_file)) {
+    $('#question_text').addClass('complain');
+    $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> QUIZ QUESTION ERROR!<br /><span>Check question And Try Again</span>').fadeIn(500).delay(3000).fadeOut(100);
+
+  } else if ((!option_a) && (!option_a_pix_file)) {
+    $('#option_a').addClass("complain");
+    $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> OPTION A ERROR!<br /><span>Check Option A And Try Again <span>').fadeIn(500).delay(3000).fadeOut(100);
+ 
+  } else if ((!option_b) && (!option_b_pix_file)) {
+    $('#option_b').addClass("complain");
+    $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> OPTION B ERROR!<br /><span>Check Option B And Try Again <span>').fadeIn(500).delay(3000).fadeOut(100);
+
+  } else if (answer == '') {
+    $('#answer').addClass("complain");
+    $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> ANSWER ERROR!<br /><span>Check Answer And Try Again <span>').fadeIn(500).delay(3000).fadeOut(100);
+
+  } else {
+    
+    $('#question_text, #question_pix, #option_a, #option_a_pix, #option_b, #option_b_pix, #answer').removeClass('complain');
+
+    if (confirm("Confirm!!\n\n Are you sure to PERFORM THIS ACTION?")) {
+      const btn_text = $("#submit_btn").html();
+      $("#submit_btn").html('<i class="fa fa-spinner fa-spin"></i> PROCESSING');
+      document.getElementById("submit_btn").disabled = true;
+
+      const form_data = new FormData();
+      form_data.append("tutorial_id", tutorial_id);
+      form_data.append("question_pix", question_pix_file);
+      form_data.append("question_text", question_text);
+      form_data.append("option_a", option_a);
+      form_data.append("option_a_pix", option_a_pix_file);
+      form_data.append("option_b", option_b);
+      form_data.append("option_b_pix", option_b_pix_file);
+      form_data.append("option_c", option_c);
+      form_data.append("option_c_pix", option_c_pix_file);
+      form_data.append("option_d", option_d);
+      form_data.append("option_d_pix", option_d_pix_file);
+      form_data.append("answer", answer);
+  
+      $.ajax({
+        type: "POST",
+        url: endPoint + '/admin/cbt/add-quiz-question-manually',
+        data: form_data,
+        dataType: "json",
+        contentType: false,
+        cache: false,
+        headers: {
+          'apiKey': apiKey,  
+          'Authorization': 'Bearer '+ login_access_key
+            },
+        processData: false,
+        success: function (info) {
+          const success = info.success;
+          const message = info.message;
+
+          if (success == true) {
+            $("#success-div").html('<div><i class="bi-check"></i></div>' + message +"" ).fadeIn(500).delay(5000).fadeOut(100);       
+            _get_page_contents('question_bank_details', tutorial_id);
+          } else {
+            $("#warning-div")
+            .html('<div><i class="bi-exclamation-octagon-fill"></i></div> ' + message +"").fadeIn(500) .delay(5000).fadeOut(100);
+            $("#submit_btn").html(btn_text);
+            document.getElementById("submit_btn").disabled = false;
+          }
+        },
+      });
+    }
+  }
+}
+
+
+function _fetch_each_question(page, tutorial_id, question_id) {
+  _get_active_modal_link(page);
+   $('#get_page_details').html('<div class="ajax-loader cbt-ajax-loader"><img src="all-images/images/ajax-loader2.gif"/></div>').fadeIn(500);
+   var action = 'get_page_details';
+   var dataString = 'action=' + action + '&page=' + page + '&ids=' + tutorial_id + '&question_id=' + question_id;
+   $.ajax({
+     type: "POST",
+     url: admin_local_portal_url,
+     data: dataString,
+     cache: false,
+     success: function (html) {
+       $('#get_page_details').html(html);
+     }
+   });
+ }
+
+function _chechAll(){
+  $(document).ready(function() {
+    $('#parent').on('change', function() {
+        $('.child').prop('checked', this.checked);
+    });
+    $('.child').on('change', function() {
+        $('#parent').prop('checked', $('.child:checked').length===$('.child').length);
+    });
+});
+}
+
+
+function _get_fetch_question_bank(tutorial_id) {
+  alert(tutorial_id);
+  $('#fetch_all_question_bank').html('<div class="ajax-loader cbt-ajax-loader"><img src="all-images/images/ajax-loader2.gif"/></div>').fadeIn(500);
+  const dataString = 'tutorial_id=' + tutorial_id;
+ 
+  $.ajax({
+    type: "POST",
+    url: endPoint + '/admin/cbt/fetch-question-bank-by-tutorial',
+    data: dataString,
+    dataType: "json",
+    cache: false,
+    headers: {
+      'apiKey': apiKey,  
+      'Authorization': 'Bearer '+ login_access_key
+        },
+    success: function (info) {
+      const fetch = info.questions;
+      const success = info.success;
+      const message = info.message;
+      const quiz_status = info.quiz_status;
+
+      let no=0;
+      let text = '';
+      if (success == true) {
+        if (!fetch || (Array.isArray(fetch) && fetch.length === 0)) {
+          text +=
+          '<div class="false-notification-div">' +"<p> " + message +" </p>" +"</div>";
+        } else {
+          for (let i = 0; i < fetch.length; i++) {
+            no++;
+            const question_id = fetch[i].question_id;
+            const question_text = fetch[i].question_text;
+            const question_pix = fetch[i].question_pix;
+            const questionsStoragePath = fetch[i].questionsStoragePath;
+            const options = fetch[i].options;
+            const answer = fetch[i].answer;
+
+            text +=
+            '<div class="question-div" id="question_id">'+
+              '<div class="div-in">'+
+                '<div class="check-div">'+
+                  '<label>'+
+                      '<input type="checkbox" class="child" name="question_id[]" data-value="'+ question_id +'">'+
+                      '<span>Question '+ no +'</span>'+
+                  '</label>'; 
+
+                  if(quiz_status=='7'){
+                    text +=
+                  '<div class="btn-div">'+                    
+                    '<button class="btn" title="Edit Question" onclick="_fetch_each_question(' +"'load_questions_manually'" +"," +"'" + tutorial_id +"'" +"," +"'" + question_id +"'"+')"><i class="bi-pencil-square"></i> Edit</button>'+
+                    '<button class="btn delete-btn" id="delete_btn" title="Delete Question" onclick="_delete_question('+ "'" + question_id + "'" + ')"><i class="bi-trash"></i></button>'+             
+                  '</div>';
+                  }
+                  text +=
+                '</div>'+
+
+                '<div class="each-question">';
+                  if(!(question_pix=='avatar.jpg')){
+                    text += '<div class="pix-div"><img src="'+ questionsStoragePath+ '/'+ question_pix +'" alt="'+ question_id +'"/></div>';
+                  }
+
+                  text +=
+                  '<div class="text-div">'+
+                    '<div>'+ question_text +'</div>'+
+                    '<div class="options-div">';
+
+                      for (let j = 0; j < options.length; j++) {
+                        const option_id = options[j].option_id;
+                        const option_text = options[j].option_text;
+                        const option_pix = options[j].option_pix;
+                        const optionsStoragePath = options[j].optionsStoragePath;
+                        
+                        if ((option_id==answer)){
+                          text +=
+                          '<div class="each-option correct-option">'+                             
+                            '<div class="letter">'+ option_id +'</div>';
+                            if(!(option_pix=='avatar.jpg')){
+                              text +=  '<div class="pix"><img src="'+ optionsStoragePath +'/'+ option_pix +'" alt="'+ option_id +'"/></div>';
+                            }
+                            text +=
+                            '<div>'+ option_text +'</div>'+
+                          '</div>';                       
+                        }else{
+                          text +=
+                          '<div class="each-option">'+                               
+                            '<div class="letter">'+ option_id +'</div>';
+                            if(!(option_pix=='avatar.jpg')){
+                              text +=  '<div class="pix"><img src="'+ optionsStoragePath +'/'+ option_pix +'" alt="'+ option_id +'"/></div>';
+                            }
+                            text +=
+                            '<div>'+ option_text +'</div>'+
+                          '</div>';
+                        }     
+                      }
+                    text += '</div>'+ 
+                  '</div>'+
+                '</div>'+         
+              '</div>'+
+            '</div>';          
+          }  
+        }    
+        $('#fetch_all_question_bank').html(text);
+        _chechAll();
+      } else {
+        const response = info.response;
+        if (response < 100) {
+          _logout();
+        }
+        text +=
+          '<div class="false-notification-div">' +
+            "<p> " + message +" </p>" +
+          "</div>";
+        $('#fetch_all_question_bank').html(text);
+      }
+    },
+  });
+}
 
 
 
 
 
+function _get_fetch_each_quiz_question(tutorial_id, question_id) {
+  const dataString = 'tutorial_id=' + tutorial_id + '&question_id=' + question_id;
+  $.ajax({
+    type: "POST",
+    url: endPoint + '/admin/cbt/fetch-question-bank-by-tutorial',
+    data: dataString,
+    dataType: "json",
+    cache: false,
+    headers: {
+      'apiKey': apiKey,  
+      'Authorization': 'Bearer '+ login_access_key
+    },
+    success: function (info) {
+      const success = info.success;
+      const message = info.message;
+
+      if (success == true) {
+        const data = info.questions[0];
+        const question_pix = data.question_pix;
+        const question_text = data.question_text;
+        const questionsStoragePath = data.questionsStoragePath;
+        const options = data.options;
+        const answer = data.answer;
+
+        $('#quiz_question_pix').attr('src', questionsStoragePath + '/' + question_pix);
+        $('#answer').val(answer);
+        setTimeout(function() {
+          tinymce.get('question_text').setContent(question_text);
+        }, 2000);
+
+        options.forEach(function(option) {
+          const option_text = option.option_text;
+          const option_pix = option.option_pix;
+          const optionsStoragePath = option.optionsStoragePath;
+
+          if (option.option_id === 'A') {
+            $('#quiz_option_a_pix').attr('src', optionsStoragePath + '/' + option_pix);
+            setTimeout(function() {
+              tinymce.get('option_a').setContent(option_text);
+            }, 2000);
+          }
+
+          if (option.option_id === 'B') {
+            $('#quiz_option_b_pix').attr('src', optionsStoragePath + '/' + option_pix);
+            setTimeout(function() {
+              tinymce.get('option_b').setContent(option_text);
+            }, 2000);
+          }
+
+          if (option.option_id === 'C') {
+            $('#quiz_option_c_pix').attr('src', optionsStoragePath + '/' + option_pix);
+            setTimeout(function() {
+              tinymce.get('option_c').setContent(option_text);
+            }, 2000);
+          }
+
+          if (option.option_id === 'D') {
+            $('#quiz_option_d_pix').attr('src', optionsStoragePath + '/' + option_pix);
+            setTimeout(function() {
+              tinymce.get('option_d').setContent(option_text);
+            }, 2000);
+          }
+      });
+
+      }else{
+        const response = info.response;
+        if(response<100){
+          _logout();
+        }else{
+          $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
+        }
+      }
+    },
+  });
+}
 
 
 
 
+function _update_questions_manually(tutorial_id,question_id) {
+  tinyMCE.triggerSave();
+  const question_text = $('#question_text').val();
+  const question_pix_file = $('#question_pix').prop('files')[0];
+  const option_a = $('#option_a').val();
+  const option_a_pix_file = $('#option_a_pix').prop('files')[0];
+  const option_b = $('#option_b').val();
+  const option_b_pix_file = $('#option_b_pix').prop('files')[0];
+  const option_c = $('#option_c').val();
+  const option_c_pix_file = $('#option_c_pix').prop('files')[0];
+  const option_d = $('#option_d').val();
+  const option_d_pix_file = $('#option_d_pix').prop('files')[0];
+  const answer = $('#answer').val();
+
+  $('#question_text, #question_pix, #option_a, #option_a_pix, #option_b, #option_b_pix, #answer').removeClass('complain');
+
+  if ((!question_text) && (!question_pix_file)) {
+    $('#question_text').addClass('complain');
+    $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> QUIZ QUESTION ERROR!<br /><span>Check question And Try Again</span>').fadeIn(500).delay(3000).fadeOut(100);
+
+  } else if ((!option_a) && (!option_a_pix_file)) {
+    $('#option_a').addClass("complain");
+    $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> OPTION A ERROR!<br /><span>Check Option A And Try Again <span>').fadeIn(500).delay(3000).fadeOut(100);
+ 
+  } else if ((!option_b) && (!option_b_pix_file)) {
+    $('#option_b').addClass("complain");
+    $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> OPTION B ERROR!<br /><span>Check Option B And Try Again <span>').fadeIn(500).delay(3000).fadeOut(100);
+
+  } else if (answer == '') {
+    $('#answer').addClass("complain");
+    $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> ANSWER ERROR!<br /><span>Check Answer And Try Again <span>').fadeIn(500).delay(3000).fadeOut(100);
+
+  } else {
+    
+    $('#question_text, #question_pix, #option_a, #option_a_pix, #option_b, #option_b_pix, #answer').removeClass('complain');
+
+    if (confirm("Confirm!!\n\n Are you sure to PERFORM THIS ACTION?")) {
+      const btn_text = $("#update_btn").html();
+      $("#update_btn").html('<i class="fa fa-spinner fa-spin"></i> PROCESSING');
+      document.getElementById("update_btn").disabled = true;
+
+      const form_data = new FormData();
+      form_data.append("question_id", question_id);
+      form_data.append("question_pix", question_pix_file);
+      form_data.append("question_text", question_text);
+      form_data.append("option_a", option_a);
+      form_data.append("option_a_pix", option_a_pix_file);
+      form_data.append("option_b", option_b);
+      form_data.append("option_b_pix", option_b_pix_file);
+      form_data.append("option_c", option_c);
+      form_data.append("option_c_pix", option_c_pix_file);
+      form_data.append("option_d", option_d);
+      form_data.append("option_d_pix", option_d_pix_file);
+      form_data.append("answer", answer);
+  
+      $.ajax({
+        type: "POST",
+        url: endPoint + '/admin/cbt/update-quiz-question-manually',
+        data: form_data,
+        dataType: "json",
+        contentType: false,
+        cache: false,
+        headers: {
+          'apiKey': apiKey,  
+          'Authorization': 'Bearer '+ login_access_key
+            },
+        processData: false,
+        success: function (info) {
+          const success = info.success;
+          const message = info.message;
+
+          if (success == true) {
+            $("#success-div").html('<div><i class="bi-check"></i></div>' + message +"" ).fadeIn(500).delay(5000).fadeOut(100);       
+            _get_page_contents('question_bank_details',tutorial_id);
+          } else {
+            $("#warning-div")
+            .html('<div><i class="bi-exclamation-octagon-fill"></i></div> ' + message +"").fadeIn(500) .delay(5000).fadeOut(100);
+            $("#update_btn").html(btn_text);
+            document.getElementById("update_btn").disabled = false;
+          }
+        },
+      });
+    }
+  }
+}
 
 
+function _delete_question(question_id) {
+    if (confirm("Confirm!!\n\n Are you sure to PERFORM THIS ACTION?")) {
+      const btn_text = $("#delete_btn").html();
+      $("#delete_btn").html('<i class="fa fa-spinner fa-spin"></i>');
+      document.getElementById("delete_btn").disabled = true;
 
+      const form_data = new FormData();
+      form_data.append("question_id", question_id);
+     
+      $.ajax({
+        type: "POST",
+        url: endPoint + '/admin/cbt/delete-question',
+        data: form_data,
+        dataType: "json",
+        contentType: false,
+        cache: false,
+        headers: {
+          'apiKey': apiKey,  
+          'Authorization': 'Bearer '+ login_access_key
+            },
+        processData: false,
+        success: function (info) {
+          const success = info.success;
+          const message = info.message;
 
-
+          if (success == true) {
+            $("#success-div").html('<div><i class="bi-check"></i></div>' + message +"" ).fadeIn(500).delay(5000).fadeOut(100);       
+              $("#question_id").fadeOut(500, function() {
+                $(this).remove();
+              });
+          } else {
+            $("#warning-div")
+            .html('<div><i class="bi-exclamation-octagon-fill"></i></div> ' + message +"").fadeIn(500) .delay(5000).fadeOut(100);
+            $("#delete_btn").html(btn_text);
+            document.getElementById("delete_btn").disabled = false;
+          }
+        },
+      });
+    }
+  }
 

@@ -73,12 +73,12 @@ switch ($action){
 	break;
 	
 	case 'get_page_details':
-		$ids=$_POST['ids'];
 		$page=$_POST['page'];
+		$ids=$_POST['ids'];
+		$question_id=$_POST['question_id'];
 		include '../content/form.php';
 	break;
 	
-
 	case 'create_department_folder':
 		$department_id = strtoupper(trim($_POST['department_id']));
 		$department_name = trim($_POST['department_name']);

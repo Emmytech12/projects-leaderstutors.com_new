@@ -590,11 +590,11 @@
                     <script>_get_select_week('week_id');</script>
                 </select> 
 
-                <div class="title">SELECT VIDEO SERIES: <span>*</span></div>
+                <!-- <div class="title">SELECT VIDEO SERIES: <span>*</span></div>
                 <select id="series_id" class="text_field selectinput" title="VIDEO SERIES">
                     <option value="" selected="selected">VIDEO SERIES</option>
                     <script>_get_select_series('series_id');</script>
-                </select> 
+                </select>  -->
 
                 <div class="title">TOPIC: <span>*</span></div>
                 <input id="topic" type="text"  class="text_field" placeholder="TOPIC" title="TOPIC"/>
@@ -812,11 +812,11 @@
                     <script>_get_select_week('week_id');</script>
                 </select> 
 
-                <div class="title">SELECT VIDEO SERIES: <span>*</span></div>
+                <!-- <div class="title">SELECT VIDEO SERIES: <span>*</span></div>
                 <select id="series_id" class="text_field selectinput" title="VIDEO SERIES">
                     <option value="" selected="selected">VIDEO SERIES</option>
                     <script>_get_select_series('series_id');</script>
-                </select> 
+                </select>  -->
 
                 <div class="title">TOPIC: <span>*</span></div>
                 <input id="topic" type="text"  class="text_field" placeholder="TOPIC" title="TOPIC"/>
@@ -1698,10 +1698,10 @@
         <div class="cbt-content-div">   
             <div class="title-div">
                 <ul>
-                    <li class="active-li" title="Question Bank" id="main_page_contents" onclick="_get_page_contents('question_bank_details','main_page_contents','')">Question Bank </li>
-                    <li title="Quiz Questions" id="quiz_question_page" onclick="_get_page_contents('quiz_question','quiz_question_page','')">Quiz Questions</li>
-                    <li title="Load Question Manually" id="load_questions_manu_page" onclick="_get_page_contents('load_questions_manually','load_questions_manu_page','')">Load Questions Manually</li>
-                    <li title="Load Question Automatically" id="load_questions_auto_page" onclick="_get_page_contents('load_questions_automatically','load_questions_auto_page','')">Load Questions Automatically</li>
+                    <li class="active-li" title="Question Bank" id="question_bank_details" onclick="_get_page_contents('question_bank_details','<?php echo $ids?>')">Question Bank </li>
+                    <li title="Quiz Questions" id="quiz_question" onclick="_get_page_contents('quiz_question','<?php echo $ids?>')">Quiz Questions</li>
+                    <li title="Load Question Manually" id="load_questions_manually" onclick="_get_page_contents('load_questions_manually','<?php echo $ids?>')">Load Questions Manually</li>
+                    <li title="Load Question Automatically" id="load_questions_automatically" onclick="_get_page_contents('load_questions_automatically','<?php echo $ids?>')">Load Questions Automatically</li>
                 </ul>
                 <button class="close-btn" onclick="_alert_close()" title="Close"><i class="bi-x-lg"></i></button> 
             </div>
@@ -1710,18 +1710,17 @@
                 <div class="question-back-div">
                     <div class="top-div">
                         <label>
-                            <input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY">
+                            <input type="checkbox" id="parent">
                             <span>All Questions</span>
                         </label>
                         <div>
-                            <button class="btn" title="Activate Question(s)"><i class="bi-check2-circle"></i> Set Question As Quiz</button>
-                            <button class="btn delete" title="Delete Question(s)"><i class="bi-trash"></i> Delete</button>
+                            <button class="btn" title="Activate Question(s)"><i class="bi-check2-circle"></i> Set Questions As Quiz</button>
                         </div>
                     </div>
 
-                    <div class="question-body-div">
-
-                        <div class="question-div">
+                    <div class="question-body-div" id="fetch_all_question_bank">                   
+                        <script>_get_fetch_question_bank('<?php echo $ids?>')</script>                  
+                        <!-- <div class="question-div">
                             <div class="div-in">
                                 <div class="check-div">
                                     <label>
@@ -1898,7 +1897,7 @@
                                     </div>
                                 </div>                        
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div> 
             </div>    
@@ -1908,21 +1907,23 @@
 <?php }?>
 
 <?php if ($page=='question_bank_details'){ ?>
+    <script> _checkAll();</script>
     <div id="get_page_details">
         <div class="question-back-div">
             <div class="top-div">
                 <label>
-                    <input type="checkbox" class="child" name="class_id[]" data-value="GEOGRAPHY">
+                    <input type="checkbox" id="parent" name="class_id[]" data-value="GEOGRAPHY">
                     <span>All Questions</span>
                 </label>
                 <div>
                     <button class="btn" title="Activate Question(s)"><i class="bi-check2-circle"></i> Set Question As Quiz</button>
-                    <button class="btn delete" title="Delete Question(s)"><i class="bi-trash"></i> Delete</button>
                 </div>
             </div>
 
-            <div class="question-body-div">
-                <div class="question-div">
+            <div class="question-body-div" id="fetch_all_question_bank">             
+                <script>_get_fetch_question_bank('<?php echo $ids?>')</script>
+              
+                <!-- <div class="question-div">
                     <div class="div-in">
                         <div class="check-div">
                             <label>
@@ -1964,9 +1965,9 @@
                         </div>
                         
                     </div>
-                </div>
+                </div> -->
 
-                <div class="question-div">
+                <!-- <div class="question-div">
                     <div class="div-in">
                         <div class="check-div">
                             <label>
@@ -2008,12 +2009,11 @@
                                     
                                 </div>
                             </div>
-                        </div>
-                        
+                        </div> 
                     </div>
-                </div>
+                </div> -->
 
-                <div class="question-div">
+                <!-- <div class="question-div">
                     <div class="div-in">
                         <div class="check-div">
                             <label>
@@ -2057,9 +2057,9 @@
                         </div>
                         
                     </div>
-                </div>
+                </div> -->
 
-                <div class="question-div">
+                <!-- <div class="question-div">
                     <div class="div-in">
                         <div class="check-div">
                             <label>
@@ -2097,10 +2097,9 @@
                                     
                                 </div>
                             </div>
-                        </div>
-                        
+                        </div>                  
                     </div>
-                </div>
+                </div> -->
             </div>
         </div> 
     </div>
@@ -2303,7 +2302,12 @@
         <div class="question-back-div">
             <div class="top-div">
                 <label>
-                    <span>Load Questions Manually</span>
+                    <?php if (empty($question_id)){
+                        $pageTitle="Load Questions Manually";
+                    }else{
+                        $pageTitle="Update This Question";
+                    }?>
+                    <span><?php echo $pageTitle; ?></span>
                 </label>
             </div>
 
@@ -2319,16 +2323,16 @@
                         <div class="each-question">
                             <div class="pix-div">
                                 <label>
-                                    <img id="subject-pix" src="all-images/body-pix/default.png" alt="Default Image">
-                                    <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);" />
+                                    <img id="quiz_question_pix" src="all-images/body-pix/default.png" alt="Default Image">
+                                    <input type="file" id="question_pix" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="quiz_question_pix_preview.UpdatePreview(this);" />
                                 </label>
                             </div>
 
                             <div class="text-div">                             
-                                <script>tinymce.init({selector:'#set_question',  // change this value according to your HTML
+                                <script>tinymce.init({selector:'#question_text',  // change this value according to your HTML
                                 plugins: "link, image, table"
                                 });</script>
-                                <textarea style="width: 100%;" rows="10" id="set_question" title="CLASS SUMMARY" placeholder="CLASS SUMMARY"></textarea>
+                                <textarea style="width: 100%;" rows="10" id="question_text" title="QUIZ QUESTION" placeholder="QUIZ QUESTION"></textarea>
                             </div>
                         </div>                      
                     </div>
@@ -2346,17 +2350,16 @@
                         <div class="each-question">
                             <div class="pix-div">
                                 <label>
-                                    <img id="subject-pix" src="all-images/body-pix/default2.png" alt="Default Image">
-                                    <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);" />
+                                    <img id="quiz_option_a_pix" src="all-images/body-pix/default2.png" alt="Default Image">
+                                    <input type="file" id="option_a_pix" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="quiz_option_a_pix_preview.UpdatePreview(this);" />
                                 </label>
                             </div>
 
-                            <div class="text-div">
-                               
+                            <div class="text-div">       
                                 <script>tinymce.init({selector:'#option_a',  // change this value according to your HTML
                                 plugins: "link, image, table"
                                 });</script>
-                                <textarea style="width: 100%;" rows="10" id="option_a" title="CLASS SUMMARY" placeholder="CLASS SUMMARY"></textarea>
+                                <textarea style="width: 100%;" rows="10" id="option_a" title="OPTION A" placeholder="OPTION A"></textarea>
                             </div>
                         </div>
                     </div>
@@ -2374,8 +2377,8 @@
                         <div class="each-question">
                             <div class="pix-div">
                                 <label>
-                                    <img id="subject-pix" src="all-images/body-pix/default2.png" alt="Default Image">
-                                    <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);" />
+                                    <img id="quiz_option_b_pix" src="all-images/body-pix/default2.png" alt="Default Image">
+                                    <input type="file" id="option_b_pix" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="quiz_option_b_pix_preview.UpdatePreview(this);" />
                                 </label>
                             </div>
 
@@ -2384,7 +2387,7 @@
                                 <script>tinymce.init({selector:'#option_b',  // change this value according to your HTML
                                 plugins: "link, image, table"
                                 });</script>
-                                <textarea style="width: 100%;" rows="10" id="option_b" title="CLASS SUMMARY" placeholder="CLASS SUMMARY"></textarea>
+                                <textarea style="width: 100%;" rows="10" id="option_b" title="OPTION B" placeholder="OPTION BY"></textarea>
                             </div>
                         </div>
                         
@@ -2402,8 +2405,8 @@
                         <div class="each-question">
                             <div class="pix-div">
                                 <label>
-                                    <img id="subject-pix" src="all-images/body-pix/default2.png" alt="Default Image">
-                                    <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);" />
+                                    <img id="quiz_option_c_pix" src="all-images/body-pix/default2.png" alt="Default Image">
+                                    <input type="file" id="option_c_pix" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="quiz_option_c_pix_preview.UpdatePreview(this);" />
                                 </label>
                             </div>
 
@@ -2412,7 +2415,7 @@
                                 <script>tinymce.init({selector:'#option_c',  // change this value according to your HTML
                                 plugins: "link, image, table"
                                 });</script>
-                                <textarea style="width: 100%;" rows="10" id="option_c" title="CLASS SUMMARY" placeholder="CLASS SUMMARY"></textarea>
+                                <textarea style="width: 100%;" rows="10" id="option_c" title="OPTION C" placeholder="OPTION C"></textarea>
                             </div>
                         </div>
                         
@@ -2430,8 +2433,8 @@
                         <div class="each-question">
                             <div class="pix-div">
                                 <label>
-                                    <img id="subject-pix" src="all-images/body-pix/default2.png" alt="Default Image">
-                                    <input type="file" id="thumbnail" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="subj_pix.UpdatePreview(this);" />
+                                    <img id="quiz_option_d_pix" src="all-images/body-pix/default2.png" alt="Default Image">
+                                    <input type="file" id="option_d_pix" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="quiz_option_d_pix_preview.UpdatePreview(this);" />
                                 </label>
                             </div>
 
@@ -2440,7 +2443,7 @@
                                 <script>tinymce.init({selector:'#option_d',  // change this value according to your HTML
                                 plugins: "link, image, table"
                                 });</script>
-                                <textarea style="width: 100%;" rows="10" id="option_d" title="CLASS SUMMARY" placeholder="CLASS SUMMARY"></textarea>
+                                <textarea style="width: 100%;" rows="10" id="option_d" title="OPTION D" placeholder="OPTION D"></textarea>
                             </div>
                         </div>
                         
@@ -2455,16 +2458,24 @@
                             </label>
                         </div>
                                 
-                        <input id="duration" type="text" class="text_field" placeholder="A, B, C, D" title="QUIZ ANSWER"/>               
-                        
-                        <div>
-                            <button class="btn" title="Upload Questions" onClick=""><i class="bi-cloud-upload"></i> Upload Questions</button>
-                        </div>
+                        <input id="answer" type="text" class="text_field" placeholder="A, B, C, D" title="QUIZ ANSWER"/>               
+                        <?php if(!empty($question_id)){ ?>
+                            <div>
+                                <button class="btn" id="update_btn" title="Update Questions" onclick="_update_questions_manually('<?php echo $ids?>','<?php echo $question_id?>');"><i class="bi-cloud-upload"></i> Update Questions</button>
+                            </div>
+                        <?php }else{?>
+                            <div>
+                                <button class="btn" id="submit_btn" title="Upload Questions" onclick="_add_questions_manually('<?php echo $ids?>');"><i class="bi-cloud-upload"></i> Upload Questions</button>
+                            </div>
+                        <?php }?>                       
                     </div>
                 </div>
             </div>
         </div> 
     </div> 
+    <?php if(!empty($question_id)){ ?>
+        <script>_get_fetch_each_quiz_question('<?php echo $ids?>','<?php echo $question_id?>')</script>
+    <?php } ?>
 <?php }?>
 
 <?php if ($page=='load_questions_automatically'){ ?>
@@ -2536,6 +2547,7 @@
     </div>
 
 <?php }?>
+
 
 
 

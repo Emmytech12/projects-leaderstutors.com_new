@@ -594,56 +594,60 @@
 
     <div class="alert alert-success"> <span><i class="bi-newspaper"></i></span> FAQ's LIST <button class="btn" onClick="_get_form('faqs_reg')"><i class="bi-plus-square"></i> ADD NEW FAQ</button></div>
                     
-        <div class="faq-back-div" >
-            <div class="faq-text-div">          
-                <div class="quest-faq-div main-faqs">
-                    <div class="faq-title-text main-faqs-title-div">
+        <div class="main-faq-back-div">        
+            <div class="main-faq-div">
+                <div class="main-faq-title-back-div">
+                    <div class="main-faqs-title-div">
                         <span>1</span>
                     </div>
 
-                    <div class="faq-title-text main-faqs-title-div main-faqs-title-div2" onclick="_collapse('faq244')" style="cursor:pointer;">
-                        <i class="bi-pencil-square"></i> <span>Who we are</span>
-                    <div class="expand-div" id="faq244num">&nbsp;<i class="bi-plus"></i>&nbsp;</div>
+                    <div class="main-faq-title" onclick="_collapse('faq244')" style="cursor:pointer;">
+                        <span><i class="bi-pencil-square"></i> Who we are</span>
+                        <div class="expand-div" id="faq244num">&nbsp;<i class="bi-plus"></i>&nbsp;</div>
                     </div>
-                    
-                    <div class="faq-answer-div faq-answer-div2" id="faq244answer" style="display: none;">  
-                        <p>Euclidean geometry is a study of geometric properties and relationships in two and three-dimensional space.</p>
-                        <p>Euclidean geometry is a study of geometric properties and relationships in two and three-dimensional space.</p>
-                    </div>                           
-                </div> 
-            </div>
-
-            <div class="quest-faq-div main-faqs">
-                <div class="faq-title-text main-faqs-title-div">
-                    <span>2</span>
                 </div>
+               
+                <div class="faq-answer-div faq-answer-div2" id="faq244answer" style="display: none;">  
+                    <p>Euclidean geometry is a study of geometric properties and relationships in two and three-dimensional space.</p>
+                    <p>Euclidean geometry is a study of geometric properties and relationships in two and three-dimensional space.</p>
+                </div>                           
+            </div> 
 
-                <div class="faq-title-text main-faqs-title-div main-faqs-title-div2" onclick="_collapse('faq245')" style="cursor:pointer;">
-                    <i class="bi-pencil-square"></i> <span>Who we are</span>
-                <div class="expand-div" id="faq245num">&nbsp;<i class="bi-plus"></i>&nbsp;</div>
+            <div class="main-faq-div">
+                <div class="main-faq-title-back-div">
+                    <div class="main-faqs-title-div">
+                        <span>2</span>
+                    </div>
+
+                    <div class="main-faq-title" onclick="_collapse('faq245')" style="cursor:pointer;">
+                        <span><i class="bi-pencil-square"></i> Who we are</span>
+                        <div class="expand-div" id="faq245num">&nbsp;<i class="bi-plus"></i>&nbsp;</div>
+                    </div>
                 </div>
-                
+               
                 <div class="faq-answer-div faq-answer-div2" id="faq245answer" style="display: none;">  
                     <p>Euclidean geometry is a study of geometric properties and relationships in two and three-dimensional space.</p>
                     <p>Euclidean geometry is a study of geometric properties and relationships in two and three-dimensional space.</p>
                 </div>                           
             </div> 
 
-            <div class="quest-faq-div main-faqs">
-                <div class="faq-title-text main-faqs-title-div">
-                    <span>3</span>
-                </div>
+            <div class="main-faq-div">
+                <div class="main-faq-title-back-div">
+                    <div class="main-faqs-title-div">
+                        <span>3</span>
+                    </div>
 
-                <div class="faq-title-text main-faqs-title-div main-faqs-title-div2" onclick="_collapse('faq246')" style="cursor:pointer;">
-                    <i class="bi-pencil-square"></i> <span>Who we are</span>
-                <div class="expand-div" id="faq246num">&nbsp;<i class="bi-plus"></i>&nbsp;</div>
+                    <div class="main-faq-title" onclick="_collapse('faq246')" style="cursor:pointer;">
+                        <span><i class="bi-pencil-square"></i> Who we are</span>
+                        <div class="expand-div" id="faq246num">&nbsp;<i class="bi-plus"></i>&nbsp;</div>
+                    </div>
                 </div>
-                
+               
                 <div class="faq-answer-div faq-answer-div2" id="faq246answer" style="display: none;">  
                     <p>Euclidean geometry is a study of geometric properties and relationships in two and three-dimensional space.</p>
                     <p>Euclidean geometry is a study of geometric properties and relationships in two and three-dimensional space.</p>
                 </div>                           
-            </div>
+            </div> 
         </div>
      <script>
         superplaceholder({el: search_txt,
