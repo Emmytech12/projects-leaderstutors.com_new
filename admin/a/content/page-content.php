@@ -541,6 +541,44 @@
     </div>
 <?php } ?>
 
+<?php if ($page=='active_agents'){ ?>
+    <div class="search-div">
+        <!--------------------------------network search select------------------------->
+        <select id="status_id"  class="text_field select" onchange="">
+            <option value="">ALL AGENT STATUS</option>
+            <script>_get_select_status('status_id','1,2');</script>
+        </select>
+        <!--------------------------------all search select------------------------->
+        <input id="search_txt" onkeyup="_get_fetch_all_user();" type="text" class="text_field utext" placeholder="Type here to search..." title="Type here to search" />
+    </div>
+
+    <div class="alert alert-success"> <span><i class="bi-people-fill"></i></span> AGENT'S LIST</div>
+        
+        <!-- <div class="fetch-div animated fadeIn">			
+            <div class="user-div animated fadeIn" title="Click to view User Profile" onclick="_get_form_with_id('user_details')">
+                <div class="pix-div"><img src="<?php echo $website_url?>/admin/a/all-images/images/avatar.jpg" alt="Profile Image"></div>
+                <div class="detail">
+                    <div class="name-div"><div class="name">Paul Emmanuel</div><hr /><br/></div>
+                    <div class="text">ID: <span>USER1023049</span></div>
+                    <div class="text"><span>08060881905</span></div>
+                    <div class="status-div ' + status_name + '">ACTIVE</div>
+                </div>
+            </div>
+        </div> 
+        <br clear="all" /> -->
+        
+     <script>
+        superplaceholder({el: search_txt,
+            sentences: ['Type here to search...', 'Agent ID e.g Agt000765976964','Mobile number e.g 09021947874','E-mail e.g afootechglobal@gmail.com'],
+            options: {
+            letterDelay: 80,
+            loop: true,
+            startOnFocus: false
+        }
+    });
+    </script>
+<?php } ?>
+
 
 <?php if ($page=='active_users'){ ?>
     <div class="search-div">

@@ -3235,6 +3235,21 @@ transition:all 0.2s ease-in 0.2s;
 }
 
 
+.password-container {
+	position: relative;
+}
+  
+.password-container  .password-toggle {
+	position: absolute;
+	top: 45%;
+	right: 20px;
+	transform: translateY(-50%);
+	cursor: pointer;
+}
+
+#reset_pass{
+	display: none;
+}
 
 .slide-form-div .img-back-div{
 	padding: 25px 20px;
@@ -3827,8 +3842,21 @@ transition:all 0.2s ease-in 0.2s;
 .cbt-creation-panel .question-back-div .top-div label{
 	font-weight: bold;
 	display: flex;
+	align-items: center;
 	gap: 5px;
 	cursor: pointer;
+}
+
+.cbt-creation-panel .question-back-div .top-div label .text{
+	font-size: 14px;
+	font-family: body-font;
+	font-weight: 100;
+}
+
+.cbt-creation-panel .question-back-div .top-div label .text i{
+	font-size: 12px;
+	margin-right: 3px;
+	color: var(--subactive-color);
 }
 
 .cbt-creation-panel .question-back-div .top-div .btn{

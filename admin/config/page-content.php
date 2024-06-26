@@ -8,7 +8,7 @@
 
         <div class="title-div"><i class="bi-lock"></i> PASSWORD: <span>*</span></div>
         <div class="password-container">
-        <input type="password" id="password" onkeyup="_show_password_visibility('password','login_pass')" class="text-field" placeholder="ENTER YOUR PASSWORD" id="password" /><br/>
+            <input type="password" id="password" onkeyup="_show_password_visibility('password','login_pass')" class="text-field" placeholder="ENTER YOUR PASSWORD" id="password" /><br/>
             <div id="login_pass" onclick="_togglePasswordVisibility('password','login_pass')">
                 <i class="bi-eye-slash password-toggle"></i>
             </div>

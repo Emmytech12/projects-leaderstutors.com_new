@@ -129,7 +129,7 @@ function isNumber_Check() {
 }
 
 function _get_active_link(divid) {
-  $("#dashboard, #admin, #department, #user, #tutor, #subject, #class, #blogs, #faqs").removeClass("active-li");
+  $("#dashboard, #admin, #department, #user, #tutor, #subject, #class, #blogs, #faqs, #agents").removeClass("active-li");
   $("#" + divid).addClass("active-li");
   $("#page-title").html($("#_" + divid).html());
 }
@@ -240,7 +240,6 @@ function _get_form_with_id(page, ids) {
   });
 }
 
-
 function _get_subject_form_with_id(page, department_id, class_id) {
   $("#get-more-div").html('<div class="ajax-loader"><img src="'+website_url+'/all-images/images/ajax-loader.gif"/></div>').css({'display': 'flex','justify-content': 'center','align-items': 'center'}).fadeIn(500);
   var action = "get_subject_form_with_id";
@@ -255,7 +254,6 @@ function _get_subject_form_with_id(page, department_id, class_id) {
     },
   });
 }
-
 
 function _get_video_form_with_id(page, department_id, class_id, subject_id, tutorial_id) {
   $("#get-more-div").html('<div class="ajax-loader"><img src="'+website_url+'/all-images/images/ajax-loader.gif"/></div>').css({'display': 'flex','justify-content': 'center','align-items': 'center'}).fadeIn(500);
@@ -272,7 +270,6 @@ function _get_video_form_with_id(page, department_id, class_id, subject_id, tuto
   });
 }
 
-
 function _get_secondary_form_with_id(page, ids) {
   $("#get-more-div-secondary").html('<div class="ajax-loader"><img src="'+website_url+'/all-images/images/ajax-loader.gif"/></div>').css({'display': 'flex','justify-content': 'center','align-items': 'center'}) .fadeIn(500);
   var action = "get_secondary_form_with_id";
@@ -287,7 +284,6 @@ function _get_secondary_form_with_id(page, ids) {
     },
   });
 }
-
 
 function _get_detail(page,ids,text){
 	_get_active_detail(text);
@@ -324,9 +320,7 @@ function _get_page_contents(page, ids) {
 				$('#get_page_details').html(html);
 			}
 		});
-	}
-
-
+}
 
 $(function () {
   subj_pix = {
@@ -370,8 +364,6 @@ $(function () {
 });
 
 
-
-
 $(function () {
   quiz_question_pix_preview = {
     UpdatePreview: function (obj) {
@@ -412,6 +404,7 @@ $(function () {
     },
   };
 });
+
 
 $(function () {
   quiz_option_b_pix_preview = {
@@ -475,6 +468,28 @@ $(function () {
 });
 
 
+$(function () {
+  quiz_option_e_pix_preview = {
+    UpdatePreview: function (obj) {
+      // if IE < 10 doesn't support FileReader
+      if (!window.FileReader) {
+        // don't know how to proceed to assign src to image tag
+      } else {
+        var reader = new FileReader();
+        var target = null;
+
+        reader.onload = function (e) {
+          target = e.target || e.srcElement;
+          $("#quiz_option_e_pix").prop("src", target.result);
+        };
+        reader.readAsDataURL(obj.files[0]);
+      }
+    },
+  };
+});
+
+
+
 function _get_dashboard_count() {
   var dataString = '';
   $.ajax({
@@ -489,7 +504,8 @@ function _get_dashboard_count() {
         },
     success: function (info) {
       var success = info.success;
-
+      var message = info.message;
+      
       if(success==true){
         var fetch = info.data[0];
         var total_active_staff_count = fetch.total_active_staff_count;
@@ -513,7 +529,6 @@ function _get_dashboard_count() {
   },
   });
 }
-
 
 
 
@@ -572,12 +587,11 @@ function _get_header_pix(documentStoragePath, profile_pix) {
 
 
 function _fetchTimeCountOption(select_id, maxValue) {
-  for (let minValue = 1; minValue <= maxValue; minValue++) {
-    $('#' + select_id).append('<option value="' + minValue + '">' + minValue + '</option>');
+  for (let minValue = 0; minValue <= maxValue; minValue++) {
+    let paddedValue = String(minValue).padStart(2, '0');
+    $('#' + select_id).append('<option value="' + paddedValue + '">' + paddedValue + '</option>');
   }
 }
-
-
 
 
 function _get_select_status(select_id,status_id){
@@ -616,8 +630,6 @@ function _get_select_status(select_id,status_id){
 }
 
 
-
-
 function _get_select_role(select_id,role_id) {
   var dataString = "role_id=" + role_id + "&login_role_id=" + login_role_id;
   $.ajax({
@@ -652,8 +664,6 @@ function _get_select_role(select_id,role_id) {
       }, 
   });
 }
-
-
 
 
 function _get_select_week(select_id){
@@ -728,41 +738,8 @@ function _get_select_term(select_id) {
 }
 
 
-
-// function _get_select_series(select_id){
-//   var dataString = '';
-//   $.ajax({
-//       type: "POST",
-//       url: endPoint + '/setups/video-series',
-//       data: dataString,
-//       dataType: 'json',
-//       cache: false,
-//       headers: {
-//           'apiKey': apiKey,
-//           'Authorization': 'Bearer ' + login_access_key
-//       },
-//       success: function(info){
-//           var success = info.success;
-//           var message = info.message;
-//           var fetch = info.data;
-
-//           if (success == true) {
-//               for (var i = 0; i < fetch.length; i++) {
-//                 var series_id = fetch[i].series_id;
-//                 var series_name = fetch[i].series_name;
-//                 $('#'+ select_id).append('<option value="'+ series_id +'">'+ series_name +'</option>');
-//               }        
-//           }else{
-//             $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
-//           }
-//         }, 
-//     });
-// }
-
-
-
 function _get_select_department(select_id) {
-  var dataString = '';
+  const dataString = '';
   $.ajax({
     type: "POST",
     url: endPoint + '/admin/departments/fetch-department',
@@ -770,67 +747,65 @@ function _get_select_department(select_id) {
     dataType: 'json',
     cache: false,
     headers: {
-        'apiKey': apiKey,
-        'Authorization': 'Bearer ' + login_access_key
+      'apiKey': apiKey,
+      'Authorization': 'Bearer ' + login_access_key
     },
 		success: function (info) {
-			var success = info.success;
-        var message = info.message;
-        var fetch = info.data;
+      const success = info.success;
+      const message = info.message;
+      const fetch = info.data;
 
-				var text = '';
-				var text = '<option value="">SELECT DEPARTMENT </option>';
 				if (success == true) {
-					for (var i = 0; i < fetch.length; i++) {
-						var department_id = fetch[i].department_id;
-						var department_name = fetch[i].department_name;
-						text += '<option value="' + department_id + '">' + department_name.toUpperCase() + '</option>';
+					for (let i = 0; i < fetch.length; i++) {
+						const department_id = fetch[i].department_id;
+						const department_name = fetch[i].department_name;
+            $('#'+ select_id).append('<option value="'+ department_id +'">'+ department_name +'</option>');
 					}
-          } else {
-            text = '<option>' + message + '</option>';
+        } else {
+          const response = info.response;
+          if(response<100){
+            _logout();
+          }else{
+            $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
           }
-          $('#' + select_id).html(text);
+        }
 		  }
 	  });
 }
 
 
-
 function _get_class(dept_input, class_input){
-	var department_id=$('#'+ dept_input).val();
-
-	$('#'+ class_input).html('<option value="">LOADING PLEASE WAIT...</option>');
-	var dataString ='department_id='+ department_id;
+	var department_id = $('#' + dept_input).val();
+	$('#' + class_input).html('<option value="">LOADING PLEASE WAIT...</option>');
+	const dataString = 'department_id=' + department_id;
 	$.ajax({
 		type: "POST",
-    url: endPoint + '/admin/department-class-subject/fetch-class-by-department',
-    data: dataString,
-    dataType: 'json',
-    cache: false,
-    headers: {
-        'apiKey': apiKey,
-        'Authorization': 'Bearer ' + login_access_key
-    },
+		url: endPoint + '/admin/department-class-subject/fetch-class-by-department',
+		data: dataString,
+		dataType: 'json',
+		cache: false,
+		headers: {
+			'apiKey': apiKey,
+			'Authorization': 'Bearer ' + login_access_key
+		},
 		success: function(info){
-			var success = info.success;
-			var message = info.message;
+			const success = info.success;
+			const message = info.message;
 
-			if(success==true){
-				var data=info.data
-				$('#'+class_input).html('<option selected value="">SELECTION LOADED</option>');
-
-				for (var i = 0; i < data.length; i++) {
-				  var class_id = data[i].class_id;
-				  var class_name = data[i].class_name;
-					$('#'+class_input).append('<option value="'+ class_id +'">'+ class_name +'</option>');
-				}
-      } else {
-        var response = info.response;
-        if(response<100){
-          _logout();
-        }else{
-          $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
+      if (success== true) {
+        const data = info.data;
+        if (data && data.length > 0) {
+          $('#' + class_input).html('<option selected value="">SELECT CLASS</option>');
+          for (let i = 0; i < data.length; i++) {
+            const class_id = data[i].class_id;
+            const class_name = data[i].class_name;
+            $('#' + class_input).append('<option value="' + class_id + '">' + class_name + '</option>');
+          }
+        } else {
+          $('#' + class_input).html('<option value="">' + message + '</option>');
         }
+      } else {
+        $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>' + message + '</span>').fadeIn(500).delay(5000).fadeOut(100);
       }
 		}
 	});
@@ -929,8 +904,6 @@ function _get_login_staff_profile() {
     },
   });
 }
-
-
 
 
 function _get_staff_profile(staff_id) {
@@ -1052,8 +1025,6 @@ function _upload_profile_pix() {
 }
 
 
-
-
 function _update_staff_profile(staff_id) {
   var fullname = $('#updt_fullname').val();
   var email = $('#updt_email').val();
@@ -1136,8 +1107,6 @@ function _update_staff_profile(staff_id) {
 }
 
 
-
-
 function _update_login_staff_profile() {
   var fullname = $('#updt_fullname').val();
   var email = $('#updt_email').val();
@@ -1204,6 +1173,7 @@ function _update_login_staff_profile() {
         success: function (info) {
           var success = info.success;
           var message = info.message;
+
           if (success == true) {
             $('#success-div').html('<div><i class="bi-check"></i></div>' + message +"").fadeIn(500).delay(5000).fadeOut(100);
               _get_form('my_profile');
@@ -1218,7 +1188,6 @@ function _update_login_staff_profile() {
     }
   }
 }
-
 
 
 
@@ -1296,7 +1265,6 @@ function _get_fetch_all_staff() {
 
 
 
-
 function _add_staff() {
   var fullname = $('#reg_fullname').val();
   var email = $('#reg_email').val();
@@ -1369,7 +1337,6 @@ function _add_staff() {
 }
 
 
-
 function _add_subject() {
   var subject_name = $('#subject_name').val();
   var urls = $('#urls').val();
@@ -1433,7 +1400,6 @@ function _add_subject() {
     }
   }
 }
-
 
 
 function _get_fetch_all_subject(div_id2) {
@@ -1513,9 +1479,6 @@ function _get_fetch_all_subject(div_id2) {
       $('#' + div_id2).html('<div class="false-notification-div"><p>' + message + '</p></div>');
   }
 }
-
-
-
 
 
 function _fetch_each_subject(subject_id) {
@@ -1623,7 +1586,6 @@ function _update_subject(subject_id) {
     }
   }
 }
-
 
 
 
@@ -1817,9 +1779,6 @@ function _update_classes(class_id) {
 }
 
 
-
-
-
 function _add_classes() {
   var class_name = $('#class_name').val();
   var urls = $('#urls').val();
@@ -1881,8 +1840,6 @@ function _add_classes() {
     }
   }
 }
-
-
 
 
 
@@ -1970,8 +1927,6 @@ function _add_department() {
 
 
 
-
-
 function  _create_department_folder(department_id, department_name, urls, seo_keywords, seo_description, thumbnail, message) {
   var action = "create_department_folder";
 
@@ -1998,8 +1953,6 @@ function  _create_department_folder(department_id, department_name, urls, seo_ke
     },
   });
 }
-
-
 
 
 
@@ -2084,7 +2037,6 @@ function _get_fetch_all_department() {
 }
 
 
-
 function _fetch_each_department(department_id) {
   var dataString = "department_id=" + department_id;
   $.ajax({
@@ -2128,8 +2080,6 @@ function _fetch_each_department(department_id) {
   },
   });
 }
-
-
 
 
 function _update_department(department_id) {
@@ -2218,8 +2168,6 @@ function _update_department(department_id) {
 }
 
 
-
-
 function  _update_department_folder(department_id, department_name, urls, db_urls, seo_keywords, seo_description, thumbnail, db_thumbnail, message) {
     var action = "update_department_folder";
     if(thumbnail==null){
@@ -2251,9 +2199,6 @@ function  _update_department_folder(department_id, department_name, urls, db_url
     });
 
 }
-
-
-
 
 
 function _get_fetch_all_class_dept(department_id) {
@@ -2331,9 +2276,6 @@ function _get_fetch_all_class_dept(department_id) {
     });
 }
 
-
-
-
 function _get_fetch_form_class_dept(department_id) {
   var dataString = 'department_id=' + department_id;
     $.ajax({
@@ -2352,8 +2294,7 @@ function _get_fetch_form_class_dept(department_id) {
         $('#department1_name').html(department_name);  
       },
     });
-  }
-
+}
 
 
 function _add_class_dept(department_id) {
@@ -2422,8 +2363,6 @@ function _add_class_dept(department_id) {
 	}
 }
 }
-
-
 
 
 function _get_fetch_all_class_subject(department_id, class_id) {
@@ -2498,10 +2437,6 @@ function _get_fetch_all_class_subject(department_id, class_id) {
 }
 
 
-
-
-
-
 function _get_fetch_form_subject_class(department_id, class_id) {
   var dataString = 'department_id=' + department_id + '&class_id=' + class_id;
  
@@ -2521,11 +2456,7 @@ function _get_fetch_form_subject_class(department_id, class_id) {
         $('#class1_name').html(class_name);  
       },
     });
-  }
-
-
-
-
+}
 
 
 function _add_subject_class(department_id, class_id) {
@@ -2599,9 +2530,6 @@ function _add_subject_class(department_id, class_id) {
 }
 
 
-
-
-
 function _fetch_department_class_subject() {
 	var department_id = $('#department_id').val();
   var class_id = $('#class_id').val();
@@ -2654,9 +2582,6 @@ function _fetch_department_class_subject() {
 		});
 	}
 }
-
-
-
 
 
 function _get_fetch_department_class_subject(department_id, class_id) {
@@ -2736,7 +2661,6 @@ function _get_fetch_department_class_subject(department_id, class_id) {
 }
 
 
-
 function _get_fetch_department_class_subject_form(department_id,class_id) {
   var dataString = 'department_id=' + department_id + '&class_id=' + class_id;
  
@@ -2763,7 +2687,6 @@ function _get_fetch_department_class_subject_form(department_id,class_id) {
 
 function _get_fetch_subject_form(subject_id) {
   var dataString = 'subject_id=' + subject_id;
- 
     $.ajax({
       type: "POST",
       url: endPoint + '/admin/subjects/fetch-subject',
@@ -2789,12 +2712,10 @@ function _get_fetch_subject_form(subject_id) {
 }
 
 
-
 function _add_tutorial_video(department_id, class_id, subject_id) {
   tinyMCE.triggerSave();
   var term_id = $('#term_id').val();
   var week_id = $('#week_id').val();
-  //var series_id = $('#series_id').val();
   var series_id = 1;
   var topic = $('#topic').val();
   var urls = $('#urls').val();
@@ -2932,8 +2853,6 @@ function _add_tutorial_video(department_id, class_id, subject_id) {
 }
 
 
-
-
 function _create_tutorial_folder(department_id, class_id, tutorial_id, urls, department_urls, class_urls, subject_urls, thumbnail, message) {
     var action = "create_tutorial_folder";
     var form_data = new FormData();
@@ -3009,7 +2928,6 @@ function _fetch_tutorial_video_page(department_id, class_id, subject_id, term_id
                 var week_name = fetch[i].week_name.toUpperCase();
                 var total_number_of_videos = fetch[i].total_number_of_videos;
                 var week_videos = fetch[i].week_videos;
-
 
               text +=
                 '<div class="quest-faq-div animated fadeIn">'+
@@ -3097,6 +3015,7 @@ function _get_fetch_each_video_tutorial(tutorial_id) {
         var term_name = data.term_name;
         var week_id = data.week_id;
         var week_name = data.week_name;
+        var series_name = data.series_name;
         var topic = data.topic;
         var urls = data.urls;
         var seo_keywords = data.seo_keywords;
@@ -3864,6 +3783,32 @@ function _update_backend_settings() {
 
 
 
+function _show_password_visibility(ids,toggle_pass){
+	var password = $('#'+ids).val();
+	if (password!='') {
+	 $('#'+toggle_pass).show();
+	} else {
+		$('#'+toggle_pass).hide();
+	}
+}
+
+
+function _togglePasswordVisibility(ids, toggle_pass) {
+	const passwordInput = document.getElementById(ids);
+	const togglePasswordIcon = document.getElementById(toggle_pass);
+
+	if (passwordInput.type === 'password') {
+		passwordInput.type = 'text';
+		togglePasswordIcon.innerHTML = '<i class="bi-eye password-toggle"></i>';
+	  } else {
+		passwordInput.type = 'password';
+		togglePasswordIcon.innerHTML = '<i class="bi-eye-slash password-toggle"></i>';
+	  }
+}
+
+
+
+
 function _check_password_match() {
   var new_password = $('#new_password').val();
   var confirm_password = $('#confirm_password').val();
@@ -3950,6 +3895,8 @@ function _update_user_password() {
   }
 }
 
+
+
 function _add_questions_manually(tutorial_id) {
   tinyMCE.triggerSave();
   const question_text = $('#question_text').val();
@@ -3962,6 +3909,8 @@ function _add_questions_manually(tutorial_id) {
   const option_c_pix_file = $('#option_c_pix').prop('files')[0];
   const option_d = $('#option_d').val();
   const option_d_pix_file = $('#option_d_pix').prop('files')[0];
+  const option_e = $('#option_e').val();
+  const option_e_pix_file = $('#option_e_pix').prop('files')[0];
   const answer = $('#answer').val();
 
   $('#question_text, #question_pix, #option_a, #option_a_pix, #option_b, #option_b_pix, #answer').removeClass('complain');
@@ -4003,6 +3952,8 @@ function _add_questions_manually(tutorial_id) {
       form_data.append("option_c_pix", option_c_pix_file);
       form_data.append("option_d", option_d);
       form_data.append("option_d_pix", option_d_pix_file);
+      form_data.append("option_e", option_e);
+      form_data.append("option_e_pix", option_e_pix_file);
       form_data.append("answer", answer);
   
       $.ajax({
@@ -4053,7 +4004,7 @@ function _fetch_each_question(page, tutorial_id, question_id) {
    });
  }
 
-function _chechAll(){
+function _checkAll(){
   $(document).ready(function() {
     $('#parent').on('change', function() {
         $('.child').prop('checked', this.checked);
@@ -4065,8 +4016,8 @@ function _chechAll(){
 }
 
 
+
 function _get_fetch_question_bank(tutorial_id) {
-  alert(tutorial_id);
   $('#fetch_all_question_bank').html('<div class="ajax-loader cbt-ajax-loader"><img src="all-images/images/ajax-loader2.gif"/></div>').fadeIn(500);
   const dataString = 'tutorial_id=' + tutorial_id;
  
@@ -4103,7 +4054,7 @@ function _get_fetch_question_bank(tutorial_id) {
             const answer = fetch[i].answer;
 
             text +=
-            '<div class="question-div" id="question_id">'+
+            '<div class="question-div" id="question_'+ question_id +'">'+
               '<div class="div-in">'+
                 '<div class="check-div">'+
                   '<label>'+
@@ -4113,10 +4064,10 @@ function _get_fetch_question_bank(tutorial_id) {
 
                   if(quiz_status=='7'){
                     text +=
-                  '<div class="btn-div">'+                    
-                    '<button class="btn" title="Edit Question" onclick="_fetch_each_question(' +"'load_questions_manually'" +"," +"'" + tutorial_id +"'" +"," +"'" + question_id +"'"+')"><i class="bi-pencil-square"></i> Edit</button>'+
-                    '<button class="btn delete-btn" id="delete_btn" title="Delete Question" onclick="_delete_question('+ "'" + question_id + "'" + ')"><i class="bi-trash"></i></button>'+             
-                  '</div>';
+                    '<div class="btn-div">'+                    
+                      '<button class="btn" title="Edit Question" onclick="_fetch_each_question(' +"'load_questions_manually'" +"," +"'" + tutorial_id +"'" +"," +"'" + question_id +"'"+')"><i class="bi-pencil-square"></i> Edit</button>'+
+                      '<button class="btn delete-btn" id="del_btn_'+ question_id +'" title="Delete Question" onclick="_delete_question('+ "'" + question_id + "'" + ')"><i class="bi-trash"></i></button>'+             
+                    '</div>';
                   }
                   text +=
                 '</div>'+
@@ -4167,7 +4118,7 @@ function _get_fetch_question_bank(tutorial_id) {
           }  
         }    
         $('#fetch_all_question_bank').html(text);
-        _chechAll();
+         _checkAll();
       } else {
         const response = info.response;
         if (response < 100) {
@@ -4249,6 +4200,13 @@ function _get_fetch_each_quiz_question(tutorial_id, question_id) {
               tinymce.get('option_d').setContent(option_text);
             }, 2000);
           }
+
+          if (option.option_id === 'E') {
+            $('#quiz_option_e_pix').attr('src', optionsStoragePath + '/' + option_pix);
+            setTimeout(function() {
+              tinymce.get('option_e').setContent(option_text);
+            }, 2000);
+          }
       });
 
       }else{
@@ -4278,6 +4236,8 @@ function _update_questions_manually(tutorial_id,question_id) {
   const option_c_pix_file = $('#option_c_pix').prop('files')[0];
   const option_d = $('#option_d').val();
   const option_d_pix_file = $('#option_d_pix').prop('files')[0];
+  const option_e = $('#option_e').val();
+  const option_e_pix_file = $('#option_e_pix').prop('files')[0];
   const answer = $('#answer').val();
 
   $('#question_text, #question_pix, #option_a, #option_a_pix, #option_b, #option_b_pix, #answer').removeClass('complain');
@@ -4319,6 +4279,8 @@ function _update_questions_manually(tutorial_id,question_id) {
       form_data.append("option_c_pix", option_c_pix_file);
       form_data.append("option_d", option_d);
       form_data.append("option_d_pix", option_d_pix_file);
+      form_data.append("option_e", option_e);
+      form_data.append("option_e_pix", option_e_pix_file);
       form_data.append("answer", answer);
   
       $.ajax({
@@ -4353,18 +4315,406 @@ function _update_questions_manually(tutorial_id,question_id) {
 }
 
 
-function _delete_question(question_id) {
-    if (confirm("Confirm!!\n\n Are you sure to PERFORM THIS ACTION?")) {
-      const btn_text = $("#delete_btn").html();
-      $("#delete_btn").html('<i class="fa fa-spinner fa-spin"></i>');
-      document.getElementById("delete_btn").disabled = true;
 
+
+
+
+function _set_questions_as_quiz(tutorial_id) {
+  const all_question_id = []; 
+  $(".child:checked").each(function () {
+    all_question_id.push($(this).data("value"));
+  });
+
+  const checked = $('input[name="question_id[]"]:checked').length;
+  $("#all_question_id").removeClass("complain");
+
+  if (checked < 1) {
+  $("#all_question_id").addClass("complain");
+  $("#warning-div").html('<div><i class="bi-exclamation-octagon-fill"></i></div> SET QUIZ ERROR!<br /><span>Pick at least 1 Quiz And Try Again</span>').fadeIn(500) .delay(3000).fadeOut(100);
+  } else {
+    $("#all_question_id").removeClass("complain");
+
+    if (confirm("Confirm!!\n\n Are you sure to PERFORM THIS ACTION?")) {
+      const btn_text = $("#submit_btn").html();
+      $("#submit_btn").html('<i class="fa fa-spinner fa-spin"></i> PROCESSING');
+      document.getElementById("submit_btn").disabled = true;
+      ///////////////////////////////////////////////
+  
       const form_data = new FormData();
-      form_data.append("question_id", question_id);
-     
+      form_data.append("tutorial_id", tutorial_id);
+      form_data.append("all_question_id", all_question_id);
+
       $.ajax({
         type: "POST",
-        url: endPoint + '/admin/cbt/delete-question',
+        url: endPoint + '/admin/cbt/set-questions-as-quiz',
+        data: form_data,
+        dataType: "json",
+        contentType: false,
+        cache: false,
+        headers: {
+          'apiKey': apiKey,  
+          'Authorization': 'Bearer '+ login_access_key
+            },
+        processData: false,
+        success: function (info) {
+          const success = info.success;
+          const message = info.message;
+          
+          if (success == true) {	
+            $("#success-div").html('<div><i class="bi-check"></i></div> ' + message +"" ).fadeIn(500).delay(5000).fadeOut(100);
+            _get_page_contents('quiz_question', tutorial_id);
+          }else {
+            $('#warning-div').html('<div><i class="bi-exclamation-circle"></i></div>' + message + '').fadeIn(500).delay(3000).fadeOut(100);
+          }
+          $('#submit_btn').html(btn_text);
+          document.getElementById('submit_btn').disabled = false;
+        }
+      });
+    }
+  }
+}
+
+
+
+
+
+function _get_fetch_quiz_question(tutorial_id) {
+  $('#fetch_all_quiz_question').html('<div class="ajax-loader cbt-ajax-loader"><img src="all-images/images/ajax-loader2.gif"/></div>').fadeIn(500);
+  const dataString = 'tutorial_id=' + tutorial_id;
+ 
+  $.ajax({
+    type: "POST",
+    url: endPoint + '/admin/cbt/fetch-quiz-questions',
+    data: dataString,
+    dataType: "json",
+    cache: false,
+    headers: {
+      'apiKey': apiKey,  
+      'Authorization': 'Bearer '+ login_access_key
+        },
+    success: function (info) {
+      const fetch = info.questions;
+      const success = info.success;
+      const message = info.message;
+      const quiz_status = info.quiz_status;
+      const quiz_duration = info.quiz_duration;
+
+      let no=0;
+      let text = '';
+      let showButton = '';
+      if (success == true) {
+        if (!fetch || (Array.isArray(fetch) && fetch.length === 0)) {
+          text +=
+          '<div class="false-notification-div">' +"<p> " + message +" </p>" +"</div>";
+        } else {
+          for (let i = 0; i < fetch.length; i++) {
+            no++;
+            const question_id = fetch[i].question_id;
+            const question_text = fetch[i].question_text;
+            const question_pix = fetch[i].question_pix;
+            const questionsStoragePath = fetch[i].questionsStoragePath;
+            const options = fetch[i].options;
+            const answer = fetch[i].answer;
+
+            text +=
+            '<div class="question-div" id="question_id">'+
+              '<div class="div-in">'+
+                '<div class="check-div">'+
+                  '<label>'+                    
+                    '<span>Question '+ no +'</span>'+
+                  '</label>'+
+                '</div>'+
+
+                '<div class="each-question">';
+                  if(!(question_pix=='avatar.jpg')){
+                    text += '<div class="pix-div"><img src="'+ questionsStoragePath+ '/'+ question_pix +'" alt="'+ question_id +'"/></div>';
+                  }
+
+                  text +=
+                  '<div class="text-div">'+
+                    '<div>'+ question_text +'</div>'+
+                    '<div class="options-div">';
+
+                      for (let j = 0; j < options.length; j++) {
+                        const option_id = options[j].option_id;
+                        const option_text = options[j].option_text;
+                        const option_pix = options[j].option_pix;
+                        const optionsStoragePath = options[j].optionsStoragePath;
+                        
+                        if ((option_id==answer)){
+                          text +=
+                          '<div class="each-option correct-option">'+                             
+                            '<div class="letter">'+ option_id +'</div>';
+                            if(!(option_pix=='avatar.jpg')){
+                              text +=  '<div class="pix"><img src="'+ optionsStoragePath +'/'+ option_pix +'" alt="'+ option_id +'"/></div>';
+                            }
+                            text +=
+                            '<div>'+ option_text +'</div>'+
+                          '</div>';                       
+                        }else{
+                          text +=
+                          '<div class="each-option">'+                               
+                            '<div class="letter">'+ option_id +'</div>';
+                            if(!(option_pix=='avatar.jpg')){
+                              text +=  '<div class="pix"><img src="'+ optionsStoragePath +'/'+ option_pix +'" alt="'+ option_id +'"/></div>';
+                            }
+                            text +=
+                            '<div>'+ option_text +'</div>'+
+                          '</div>';
+                        }     
+                      }
+                    text += '</div>'+ 
+                  '</div>'+
+                '</div>'+         
+              '</div>'+
+            '</div>';          
+          }  
+        }    
+
+        if(quiz_status==7){
+          showButton += '<button class="btn" title="Activate Question(s)" onClick="_get_secondary_form_with_id(' +"'set_quiz_time_form'" +"," +"'" + tutorial_id +"'"+')"><i class="bi-check2-circle"></i> Activate Quiz</button>';
+        }else{
+          showButton += '<button class="btn delete" type="button" id="submit_btn" title="Deactivate Question(s)" onclick="_deactivate_quiz('+ "'" + tutorial_id + "'" + ')"><i class="bi-trash"></i> Deactivate Quiz</button>';
+        }
+
+        $('#quiz_status').html(showButton);
+        $('#quiz_duration').html(quiz_duration);
+        $('#fetch_all_quiz_question').html(text);
+        
+      } else {
+        const response = info.response;
+        if (response < 100) {
+          _logout();
+        }
+        text +=
+          '<div class="false-notification-div">' +
+            "<p> " + message +" </p>" +
+          "</div>";
+        $('#fetch_all_quiz_question').html(text);
+      }
+    },
+  });
+}
+
+
+
+
+
+
+
+function _activate_quiz(tutorial_id) {
+  const quiz_hour = $('#quiz_hour').val();
+  const quiz_min = $('#quiz_min').val();
+  const quiz_sec = $('#quiz_sec').val();
+
+  $('#quiz_hour, #quiz_min, #quiz_sec').removeClass('complain');
+  if (quiz_hour =='') {
+    $("#quiz_hour").addClass("complain");
+    $("#warning-div").html('<div><i class="bi-exclamation-octagon-fill"></i></div> QUIZ HOUR ERROR!<br /><span>Select Hour And Try Again</span>').fadeIn(500) .delay(3000).fadeOut(100);
+  
+  }else if (quiz_min =='') {
+    $("#quiz_min").addClass("complain");
+    $("#warning-div").html('<div><i class="bi-exclamation-octagon-fill"></i></div> QUIZ MINUTES ERROR!<br /><span>Select Minutes And Try Again</span>').fadeIn(500) .delay(3000).fadeOut(100);
+  
+  }else if (quiz_sec =='') {
+    $("#quiz_sec").addClass("complain");
+    $("#warning-div").html('<div><i class="bi-exclamation-octagon-fill"></i></div> QUIZ SECONDS ERROR!<br /><span>Select Seconds And Try Again</span>').fadeIn(500) .delay(3000).fadeOut(100);
+
+  } else {
+    $('#quiz_hour, #quiz_min, #quiz_sec').removeClass('complain');
+
+    if (confirm("Confirm!!\n\n Are you sure to PERFORM THIS ACTION?")) {
+      const btn_text = $("#submit_btn").html();
+      $("#submit_btn").html('<i class="fa fa-spinner fa-spin"></i> PROCESSING');
+      document.getElementById("submit_btn").disabled = true;
+      ///////////////////////////////////////////////
+  
+      const form_data = new FormData();
+      form_data.append("tutorial_id", tutorial_id);
+      form_data.append("quiz_hour", quiz_hour);
+      form_data.append("quiz_min", quiz_min);
+      form_data.append("quiz_sec", quiz_sec);
+
+      $.ajax({
+        type: "POST",
+        url: endPoint + '/admin/cbt/activate-quiz',
+        data: form_data,
+        dataType: "json",
+        contentType: false,
+        cache: false,
+        headers: {
+          'apiKey': apiKey,  
+          'Authorization': 'Bearer '+ login_access_key
+            },
+        processData: false,
+        success: function (info) {
+          const success = info.success;
+          const message = info.message;
+          
+          if (success == true) {	
+            $("#success-div").html('<div><i class="bi-check"></i></div> ' + message +"" ).fadeIn(500).delay(5000).fadeOut(100);
+            _alert_secondary_close();
+            _get_page_contents('quiz_question', tutorial_id);
+          }else {
+            $('#warning-div').html('<div><i class="bi-exclamation-circle"></i></div>' + message + '').fadeIn(500).delay(3000).fadeOut(100);
+          }
+          $('#submit_btn').html(btn_text);
+          document.getElementById('submit_btn').disabled = false;
+        }
+      });
+    }
+  }
+}
+
+
+
+
+function _deactivate_quiz(tutorial_id) {
+  if (confirm("Confirm!!\n\n Are you sure to PERFORM THIS ACTION?")) {
+    const btn_text = $("#submit_btn").html();
+    $("#submit_btn").html('<i class="fa fa-spinner fa-spin"></i> PROCESSING');
+    document.getElementById("submit_btn").disabled = true;
+
+    const form_data = new FormData();
+    form_data.append("tutorial_id", tutorial_id);
+
+    $.ajax({
+      type: "POST",
+      url: endPoint + '/admin/cbt/deactivate-quiz',
+      data: form_data,
+      dataType: "json",
+      contentType: false,
+      cache: false,
+      headers: {
+        'apiKey': apiKey,
+        'Authorization': 'Bearer ' + login_access_key
+      },
+      processData: false,
+      success: function (info) {
+        const success = info.success;
+        const message = info.message;
+
+        if (success == true) {
+          $("#success-div").html('<div><i class="bi-check"></i></div>' + message).fadeIn(500).delay(5000).fadeOut(100);
+            _alert_secondary_close();
+            _get_page_contents('quiz_question', tutorial_id);
+        } else {
+          $("#warning-div").html('<div><i class="bi-exclamation-octagon-fill"></i></div> ' + message).fadeIn(500).delay(5000).fadeOut(100);
+          btn.html(btn_text).prop('disabled', false); 
+        }
+      }
+    });
+  }
+}
+
+
+
+
+function _delete_question(question_id) {
+  if (confirm("Confirm!!\n\n Are you sure to PERFORM THIS ACTION?")) {
+    const btn =$("#del_btn_"+ question_id);
+    const btn_text = btn.html();
+    btn.html('<i class="fa fa-spinner fa-spin"></i>').prop('disabled', true);
+
+    const form_data = new FormData();
+    form_data.append("question_id", question_id);
+
+    $.ajax({
+      type: "POST",
+      url: endPoint + '/admin/cbt/delete-question',
+      data: form_data,
+      dataType: "json",
+      contentType: false,
+      cache: false,
+      headers: {
+        'apiKey': apiKey,
+        'Authorization': 'Bearer ' + login_access_key
+      },
+      processData: false,
+      success: function (info) {
+        const success = info.success;
+        const message = info.message;
+
+        if (success == true) {
+          $("#success-div").html('<div><i class="bi-check"></i></div>' + message).fadeIn(500).delay(5000).fadeOut(100);
+          $('#question_' + question_id).fadeOut(300);
+        } else {
+          $("#warning-div").html('<div><i class="bi-exclamation-octagon-fill"></i></div> ' + message).fadeIn(500).delay(5000).fadeOut(100);
+          btn.html(btn_text).prop('disabled', false); 
+        }
+      }
+    });
+  }
+}
+
+
+
+
+
+function _download_question_template() {
+  if (confirm("Confirm!!\n\n Are you sure to PERFORM THIS ACTION?")) {
+    const btn_text = $("#submit_btn").html();
+    $("#submit_btn").html('<i class="fa fa-spinner fa-spin"></i> PROCESSING');
+    document.getElementById("submit_btn").disabled = true;
+
+    const form_data = new FormData();
+    $.ajax({
+      type: "POST",
+      url: endPoint + '/admin/cbt/dowload-quiz-question-template',
+      data: form_data,
+      dataType: "json",
+      contentType: false,
+      cache: false,
+      headers: {
+        'apiKey': apiKey,
+        'Authorization': 'Bearer ' + login_access_key
+      },
+      processData: false,
+      success: function (info) {
+        const success = info.success;
+        const message = info.message;
+
+        if (success == true) {
+          const url = info.url;
+          window.open(url, '_blank');
+          $("#success-div").html('<div><i class="bi-check"></i></div>' + message).fadeIn(500).delay(5000).fadeOut(100);
+        } 
+        $("#submit_btn").html(btn_text).prop('disabled', false);
+      },
+    });
+  }
+}
+
+
+
+
+
+function _add_questions_automatically(tutorial_id) {
+  const quiz_question_template = $('#quiz_question_template').val();
+  const csv_question_file = $('#quiz_question_template').prop('files')[0];
+
+  $('#quiz_question_template').removeClass('complain');
+
+  if (!csv_question_file) {
+    $('#quiz_question_template').addClass('complain');
+    $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> TEMPLATE FORMAT ERROR!<br /><span>Choose File And Try Again</span>').fadeIn(500).delay(3000).fadeOut(100);
+  } else {
+    
+    $('#quiz_question_template').removeClass('complain');
+
+    if (confirm("Confirm!!\n\n Are you sure to PERFORM THIS ACTION?")) {
+      const btn_text = $("#auto_btn").html();
+      $("#auto_btn").html('<i class="fa fa-spinner fa-spin"></i> PROCESSING');
+      document.getElementById("auto_btn").disabled = true;
+
+      const form_data = new FormData();
+      form_data.append("tutorial_id", tutorial_id);
+      form_data.append("quiz_question_template", quiz_question_template);
+      form_data.append("quiz_question_template", csv_question_file);
+  
+      $.ajax({
+        type: "POST",
+        url: endPoint + '/admin/cbt/add-quiz-question-automatically',
         data: form_data,
         dataType: "json",
         contentType: false,
@@ -4380,17 +4730,15 @@ function _delete_question(question_id) {
 
           if (success == true) {
             $("#success-div").html('<div><i class="bi-check"></i></div>' + message +"" ).fadeIn(500).delay(5000).fadeOut(100);       
-              $("#question_id").fadeOut(500, function() {
-                $(this).remove();
-              });
+            _get_page_contents('question_bank_details',tutorial_id);
           } else {
             $("#warning-div")
             .html('<div><i class="bi-exclamation-octagon-fill"></i></div> ' + message +"").fadeIn(500) .delay(5000).fadeOut(100);
-            $("#delete_btn").html(btn_text);
-            document.getElementById("delete_btn").disabled = false;
+            $("#auto_btn").html(btn_text);
+            document.getElementById("auto_btn").disabled = false;
           }
         },
       });
     }
   }
-
+}

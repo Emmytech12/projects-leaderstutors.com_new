@@ -954,14 +954,17 @@ transition:all 0.2s ease-in 0.2s;
 
 
 .caption-success-div{
-	margin-top:120px;
 	width:30%;
 	min-width:300px;
+	display: flex;
 }
 
 .caption-success-div .div-in{
 	padding:50px;
-	text-align:center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5px;
 	font-size:14px;
 }
 .caption-success-div .div-in .img{
@@ -980,6 +983,41 @@ transition:all 0.2s ease-in 0.2s;
 	text-align:center;
 	padding-bottom:0px;
 	margin-bottom:0px;
+}
+
+.caption-success-div .div-in .btn-div{
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.caption-success-div .div-in .btn-div .btn{
+	border:none;
+	height:45px;
+	min-width: 130px;
+	background: linear-gradient(to right, #008B00, #1c1d1c);
+	color:var(--white-color);
+	border-radius:5px;
+	font-family:sub-title-font;
+	font-size:15px;
+	transition:all 0.2s ease-in 0.2s;
+	-moz-transition:all 0.2s ease-in 0.2s;
+	-webkit-transition:all 0.2s ease-in 0.2s;
+	-ms-transition:all 0.2s ease-in 0.2s;
+	-o-transition:all 0.2s ease-in 0.2s;
+	cursor:pointer;
+}
+
+.caption-success-div .div-in .btn-div .btn:hover{
+	background: linear-gradient(to left, #008B00, #1c1d1c);
+}
+
+.caption-success-div .div-in .btn-div .no-btn:hover{
+	background: linear-gradient(to left, #D90000, #1c1d1c);
+}
+
+.caption-success-div .div-in .btn-div .no-btn{
+	background: linear-gradient(to right, #D90000, #1c1d1c);
 }
 
 @media all and (max-width:500px) {
@@ -1028,41 +1066,5 @@ float:right;
 
 
 
-.caption-success-div{
-	margin-top:140px;
-	width:30%;
-	min-width:300px;
-}
 
-.caption-success-div .div-in{
-	padding:50px;
-	text-align:center;
-	font-size:14px;
-}
-.caption-success-div .div-in .img{
-	width:100px;
-	height:100px;
-	border-radius:100%;
-	margin:auto;
-	border:#CCC 2px solid;
-}
-.caption-success-div .div-in .img img{
-	width:100%;
-	border-radius:100%;
-}
-.caption-success-div .div-in h2{
-	color:#444;
-	text-align:center;
-	padding-bottom:0px;
-	margin-bottom:0px;
-	font-weight: 500;
-}
 
-@media all and (max-width:500px) {
-.caption-div{
-	width:96%;
-}
-.caption-div .div-in{
-	padding:20px 10px 10px 10px;
-}
-}

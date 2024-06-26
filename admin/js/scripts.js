@@ -64,7 +64,7 @@ function _togglePasswordVisibility(ids, toggle_pass) {
 		passwordInput.type = 'password';
 		togglePasswordIcon.innerHTML = '<i class="bi-eye-slash password-toggle"></i>';
 	  }
-  }
+}
 
 function _keep_me_logged_in() {
 // Check for a stored "Keep me logged in" preference when the page loads

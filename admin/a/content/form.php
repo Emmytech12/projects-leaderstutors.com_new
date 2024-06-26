@@ -1707,6 +1707,7 @@
             </div>
             
             <div id="get_page_details">
+                <script> _checkAll();</script>
                 <div class="question-back-div">
                     <div class="top-div">
                         <label>
@@ -1714,7 +1715,7 @@
                             <span>All Questions</span>
                         </label>
                         <div>
-                            <button class="btn" title="Activate Question(s)"><i class="bi-check2-circle"></i> Set Questions As Quiz</button>
+                            <button class="btn" id="submit_btn" title="Set Questions As Quiz" onclick="_set_questions_as_quiz('<?php echo $ids?>');"><i class="bi-check2-circle"></i> Set Questions As Quiz</button>
                         </div>
                     </div>
 
@@ -1912,11 +1913,11 @@
         <div class="question-back-div">
             <div class="top-div">
                 <label>
-                    <input type="checkbox" id="parent" name="class_id[]" data-value="GEOGRAPHY">
+                    <input type="checkbox" id="parent">
                     <span>All Questions</span>
                 </label>
                 <div>
-                    <button class="btn" title="Activate Question(s)"><i class="bi-check2-circle"></i> Set Question As Quiz</button>
+                    <button class="btn" id="submit_btn" title="Set Questions As Quiz" onclick="_set_questions_as_quiz('<?php echo $ids?>');"><i class="bi-check2-circle"></i> Set Questions As Quiz</button>
                 </div>
             </div>
 
@@ -2105,21 +2106,25 @@
     </div>
 <?php }?>
 
-<?php if ($page=='quiz_question'){ ?>
+<?php if ($page=='quiz_question'){ ?>    
     <div id="get_page_details">
         <div class="question-back-div">
             <div class="top-div">
                 <label>
-                    <span>Quiz Questions</span>
+                    <span>Quiz Questions</span>&nbsp;&nbsp;
+                    <div class="text"><i class="bi-clock"></i> Quiz Duration:</div>
+                    <span id="quiz_duration">00:00:00</span> 
                 </label>
-                <div>
-                    <button class="btn" title="Activate Question(s)" onClick="_get_secondary_form_with_id('set_quiz_time_form')"><i class="bi-check2-circle"></i> Set Quiz</button>
-                    <button class="btn delete" title="Delete Question(s)"><i class="bi-trash"></i> Deactivate</button>
+
+                <div id="quiz_status">
+                    <!-- <button class="btn" title="Activate Question(s)" onClick="_get_secondary_form_with_id('set_quiz_time_form')"><i class="bi-check2-circle"></i> Activate Quiz</button>
+                    <button class="btn delete" title="Delete Question(s)"><i class="bi-trash"></i> Deactivate Quiz</button> -->
                 </div>
             </div>
 
-            <div class="question-body-div">
-                <div class="question-div">
+            <div class="question-body-div" id="fetch_all_quiz_question">             
+                <script>_get_fetch_quiz_question('<?php echo $ids?>')</script>
+                <!-- <div class="question-div">
                     <div class="div-in">
                         <div class="check-div">
                             <label>
@@ -2289,7 +2294,7 @@
                         </div>
                         
                     </div>
-                </div>
+                </div> -->
             </div>
         </div> 
     </div> 
@@ -2382,8 +2387,7 @@
                                 </label>
                             </div>
 
-                            <div class="text-div">
-                               
+                            <div class="text-div">                           
                                 <script>tinymce.init({selector:'#option_b',  // change this value according to your HTML
                                 plugins: "link, image, table"
                                 });</script>
@@ -2410,8 +2414,7 @@
                                 </label>
                             </div>
 
-                            <div class="text-div">
-                               
+                            <div class="text-div">                              
                                 <script>tinymce.init({selector:'#option_c',  // change this value according to your HTML
                                 plugins: "link, image, table"
                                 });</script>
@@ -2438,8 +2441,7 @@
                                 </label>
                             </div>
 
-                            <div class="text-div">
-                               
+                            <div class="text-div">                            
                                 <script>tinymce.init({selector:'#option_d',  // change this value according to your HTML
                                 plugins: "link, image, table"
                                 });</script>
@@ -2454,11 +2456,38 @@
                     <div class="div-in">
                         <div class="check-div">
                             <label>
+                                <span>Option E</span>
+                            </label>
+                        </div>
+
+                        <div class="each-question">
+                            <div class="pix-div">
+                                <label>
+                                    <img id="quiz_option_e_pix" src="all-images/body-pix/default2.png" alt="Default Image">
+                                    <input type="file" id="option_e_pix" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="quiz_option_e_pix_preview.UpdatePreview(this);" />
+                                </label>
+                            </div>
+
+                            <div class="text-div">               
+                                <script>tinymce.init({selector:'#option_e',  // change this value according to your HTML
+                                plugins: "link, image, table"
+                                });</script>
+                                <textarea style="width: 100%;" rows="10" id="option_e" title="OPTION E" placeholder="OPTION E"></textarea>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="question-div">
+                    <div class="div-in">
+                        <div class="check-div">
+                            <label>
                                 <span>Set Correct Option</span>
                             </label>
                         </div>
                                 
-                        <input id="answer" type="text" class="text_field" placeholder="A, B, C, D" title="QUIZ ANSWER"/>               
+                        <input id="answer" type="text" class="text_field" placeholder="A, B, C, D, E" title="QUIZ ANSWER"/>               
                         <?php if(!empty($question_id)){ ?>
                             <div>
                                 <button class="btn" id="update_btn" title="Update Questions" onclick="_update_questions_manually('<?php echo $ids?>','<?php echo $question_id?>');"><i class="bi-cloud-upload"></i> Update Questions</button>
@@ -2495,13 +2524,13 @@
                                 <span>Upload <i>(CSV Format Only)</i></span>
                             </label>
                             <div>
-                                <button class="btn" title="Download Question Format" onClick=""><i class="bi-download"></i> Download Question Format</button>
+                                <button class="btn" type="button" id="submit_btn" title="Download Question Template" onclick="_download_question_template();"><i class="bi-download"></i> Download Question Template</button>
                             </div>
                         </div>
                         
-                        <input id="fileUpload" type="file" class="text_field" title="Click to upload"/>  
+                        <input id="quiz_question_template" name="quiz_question_template" type="file" class="text_field" placeholder="Choose File (.CSV)" title="Choose File (.CSV)" accept=".csv"/>
                         <div>
-                            <button class="btn" title="Upload Questions" onClick=""><i class="bi-cloud-upload"></i> Upload Questions</button>
+                            <button class="btn" type="button" id="auto_btn" title="Upload Questions" onclick="_add_questions_automatically('<?php echo $ids?>');"><i class="bi-cloud-upload"></i> Upload Questions</button>
                         </div>
                     </div>
                 </div>
@@ -2518,31 +2547,31 @@
         </div>
 
         <div class="div-in animated fadeIn">
-            <div class="alert alert-success"> Hi, you are about to set <strong><span>Quiz Questions</span></strong> time. <br/> Kindly input <strong>Hour</strong>, <strong>Minutes</strong>, and <strong>Seconds</strong> to continue.</div>
+            <div class="alert alert-success"> Hi, you are about to set <strong><span>Quiz Duration</span></strong> time. <br/> Kindly input <strong>Hour</strong>, <strong>Minutes</strong>, and <strong>Seconds</strong> to continue.</div>
             <div class="input-div">
                 <div class="input-div-in">
                     <div class="title">Hour</div>
-                    <select id="hours_id" class="text_field selectinputs" title="00:">
+                    <select id="quiz_hour" class="text_field selectinputs" title="00:">
                         <option value="" selected="selected"> -- </option>
-                        <script>_fetchTimeCountOption('hours_id', 12);</script>
+                        <script>_fetchTimeCountOption('quiz_hour', 12);</script>
                     </select>
                 </div>
                 <div class="input-div-in">
                     <div class="title">Minutes</div>
-                    <select id="minutes_id" class="text_field selectinputs" title="00:">
+                    <select id="quiz_min" class="text_field selectinputs" title="00:">
                         <option value="" selected="selected"> -- </option>
-                        <script>_fetchTimeCountOption('minutes_id', 60);</script>
+                        <script>_fetchTimeCountOption('quiz_min', 60);</script>
                     </select>
                 </div>
                 <div class="input-div-in">
                     <div class="title">Seconds</div>
-                    <select id="seconds_id" class="text_field selectinputs" title="00;">
+                    <select id="quiz_sec" class="text_field selectinputs" title="00;">
                         <option value="" selected="selected"> -- </option>
-                        <script>_fetchTimeCountOption('seconds_id', 60);</script>
+                        <script>_fetchTimeCountOption('quiz_sec', 60);</script>
                     </select>
                 </div>
             </div>          
-            <button class="btn" type="button" id="submit_btn"  title="Proceed"  onclick=""><i class="bi-check"></i> PROCEED </button>
+            <button class="btn" type="button" id="submit_btn" title="Proceed" onclick="_activate_quiz('<?php echo $ids?>');"><i class="bi-check"></i> PROCEED </button>
         </div>
     </div>
 
@@ -2628,89 +2657,94 @@
 
 
 <?php if ($page=='app_settings'){ ?>
-<div class="slide-form-div animated fadeInRight">
-    <div class="fly-title-div">
-        <div class="in">
-        <span id="back_icon" style="display:none; cursor:pointer;" ><i class="bi-arrow-left" style="cursor:pointer;" onclick="_prev_page('account_settings_id');" ></i> &nbsp;&nbsp;</span>
-        <span id="panel-title"><span id="header_icon"> <i class="bi-gear"></i> </span id="app_text"> APP SETTINGS</span>
-            <div class="close" title="Close" onclick="_alert_close();">X</div>
+    <div class="slide-form-div animated fadeInRight">
+        <div class="fly-title-div">
+            <div class="in">
+            <span id="back_icon" style="display:none; cursor:pointer;" ><i class="bi-arrow-left" style="cursor:pointer;" onclick="_prev_page('account_settings_id');" ></i> &nbsp;&nbsp;</span>
+            <span id="panel-title"><span id="header_icon"> <i class="bi-gear"></i> </span id="app_text"> APP SETTINGS</span>
+                <div class="close" title="Close" onclick="_alert_close();">X</div>
+            </div>
         </div>
-     </div>
 
-    <div class="container-back-div sb-container" >
-         <div class="inner-div">
-            <div class="setting_detail" id="account_settings_id">   
+        <div class="container-back-div sb-container" >
+            <div class="inner-div">
+                <div class="setting_detail" id="account_settings_id">   
 
-                <div class="settings-div"  onclick="_next_page('account_detail','back_icon','account');">
-                    <div class="div-in">
-                        <div class="icon-div">
-                           <i class="bi-bank" ></i> 
-                        </div>
-                        <div class="text-div">
-                            <h4 id="account">ACCOUNT DETAILS</h4>
-                            <span>Manage your account information</span>
-                            <i class="bi-chevron-right"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="settings-div" onclick="_next_page('channge_password','back_icon','password');">
-                    <div class="div-in">
-                        <div class="icon-div">
-                       <i class="bi-lock"></i>
-                        </div>
-                        <div class="text-div">
-                            <h4 id="password">CHANGE PASSWORD</h4>
-                            <span>Manage and change password</span>
-                            <i class="bi-chevron-right"></i>
+                    <div class="settings-div"  onclick="_next_page('account_detail','back_icon','account');">
+                        <div class="div-in">
+                            <div class="icon-div">
+                            <i class="bi-bank" ></i> 
+                            </div>
+                            <div class="text-div">
+                                <h4 id="account">ACCOUNT DETAILS</h4>
+                                <span>Manage your account information</span>
+                                <i class="bi-chevron-right"></i>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="settings-div" onclick="_next_page('channge_password','back_icon','password');">
+                        <div class="div-in">
+                            <div class="icon-div">
+                        <i class="bi-lock"></i>
+                            </div>
+                            <div class="text-div">
+                                <h4 id="password">CHANGE PASSWORD</h4>
+                                <span>Manage and change password</span>
+                                <i class="bi-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
-            </div>
 
-
-            <div class="setting_detail" id="account_detail">     
-                <div class="alert alert-success"><span>SMTP DETAILS</span>
-                    <div class="title"> SENDER NAME:</div>
-                    <input id="sender_name" type="text" class="text_field" placeholder="SENDER NAME" title="SENDER NAME"/>
-                    <div class="title"> SMTP HOST:</div>
-                    <input id="smtp_host" type="text" class="text_field" placeholder="SMTP HOST" title="SMTP HOST"/>
-                    <div class="title"> SMTP USERNAME:</div>
-                    <input id="smtp_username" type="text" class="text_field" placeholder="SMTP USERNAME" title="SMTP USERNAME"/>
-                    <div class="title"> SMTP PASSWORD:</div>
-                    <input id="smtp_password" type="text" class="text_field" placeholder=" SMTP PASSWORD" title=" SMTP PASSWORD"/>
-                    <div class="title"> SMTP PORT:</div>
-                    <input id="smtp_port" type="text" class="text_field" placeholder="SMTP PORT" title="SMTP PORT"/>
-                    <div class="title"> SUPPORT EMAIL:</div>
-                    <input id="support_email" type="text" class="text_field" placeholder="SUPPORT EMAIL" title="SUPPORT EMAIL"/>
-                    <div class="title"> SUBSCRIPTION AMOUNT:</div>
-                    <input id="subcription_amount" type="text" class="text_field" placeholder="SUBSCRIPTION AMOUNT" title="SUBSCRIPTION AMOUNT"/>
-                    <div class="title">PAYSTACK PAYMENT KEY:</div>
-                    <input id="paystack_payment_key" type="text" class="text_field" placeholder="PAYSTACK PAYMENT KEY" title="PAYSTACK PAYMENT KEY"/>
+                <div class="setting_detail" id="account_detail">     
+                    <div class="alert alert-success"><span>SMTP DETAILS</span>
+                        <div class="title"> SENDER NAME:</div>
+                        <input id="sender_name" type="text" class="text_field" placeholder="SENDER NAME" title="SENDER NAME"/>
+                        <div class="title"> SMTP HOST:</div>
+                        <input id="smtp_host" type="text" class="text_field" placeholder="SMTP HOST" title="SMTP HOST"/>
+                        <div class="title"> SMTP USERNAME:</div>
+                        <input id="smtp_username" type="text" class="text_field" placeholder="SMTP USERNAME" title="SMTP USERNAME"/>
+                        <div class="title"> SMTP PASSWORD:</div>
+                        <input id="smtp_password" type="text" class="text_field" placeholder=" SMTP PASSWORD" title=" SMTP PASSWORD"/>
+                        <div class="title"> SMTP PORT:</div>
+                        <input id="smtp_port" type="text" class="text_field" placeholder="SMTP PORT" title="SMTP PORT"/>
+                        <div class="title"> SUPPORT EMAIL:</div>
+                        <input id="support_email" type="text" class="text_field" placeholder="SUPPORT EMAIL" title="SUPPORT EMAIL"/>
+                        <div class="title"> SUBSCRIPTION AMOUNT:</div>
+                        <input id="subcription_amount" type="text" class="text_field" placeholder="SUBSCRIPTION AMOUNT" title="SUBSCRIPTION AMOUNT"/>
+                        <div class="title">PAYSTACK PAYMENT KEY:</div>
+                        <input id="paystack_payment_key" type="text" class="text_field" placeholder="PAYSTACK PAYMENT KEY" title="PAYSTACK PAYMENT KEY"/>
+                    </div>
+                    <button class="action-btn" type="button" title="SUBMIT" id="update_btn" onclick="_update_backend_settings();"> <i class="bi-check"></i> UPDATE ACCOUNT </button>
                 </div>
-                <button class="action-btn" type="button" title="SUBMIT" id="update_btn" onclick="_update_backend_settings();"> <i class="bi-check"></i> UPDATE ACCOUNT </button>
-            </div>
 
-            <div class="setting_detail" id="channge_password">   
-                <div class="alert">Fill all fields to change your <span>PASSWORD</span>  </div>
-                <div class="title">OLD PASSWORD: <span>*</span></div>
-                <input type="password" id="old_password" class="text_field" placeholder="ENTER OLD PASSWORD" title="ENTER YOUR OLD PASSWORD">
+                <div class="setting_detail" id="channge_password">   
+                    <div class="alert">Fill all fields to change your <span>PASSWORD</span>  </div>
+                    <div class="title">OLD PASSWORD: <span>*</span></div>
+                    <div class="password-container">
+                        <input type="password" id="old_password" onkeyup="_show_password_visibility('old_password','reset_pass')" class="text_field" placeholder="ENTER OLD PASSWORD" title="ENTER YOUR OLD PASSWORD"><br/>
+                        <div id="reset_pass" onclick="_togglePasswordVisibility('old_password','reset_pass')">
+                            <i class="bi-eye-slash password-toggle"></i>
+                        </div>
+                    </div>
 
-                <div class="title">CREATE NEW PASSWORD: <span>*</span><span id="message">Password Not Matched!</span></div>
-                <input type="password" id="new_password" class="text_field"  placeholder="CREATE NEW PASSWORD" title="CREATE NEW PASSWORD">
-
-                <div class="title" style="float:left;">COMFIRM NEW PASSWORD:<span >*</span>  <div id='message' style="float:right;margin-left:10px;"></div></div>
-                <input type="password" id="confirm_password" onkeyup=" _check_password_match();" class="text_field" placeholder="COMFIRM NEW PASSWORD" title="COMFIRM NEW PASSWORD">
-            
-                <div class="pswd_info" style="color:#8c8d8d" >At least 8 charaters required including upper & lower cases and special characters and numbers.</div>
-                <button class="action-btn" id="submit_btn" type="button" onclick="_update_user_password();" title="CHANGE PASSWORD"> CHANGE PASSWORD</button>
+                    <div class="title">CREATE NEW PASSWORD: <span>*</span><span id="message">Password Not Matched!</span></div>
+                    <input type="password" id="new_password" class="text_field"  placeholder="CREATE NEW PASSWORD" title="CREATE NEW PASSWORD"><br/>
                 
-            </div>
+                    <div class="title" style="float:left;">COMFIRM NEW PASSWORD:<span >*</span>  <div id='message' style="float:right;margin-left:10px;"></div></div>
+                    <input type="password" id="confirm_password" onkeyup=" _check_password_match();" class="text_field" placeholder="COMFIRM NEW PASSWORD" title="COMFIRM NEW PASSWORD">
+                
+                    <div class="pswd_info" style="color:#8c8d8d" >At least 8 charaters required including upper & lower cases and special characters and numbers.</div>
+                    <button class="action-btn" id="submit_btn" type="button" onclick="_update_user_password();" title="CHANGE PASSWORD"> CHANGE PASSWORD</button>
+                    
+                </div>
 
-        </div>
-    </div> 
-</div>
+            </div>
+        </div> 
+    </div>
 <script>_fetch_settings();</script>
 <?php } ?>
 
@@ -2722,6 +2756,20 @@
             <h2>INVALID ACCESS TOKEN</h2>
             Please LogIn Again
             <button class="btn" onclick="_logout();"><i class="bi-check"></i> Okay, Log-In </button>
+        </div>
+    </div>
+<?php } ?>
+
+<?php if ($page=='logout_confirm_form'){?>
+	<div class="caption-div caption-success-div animated zoomIn">
+        <div class="div-in animated fadeInRight">
+			<div class="img"><img src="<?php echo $website_url?>/admin/all-images/images/warning.gif"/></div>
+            <h2>Are you sure to log-out?</h2>
+             Please, confirm your log-out action.
+            <div class="btn-div">
+                <button class="btn" onclick="_logout();">YES</button>
+                <button class="btn no-btn" onclick="_alert_close();">NO</button>
+            </div>
         </div>
     </div>
 <?php } ?>
