@@ -2995,6 +2995,10 @@ transition:all 0.2s ease-in 0.2s;
 	font-family: body-font;
 }
 
+.slide-form-div .container-back-div .inner-div .title span{
+	color: var(--subactive-color);
+}
+
 .slide-form-div .container-back-div .inner-div #message{
 	display:none;
 	color: rgb(247, 148, 34);
@@ -3130,6 +3134,20 @@ transition:all 0.2s ease-in 0.2s;
 .slide-form-div .container-back-div .inner-div .title #message{
 	display:none;
 }
+
+
+.slide-form-div .container-back-div .inner-div .pix-div{
+    width: 100%;
+	margin: 15px 0px;
+	border-radius: 5px;
+}
+
+.slide-form-div .container-back-div .inner-div .pix-div img{
+    width: 100%;
+	object-fit: cover;
+	border-radius: 5px;
+}
+
 
 
 .pswd_info{
@@ -4102,3 +4120,149 @@ transition:all 0.2s ease-in 0.2s;
 .cbt-creation-panel .question-back-div .question-body-div .question-div .div-in input{
 	cursor: pointer;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+.agent-content-div{
+    padding: 20px 20px 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.agent-content-div .dashboard-content{
+    width: 100%;
+    max-width: 1200px;
+    min-height: 100px;
+}
+
+.agent-content-div .dashboard-content .list{
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 10px;
+}
+
+.agent-content-div .dashboard-content .list .student-profile{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: rgba(179, 176, 176, 0.5) 1px solid;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease-in 0.2s;
+}
+
+.agent-content-div .dashboard-content .list .student-profile:hover{
+    background: rgba(197, 195, 195, 0.2);
+    border-radius: 5px;
+}
+
+.agent-content-div .dashboard-content .list .student-profile .details{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.agent-content-div .dashboard-content .list .student-profile .details .pix{
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.agent-content-div .dashboard-content .list .student-profile .details .pix img{
+    width: 100%;
+}
+
+.agent-content-div .dashboard-content .list .student-profile .details .text{
+    display: flex;
+    flex-direction: column;
+    color: var(--sub-body-color);
+    gap: 5px;
+}
+
+.agent-content-div .dashboard-content .list .student-profile .details .text h3{
+    padding: 0px;
+    margin: 0px;
+    color: var(--main-color);
+    transition: all 0.2s ease-in 0.2s;
+}
+
+.agent-content-div .dashboard-content .list .student-profile .details .text .info{
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+}
+
+.agent-content-div .dashboard-content .list .student-profile .details .text .info p{
+    padding: 0px;
+    margin: 0px;
+	font-size: 14px;
+}
+
+.agent-content-div .dashboard-content .list .student-profile .details .text .info span{
+	color: var(--subactive-color);
+    font-size: 12px;
+}
+
+.agent-content-div .dashboard-content .list .student-profile .details .text .info .status-btn{
+   background: #444;
+   color: var(--text-white);
+   border: none;
+   padding: 2px 10px;
+   border-radius: 15px;
+   font-size: 10px;
+   font-family: sub-title-font;
+}
+
+.agent-content-div .dashboard-content .list .student-profile .details .text .info .suspended{
+	background: var(--subactive-color);
+	color: var(--white-color);
+
+}
+
+.agent-content-div .dashboard-content .list .student-profile .details .text .info .active{
+    background: #42732c;
+	color: var(--white-color);
+}
+
+.agent-content-div .dashboard-content .list .student-profile .btn{
+    border: none;
+    height: 37px;
+    padding: 0px 20px;
+    font-family: sub-title-font;
+    background: var(--main-color);
+    color: var(--white-color);
+	font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease-in 0.2s;
+    border-radius: 5px;
+}
+
+.agent-content-div .dashboard-content .list .student-profile:hover .btn{
+    background: var(--subactive-color);
+}
+
+.agent-content-div .dashboard-content .list .student-profile:hover .details .text h3{
+    text-decoration: underline;
+}
+
+
+
+
+
+
+

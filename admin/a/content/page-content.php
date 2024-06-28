@@ -436,7 +436,7 @@
 
 
 <?php if ($page=='all_subj_class'){?>
-    <div class="alert alert-success"> <span><i class="bi-book"></i></span> DEPARTMENT / <span id="department_name" onClick="_get_page_with_id('all_class_dept','<?php echo $department_id?>');" title="click to back">xxxx</span> / <span id="class_name">xxxx</span> / SUBJECT LIST <button class="btn" onClick="_get_subject_form_with_id('add_subject_class','<?php echo $department_id?>','<?php echo $class_id?>')"><i class="bi-plus-square"></i> ADD A NEW SUBJECT</button></div>
+    <div class="alert alert-success"> <span><i class="bi-book"></i></span> DEPARTMENT / <span id="sub_department_name" onClick="_get_page_with_id('all_class_dept','<?php echo $department_id?>');" title="click to back">xxxx</span> / <span id="sub_class_name">xxxx</span> / SUBJECT LIST <button class="btn" onClick="_get_subject_form_with_id('add_subject_class','<?php echo $department_id?>','<?php echo $class_id?>')"><i class="bi-plus-square"></i> ADD A NEW SUBJECT</button></div>
        
         <div class="fetch-div animated fadeIn">	 
             <div class="fetch" id="fetch_all_class_subject">
@@ -549,33 +549,78 @@
             <script>_get_select_status('status_id','1,2');</script>
         </select>
         <!--------------------------------all search select------------------------->
-        <input id="search_txt" onkeyup="_get_fetch_all_user();" type="text" class="text_field utext" placeholder="Type here to search..." title="Type here to search" />
+        <input id="search_txt" onkeyup="" type="text" class="text_field utext" placeholder="Type here to search..." title="Type here to search" />
     </div>
 
-    <div class="alert alert-success"> <span><i class="bi-people-fill"></i></span> AGENT'S LIST</div>
+    <div class="alert alert-success"> <span><i class="bi-people-fill"></i></span> AGENT'S LIST <button class="btn" onClick="_get_form('agent_reg')"><i class="bi-plus-square"></i> ADD A NEW AGENT</button></div>
         
-        <!-- <div class="fetch-div animated fadeIn">			
-            <div class="user-div animated fadeIn" title="Click to view User Profile" onclick="_get_form_with_id('user_details')">
-                <div class="pix-div"><img src="<?php echo $website_url?>/admin/a/all-images/images/avatar.jpg" alt="Profile Image"></div>
-                <div class="detail">
-                    <div class="name-div"><div class="name">Paul Emmanuel</div><hr /><br/></div>
-                    <div class="text">ID: <span>USER1023049</span></div>
-                    <div class="text"><span>08060881905</span></div>
-                    <div class="status-div ' + status_name + '">ACTIVE</div>
+    <div class="agent-content-div">
+        <div class="dashboard-content">
+            <div class="list">
+                <div class="student-profile">
+                    <div class="details">
+                        <div class="pix"><img src="<?php echo $website_url?>/admin/a/all-images/images/MTN-Logo.PNG" alt="Profile Picture"/></div>
+                        <div class="text">
+                            <h3>MTN NG</h3>
+                            <div class="info">
+                                <div>
+                                    <p>Email: <span>customercare.ng@mtn.com</span></p>
+                                    <p>Phone: <span>08060881905</span></p>
+                                </div>                               
+                                <button class="status-btn active">ACTIVE</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn" onClick="_get_form_with_id()">VIEW DETAILS</button>
                 </div>
+
+                <div class="student-profile">
+                    <div class="details">
+                        <div class="pix"><img src="<?php echo $website_url?>/admin/a/all-images/images/orisun-logo.PNG" alt="Profile Picture"/></div>
+                        <div class="text">
+                            <h3>Orisun TV</h3>
+                            <div class="info">
+                                <div>
+                                    <p>Email: <span>orisun..ng@gmail.com</span></p>
+                                    <p>Phone: <span>08060881905</span></p>
+                                </div>                               
+                                <button class="status-btn active">ACTIVE</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn">VIEW DETAILS</button>
+                </div>
+
+                <div class="student-profile">
+                    <div class="details">
+                        <div class="pix"><img src="<?php echo $website_url?>/admin/a/all-images/images/tvc-logo.PNG" alt="Profile Picture"/></div>
+                        <div class="text">
+                            <h3>TVC</h3>
+                            <div class="info">
+                                <div>
+                                    <p>Email: <span>support@nigeria.tvcnews.tv</span></p>
+                                    <p>Phone: <span>08060881905</span></p>
+                                </div>                               
+                                <button class="status-btn active">ACTIVE</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn">VIEW DETAILS</button>
+                </div>
+               
             </div>
-        </div> 
-        <br clear="all" /> -->
-        
-     <script>
-        superplaceholder({el: search_txt,
+        </div>
+    </div>
+
+    <script>
+        superplaceholder({el: search_keywords,
             sentences: ['Type here to search...', 'Agent ID e.g Agt000765976964','Mobile number e.g 09021947874','E-mail e.g afootechglobal@gmail.com'],
             options: {
             letterDelay: 80,
             loop: true,
             startOnFocus: false
         }
-    });
+        });
     </script>
 <?php } ?>
 

@@ -447,6 +447,8 @@ $(function () {
   };
 });
 
+
+
 $(function () {
   quiz_option_d_pix_preview = {
     UpdatePreview: function (obj) {
@@ -550,14 +552,15 @@ function _get_staff_login() {
        var message = info.message;
 
       if(success==true){
-          var fetch = info.data[0];
-          var staff_id = fetch.staff_id;
-          var fullname = capitalizeFirstLetterOfEachWord(fetch.fullname);
-          var mobile = fetch.mobile;
-          var role_name = fetch.role_name;
-          var updated_time = fetch.updated_time;
-          var profile_pix = fetch.profile_pix;
-          var documentStoragePath = fetch.documentStoragePath;
+        var fetch = info.data[0];
+        var staff_id = fetch.staff_id;
+        var fullname = capitalizeFirstLetterOfEachWord(fetch.fullname);
+        var mobile = fetch.mobile;
+        var role_name = fetch.role_name;
+        var updated_time = fetch.updated_time;
+        var profile_pix = fetch.profile_pix;
+        var documentStoragePath = fetch.documentStoragePath;
+
         $("#login_user_fullname,#profile_name,#header_profile_name").html(fullname);
         $("#user_id").html(staff_id);
         $("#header_role_name").html(role_name);
@@ -594,6 +597,7 @@ function _fetchTimeCountOption(select_id, maxValue) {
 }
 
 
+
 function _get_select_status(select_id,status_id){
   var dataString = "status_id=" + status_id;
   $.ajax({
@@ -607,27 +611,28 @@ function _get_select_status(select_id,status_id){
           'Authorization': 'Bearer ' + login_access_key
       },
       success: function(info){
-          var success = info.success;
-          var message = info.message;
-          var fetch = info.data;
+        var success = info.success;
+        var message = info.message;
+        var fetch = info.data;
 
-          if (success == true) {
-              for (var i = 0; i < fetch.length; i++) {
-                var status_id = fetch[i].status_id;
-                var status_name = fetch[i].status_name;
-                $('#'+ select_id).append('<option value="'+ status_id +'">'+ status_name +'</option>');
-              }
-          }else{
-            var response = info.response;
-            if(response<100){
-              _logout();
-          }else{
-            $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
+        if (success == true) {
+          for (var i = 0; i < fetch.length; i++) {
+            var status_id = fetch[i].status_id;
+            var status_name = fetch[i].status_name;
+            $('#'+ select_id).append('<option value="'+ status_id +'">'+ status_name +'</option>');
           }
+        }else{
+          var response = info.response;
+          if(response<100){
+            _logout();
+        }else{
+          $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
         }
+      }
       }, 
   });
 }
+
 
 
 function _get_select_role(select_id,role_id) {
@@ -648,15 +653,15 @@ function _get_select_role(select_id,role_id) {
           var fetch = info.data;
 
           if (success == true) {
-              for (var i = 0; i < fetch.length; i++) {
-                var role_id = fetch[i].role_id;
-                var role_name = fetch[i].role_name;
-                $('#'+ select_id).append('<option value="'+ role_id +'">'+ role_name +'</option>');
-              }
+            for (var i = 0; i < fetch.length; i++) {
+              var role_id = fetch[i].role_id;
+              var role_name = fetch[i].role_name;
+              $('#'+ select_id).append('<option value="'+ role_id +'">'+ role_name +'</option>');
+            }
           }else{
-              var response = info.response;
-              if(response<100){
-                _logout();
+            var response = info.response;
+            if(response<100){
+              _logout();
           }else{
             $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
           }
@@ -664,6 +669,9 @@ function _get_select_role(select_id,role_id) {
       }, 
   });
 }
+
+
+
 
 
 function _get_select_week(select_id){
@@ -675,31 +683,34 @@ function _get_select_week(select_id){
       dataType: 'json',
       cache: false,
       headers: {
-          'apiKey': apiKey,
-          'Authorization': 'Bearer ' + login_access_key
+        'apiKey': apiKey,
+        'Authorization': 'Bearer ' + login_access_key
       },
       success: function(info){
-          var success = info.success;
-          var message = info.message;
-          var fetch = info.data;
+        var success = info.success;
+        var message = info.message;
+        var fetch = info.data;
 
-          if (success == true) {
-              for (var i = 0; i < fetch.length; i++) {
-                var week_id = fetch[i].week_id;
-                var week_name = fetch[i].week_name;
-                $('#'+ select_id).append('<option value="'+ week_id +'">'+ week_name +'</option>');
-              }
-            } else {
-              var response = info.response;
-              if(response<100){
-                _logout();
-              }else{
-                $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
-              }
+        if (success == true) {
+            for (var i = 0; i < fetch.length; i++) {
+              var week_id = fetch[i].week_id;
+              var week_name = fetch[i].week_name;
+              $('#'+ select_id).append('<option value="'+ week_id +'">'+ week_name +'</option>');
             }
-        }, 
+          } else {
+            var response = info.response;
+            if(response<100){
+              _logout();
+            }else{
+              $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
+            }
+          }
+      }, 
     });
 }
+
+
+
 
 
 function _get_select_term(select_id) {
@@ -738,6 +749,10 @@ function _get_select_term(select_id) {
 }
 
 
+
+
+
+
 function _get_select_department(select_id) {
   const dataString = '';
   $.ajax({
@@ -770,7 +785,7 @@ function _get_select_department(select_id) {
           }
         }
 		  }
-	  });
+	});
 }
 
 
@@ -837,10 +852,10 @@ function _fetch_select_subject(select_id) {
 						var subject_name = fetch[i].subject_name;
 						text += '<option value="' + subject_id + '">' + subject_name.toUpperCase() + '</option>';
 					}
-          } else {
-            text = '<option>' + message + '</option>';
-          }
-          $('#' + select_id).html(text);
+        } else {
+          text = '<option>' + message + '</option>';
+        }
+        $('#' + select_id).html(text);
 		  }
 	  });
 }
@@ -1176,18 +1191,19 @@ function _update_login_staff_profile() {
 
           if (success == true) {
             $('#success-div').html('<div><i class="bi-check"></i></div>' + message +"").fadeIn(500).delay(5000).fadeOut(100);
-              _get_form('my_profile');
+            _get_form('my_profile');
           } else {
             $('#updt_email').addClass('complain');
             $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div>  ERROR!<br /><span>'+ message +'</span>').fadeIn(500).delay(3000).fadeOut(100);
           }
-            $('#update_btn').html(btn_text);
-            document.getElementById('update_btn').disabled = false;        
+          $('#update_btn').html(btn_text);
+          document.getElementById('update_btn').disabled = false;        
         },
       });
     }
   }
 }
+
 
 
 
@@ -1231,17 +1247,17 @@ function _get_fetch_all_staff() {
               var documentStoragePath = fetch[i].documentStoragePath;
 
               text +=
-                '<div class="user-div animated fadeIn" title="Click to view Staff Profile" onclick="_get_form_with_id(\'staff_profile\', \'' + staff_id + '\')">' +
-                '<div class="pix-div"><img src="' + documentStoragePath + "/" + profile_pix + '"/></div>' +
-                '<div class="detail">' +
-                '<div class="name-div"><div class="name"> ' + fullname + '</div><hr /><br/></div>' +
-                '<div class="text">ID: <span>' + staff_id + '</span></div>' +
-                '<div class="text"><span>' + mobile + '</span></div>' +
-                '<div class="text"><span>' + role_name + '</span></div>' +
-                '<div class="status-div ' + status_name + '">' + status_name + '</div>' +
-                '</div>' +
-                '<br clear="all" />' +
-                '</div>';
+              '<div class="user-div animated fadeIn" title="Click to view Staff Profile" onclick="_get_form_with_id(\'staff_profile\', \'' + staff_id + '\')">' +
+              '<div class="pix-div"><img src="' + documentStoragePath + "/" + profile_pix + '"/></div>' +
+              '<div class="detail">' +
+              '<div class="name-div"><div class="name"> ' + fullname + '</div><hr /><br/></div>' +
+              '<div class="text">ID: <span>' + staff_id + '</span></div>' +
+              '<div class="text"><span>' + mobile + '</span></div>' +
+              '<div class="text"><span>' + role_name + '</span></div>' +
+              '<div class="status-div ' + status_name + '">' + status_name + '</div>' +
+              '</div>' +
+              '<br clear="all" />' +
+              '</div>';
             }
           }
           $('#fetch').html(text);
@@ -1272,7 +1288,6 @@ function _add_staff() {
   var address = $('#reg_address').val();
   var role_id = $('#reg_role_id').val();
   var status_id = $('#reg_status_id').val();
-
   $('#reg_fullname, #reg_email, #reg_mobile, #country_id, #reg_address, #reg_role_id, #reg_status_id').removeClass('complain');
 
   if (fullname == '') {
@@ -1343,7 +1358,6 @@ function _add_subject() {
   var status_id = $('#reg_status_id').val();
   var subject_pix_file = $('#thumbnail').prop('files')[0];
 
-
   $('#subject_name, #urls ,#status_id').removeClass('complain');
 
   if (subject_name == '') {
@@ -1386,14 +1400,14 @@ function _add_subject() {
           var message = info.message;
 
           if (success == true) {
-              $("#success-div").html('<div><i class="bi-check"></i></div> ' + message +"" ).fadeIn(500).delay(5000).fadeOut(100);
-              _alert_close();
-              _get_page('all_subject', 'subject');
+            $("#success-div").html('<div><i class="bi-check"></i></div> ' + message +"" ).fadeIn(500).delay(5000).fadeOut(100);
+            _alert_close();
+            _get_page('all_subject', 'subject');
           } else {
             $("#warning-div")
-              .html('<div><i class="bi-exclamation-octagon-fill"></i></div> ' + message +"").fadeIn(500) .delay(5000).fadeOut(100);
-              $("#submit_btn").html(btn_text);
-              document.getElementById("submit_btn").disabled = false;
+            .html('<div><i class="bi-exclamation-octagon-fill"></i></div> ' + message +"").fadeIn(500) .delay(5000).fadeOut(100);
+            $("#submit_btn").html(btn_text);
+            document.getElementById("submit_btn").disabled = false;
           }
         },
       });
@@ -1428,49 +1442,49 @@ function _get_fetch_all_subject(div_id2) {
         var text = '';
         if (success == true) {
             if (!fetch || (Array.isArray(fetch) && fetch.length === 0)) {                     
-                text +=
-                    '<div class="false-notification-div">' +
-                    "<p>" + message + "</p>" +
-                    '<button class="btn" onclick="_get_form(' + "'add_and_update_subject'" + ')"><i class="bi-person-plus"></i>ADD NEW SUBJECT</button>' + "</div>";
+              text +=
+              '<div class="false-notification-div">' +
+              "<p>" + message + "</p>" +
+              '<button class="btn" onclick="_get_form(' + "'add_and_update_subject'" + ')"><i class="bi-person-plus"></i>ADD NEW SUBJECT</button>' + "</div>";
             } else {
-                for (var i = 0; i < fetch.length; i++) {
-                    var subject_id = fetch[i].subject_id;
-                    var subject_name = fetch[i].subject_name.toUpperCase();
-                    var status_name = fetch[i].status_name;
-                    var thumbnail = fetch[i].thumbnail;
-                    var documentStoragePath = fetch[i].documentStoragePath;
-                    
-                    if (div_id2 == 'fetch_all_subjects') {
-                        text +=
-                            '<div class="grid-div animated fadeIn">' +
-                            '<div class="div-in">' +
-                            '<div class="image-div"><img src="' + documentStoragePath + "/" + thumbnail + '" alt="' + subject_name + '""/></div>' +
-                            '<div class="ACTIVE ' + status_name + '">' + status_name + '</div>' +
-                            '<div class="info-div">' + '<h2>' + subject_name + '</h2>' + '<hr></hr>' +
-                            '<button class="btn" title="EDIT" onclick="_get_form_with_id(' + "'update_subject'" + "," + "'" + subject_id + "'" + ')"><i class="bi-pencil-square"></i> EDIT</button>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div>';
-                    } else if (div_id2 == 'fetch_subject_checkbox') {
-                        text +=
-                            "<label>" +
-                            '<div class="radio-in-div">' +
-                            '<div class="radio"><input type="checkbox" class="child" id="' + subject_id + '" name="all_subject_id[]" data-value="' + subject_id + '"><div class="border"></div></div>' +
-                            '<span>' + subject_name + '</span>' +
-                            '</div>' +
-                            "</label>";
-                    }
-                }
+              for (var i = 0; i < fetch.length; i++) {
+                  var subject_id = fetch[i].subject_id;
+                  var subject_name = fetch[i].subject_name.toUpperCase();
+                  var status_name = fetch[i].status_name;
+                  var thumbnail = fetch[i].thumbnail;
+                  var documentStoragePath = fetch[i].documentStoragePath;
+                  
+                  if (div_id2 == 'fetch_all_subjects') {
+                    text +=
+                    '<div class="grid-div animated fadeIn">' +
+                    '<div class="div-in">' +
+                    '<div class="image-div"><img src="' + documentStoragePath + "/" + thumbnail + '" alt="' + subject_name + '""/></div>' +
+                    '<div class="ACTIVE ' + status_name + '">' + status_name + '</div>' +
+                    '<div class="info-div">' + '<h2>' + subject_name + '</h2>' + '<hr></hr>' +
+                    '<button class="btn" title="EDIT" onclick="_get_form_with_id(' + "'update_subject'" + "," + "'" + subject_id + "'" + ')"><i class="bi-pencil-square"></i> EDIT</button>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
+                  } else if (div_id2 == 'fetch_subject_checkbox') {
+                    text +=
+                    "<label>" +
+                    '<div class="radio-in-div">' +
+                    '<div class="radio"><input type="checkbox" class="child" id="' + subject_id + '" name="all_subject_id[]" data-value="' + subject_id + '"><div class="border"></div></div>' +
+                    '<span>' + subject_name + '</span>' +
+                    '</div>' +
+                    "</label>";
+                  }
+              }
             }    
           } else {
             var response = info.response;
             if (response < 100) {
               _logout();
             }             
-              text +=
-                '<div class="false-notification-div">' +
-                "<p>" + message + "</p>" +
-                '<button class="btn" onclick="_get_form(' + "'add_and_update_subject'" + ')"><i class="bi-person-plus"></i>ADD NEW SUBJECT</button>' + "</div>";
+            text +=
+            '<div class="false-notification-div">' +
+            "<p>" + message + "</p>" +
+            '<button class="btn" onclick="_get_form(' + "'add_and_update_subject'" + ')"><i class="bi-person-plus"></i>ADD NEW SUBJECT</button>' + "</div>";
           }
           $('#' + div_id2).html(text);
         },
@@ -1505,20 +1519,20 @@ function _fetch_each_subject(subject_id) {
         var thumbnail = data.thumbnail;
         var documentStoragePath = data.documentStoragePath;
      
-      $("#updt_subject_name").val(subject_name);
-      $("#updt_urls").val(urls);
-      $("#updt_status_id").append('<option value="' + status_id +'" selected="selected">' + status_name +"</option>");
-      $('#view_pix').html('<img src="'+ documentStoragePath +"/" + thumbnail +'" id="subject-pix" alt="'+ subject_name +'"/>');
-   
-    } else {
-      var response = info.response;
-      if(response<100){
-        _logout();
-      }else{
-        $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
+        $("#updt_subject_name").val(subject_name);
+        $("#updt_urls").val(urls);
+        $("#updt_status_id").append('<option value="' + status_id +'" selected="selected">' + status_name +"</option>");
+        $('#view_pix').html('<img src="'+ documentStoragePath +"/" + thumbnail +'" id="subject-pix" alt="'+ subject_name +'"/>');
+    
+      } else {
+        var response = info.response;
+        if(response<100){
+          _logout();
+        }else{
+          $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
+        }
       }
-    }
-  },
+    },
   });
 }
 
@@ -1573,13 +1587,13 @@ function _update_subject(subject_id) {
           var message = info.message;
 
           if (success == true) {
-              $("#success-div").html('<div><i class="bi-check"></i></div> ' + message +"" ).fadeIn(500).delay(5000).fadeOut(100);
-              _alert_close();
-              _get_page('all_subject', 'subject');
+            $("#success-div").html('<div><i class="bi-check"></i></div> ' + message +"" ).fadeIn(500).delay(5000).fadeOut(100);
+            _alert_close();
+            _get_page('all_subject', 'subject');
           } else {
             $("#warning-div").html('<div><i class="bi-exclamation-octagon-fill"></i></div> ' + message +"").fadeIn(500) .delay(5000).fadeOut(100);
-              $("#submit_btn").html(btn_text);
-              document.getElementById("submit_btn").disabled = false;
+            $("#submit_btn").html(btn_text);
+            document.getElementById("submit_btn").disabled = false;
           }
         },
       });
@@ -1616,10 +1630,10 @@ function _get_fetch_all_classes(div_id) {
         var text = '';
         if (success == true) {
           if (!fetch || (Array.isArray(fetch) && fetch.length === 0)) {
-              text +=
-              '<div class="false-notification-div">' +
-              "<p> " + message +" </p>" +
-              '<button class="btn" onclick="_get_form(' + "'add_classes'" +')"><i class="bi-person-plus"></i>ADD NEW CLASS</button>' +"</div>";
+            text +=
+            '<div class="false-notification-div">' +
+            "<p> " + message +" </p>" +
+            '<button class="btn" onclick="_get_form(' + "'add_classes'" +')"><i class="bi-person-plus"></i>ADD NEW CLASS</button>' +"</div>";
               
           } else {
               for (var i = 0; i < fetch.length; i++) {
@@ -1659,9 +1673,9 @@ function _get_fetch_all_classes(div_id) {
             _logout();
           }                       
           text +=
-            '<div class="false-notification-div">' +
-              "<p>" + message + "</p>" +
-            '<button class="btn" onclick="_get_form(' + "'add_classes'" +')"><i class="bi-person-plus"></i>ADD NEW CLASS</button>' +"</div>";
+          '<div class="false-notification-div">' +
+            "<p>" + message + "</p>" +
+          '<button class="btn" onclick="_get_form(' + "'add_classes'" +')"><i class="bi-person-plus"></i>ADD NEW CLASS</button>' +"</div>";
         }
         $('#' + div_id).html(text);
       },
@@ -1697,19 +1711,19 @@ function _fetch_each_class(class_id) {
         var thumbnail = data.thumbnail;
         var documentStoragePath = data.documentStoragePath;
      
-      $("#updt_class_name").val(class_name);
-      $("#updt_urls").val(urls);
-      $("#updt_status_id").append('<option value="' + status_id +'" selected="selected">' + status_name +"</option>");
-      $('#view_pix').html('<img src="'+ documentStoragePath +"/" + thumbnail +'" id="subject-pix" alt="'+ class_name +'"/>');
-    } else {
-      var response = info.response;
-      if(response<100){
-        _logout();
-      }else{
-        $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
+        $("#updt_class_name").val(class_name);
+        $("#updt_urls").val(urls);
+        $("#updt_status_id").append('<option value="' + status_id +'" selected="selected">' + status_name +"</option>");
+        $('#view_pix').html('<img src="'+ documentStoragePath +"/" + thumbnail +'" id="subject-pix" alt="'+ class_name +'"/>');
+      } else {
+        var response = info.response;
+        if(response<100){
+          _logout();
+        }else{
+          $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
+        }
       }
-    }
-  },
+    },
   });
 }
 
@@ -1764,13 +1778,13 @@ function _update_classes(class_id) {
           var message = info.message;
           
           if (success == true) {
-              $("#success-div").html('<div><i class="bi-check"></i></div> ' + message +"" ).fadeIn(500).delay(5000).fadeOut(100);
-              _alert_close();
-              _get_page('all_class', 'class');
+            $("#success-div").html('<div><i class="bi-check"></i></div> ' + message +"" ).fadeIn(500).delay(5000).fadeOut(100);
+            _alert_close();
+            _get_page('all_class', 'class');
           } else {
             $("#warning-div").html('<div><i class="bi-exclamation-octagon-fill"></i></div> ' + message +"").fadeIn(500) .delay(5000).fadeOut(100);
-              $("#submit_btn").html(btn_text);
-              document.getElementById("submit_btn").disabled = false;
+            $("#submit_btn").html(btn_text);
+            document.getElementById("submit_btn").disabled = false;
           }
         },
       });
@@ -1827,13 +1841,13 @@ function _add_classes() {
           var message = info.message;
 
           if (success == true) {
-              $("#success-div").html('<div><i class="bi-check"></i></div> ' + message +"" ).fadeIn(500).delay(5000).fadeOut(100);
-              _alert_close();
-              _get_page('all_class', 'class');
+            $("#success-div").html('<div><i class="bi-check"></i></div> ' + message +"" ).fadeIn(500).delay(5000).fadeOut(100);
+            _alert_close();
+            _get_page('all_class', 'class');
           } else {
             $("#warning-div").html('<div><i class="bi-exclamation-octagon-fill"></i></div> ' + message +"").fadeIn(500) .delay(5000).fadeOut(100);
-              $("#submit_btn").html(btn_text);
-              document.getElementById("submit_btn").disabled = false;
+            $("#submit_btn").html(btn_text);
+            document.getElementById("submit_btn").disabled = false;
           }
         },
       });
@@ -1916,8 +1930,8 @@ function _add_department() {
             _create_department_folder(department_id, department_name, urls, seo_keywords, seo_description, thumbnail, message);
           } else {
             $("#warning-div").html('<div><i class="bi-exclamation-octagon-fill"></i></div> ' + message +"").fadeIn(500) .delay(5000).fadeOut(100);
-              $("#submit_btn").html(btn_text);
-              document.getElementById("submit_btn").disabled = false;
+            $("#submit_btn").html(btn_text);
+            document.getElementById("submit_btn").disabled = false;
           }
         },
       });
@@ -1982,10 +1996,10 @@ function _get_fetch_all_department() {
         var text = '';
         if (success == true) {
           if (!fetch || (Array.isArray(fetch) && fetch.length === 0)) {
-              text +=
-              '<div class="false-notification-div">' +
-                "<p> " + message +" </p>" +
-              '<button class="btn" onclick="_get_form(' + "'dept_reg'" +')"><i class="bi-person-plus"></i>ADD NEW DEPARTMENT</button>' +"</div>";
+            text +=
+            '<div class="false-notification-div">' +
+              "<p> " + message +" </p>" +
+            '<button class="btn" onclick="_get_form(' + "'dept_reg'" +')"><i class="bi-person-plus"></i>ADD NEW DEPARTMENT</button>' +"</div>";
               
           } else {
               for (var i = 0; i < fetch.length; i++) {
@@ -1998,23 +2012,23 @@ function _get_fetch_all_department() {
               var documentStoragePath =fetch[i].documentStoragePath;
 
               text +=
-                  '<div class="record-content-div animated fadeIn">'+
-                    '<div class="div-in">'+
-                        '<div class="image-div">'+
-                            '<img src="'+ documentStoragePath +"/" + thumbnail +'" alt="'+ department_name +'""/>'+
-                        '</div>'+
+              '<div class="record-content-div animated fadeIn">'+
+                '<div class="div-in">'+
+                    '<div class="image-div">'+
+                        '<img src="'+ documentStoragePath +"/" + thumbnail +'" alt="'+ department_name +'""/>'+
+                    '</div>'+
 
-                        '<div class="text-div">'+
-                            '<h2>'+ department_name +'</h2>'+
-                            '<p>'+ seo_description +'</p>'+
-                            '<div class="count-div">'+
-                                '<div class="count-in"> STATUS: <span class="ACTIVE '+ status_name +'">' + status_name +'</span></div>'+
-                                '<button class="btn" title="EDIT" onClick="_get_form_with_id(' +"'update_dept'" +"," +"'" + department_id +"'" +');"><i class="bi-pencil-square"></i> EDIT</button>' +
-                                '<button class="btn btn2" title="Click to View Classes" onClick="_get_page_with_id(' +"'all_class_dept'" +"," +"'" + department_id +"'" +')"><i class="bi-journals"></i> Number of classes <span>'+ no_of_classes +'</span></button>'+
-                            '</div>'+
+                    '<div class="text-div">'+
+                        '<h2>'+ department_name +'</h2>'+
+                        '<p>'+ seo_description +'</p>'+
+                        '<div class="count-div">'+
+                            '<div class="count-in"> STATUS: <span class="ACTIVE '+ status_name +'">' + status_name +'</span></div>'+
+                            '<button class="btn" title="EDIT" onClick="_get_form_with_id(' +"'update_dept'" +"," +"'" + department_id +"'" +');"><i class="bi-pencil-square"></i> EDIT</button>' +
+                            '<button class="btn btn2" title="Click to View Classes" onClick="_get_page_with_id(' +"'all_class_dept'" +"," +"'" + department_id +"'" +')"><i class="bi-journals"></i> Number of classes <span>'+ no_of_classes +'</span></button>'+
                         '</div>'+
-                    '</div> '+
-                  '</div>';
+                    '</div>'+
+                '</div> '+
+              '</div>';
           }
         }
           $('#fetch_all_department').html(text);
@@ -2024,9 +2038,9 @@ function _get_fetch_all_department() {
             _logout();
           }
           text +=
-            '<div class="false-notification-div">' +
-              "<p> " + message +" </p>" +
-              '<button class="btn" onclick="_get_form(' + "'add_and_update_subject'" +')"><i class="bi-person-plus"></i>ADD NEW SUBJECT</button>' +"</div>";
+          '<div class="false-notification-div">' +
+            "<p> " + message +" </p>" +
+            '<button class="btn" onclick="_get_form(' + "'add_and_update_subject'" +')"><i class="bi-person-plus"></i>ADD NEW SUBJECT</button>' +"</div>";
           $('#fetch_all_department').html(text);
         }
       },
@@ -2062,22 +2076,22 @@ function _fetch_each_department(department_id) {
         var status_name = data.status_name;
         var thumbnail = data.thumbnail;
         var documentStoragePath =data.documentStoragePath;
-     
-      $("#updt_department_name").val(department_name);
-      $("#updt_seo_keywords").val(seo_keywords);
-      $("#updt_seo_description").val(seo_description);
-      $("#updt_urls").val(urls);
-      $("#updt_status_id").append('<option value="' + status_id +'" selected="selected">' + status_name +"</option>");
-      $('#view_pix').html('<img src="'+ documentStoragePath +"/" + thumbnail +'" id="subject-pix" alt="'+ department_name +'"/>');
-    } else {
-      var response = info.response;
-      if(response<100){
-        _logout();
-      }else{
-        $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
+    
+        $("#updt_department_name").val(department_name);
+        $("#updt_seo_keywords").val(seo_keywords);
+        $("#updt_seo_description").val(seo_description);
+        $("#updt_urls").val(urls);
+        $("#updt_status_id").append('<option value="' + status_id +'" selected="selected">' + status_name +"</option>");
+        $('#view_pix').html('<img src="'+ documentStoragePath +"/" + thumbnail +'" id="subject-pix" alt="'+ department_name +'"/>');
+      } else {
+        var response = info.response;
+        if(response<100){
+          _logout();
+        }else{
+          $('#warning-div').html('<div><i class="bi-exclamation-octagon-fill"></i></div> <span>'+ message +'</span>').fadeIn(500).delay(5000).fadeOut(100);
+        }
       }
-    }
-  },
+    },
   });
 }
 
@@ -2158,8 +2172,8 @@ function _update_department(department_id) {
               _update_department_folder(department_id, department_name, urls, db_urls, seo_keywords, seo_description, thumbnail, db_thumbnail, message);             
           } else {
             $("#warning-div").html('<div><i class="bi-exclamation-octagon-fill"></i></div> ' + message +"").fadeIn(500) .delay(5000).fadeOut(100);
-              $("#submit_btn").html(btn_text);
-              document.getElementById("submit_btn").disabled = false;
+            $("#submit_btn").html(btn_text);
+            document.getElementById("submit_btn").disabled = false;
           }
         },
       });
@@ -2229,7 +2243,7 @@ function _get_fetch_all_class_dept(department_id) {
             text +=
             '<div class="false-notification-div">' +
               "<p> " + message +" </p>" +
-            "</div>";
+            '<button class="btn" onclick="_get_form_with_id(' + "'add_class_dept'" + "," +"'" + department_id +"'" +')"><i class="bi-plus-square"></i>ADD A NEW CLASS</button>' +"</div>";
             
           } else {
             for (var i = 0; i < fetch.length; i++) {
@@ -2241,25 +2255,24 @@ function _get_fetch_all_class_dept(department_id) {
             var documentStoragePath = fetch[i].documentStoragePath;
 
           text +=
-              '<div class="record-content-div animated fadeIn">'+
-                '<div class="div-in">'+
-                    '<div class="image-div">'+
-                        '<img src="'+ documentStoragePath +"/" + thumbnail +'" alt="'+ class_name +'""/>'+
-                    '</div>'+
+          '<div class="record-content-div animated fadeIn">'+
+            '<div class="div-in">'+
+                '<div class="image-div">'+
+                    '<img src="'+ documentStoragePath +"/" + thumbnail +'" alt="'+ class_name +'""/>'+
+                '</div>'+
 
-                    '<div class="text-div">'+
-                        '<h2>'+ class_name +'</h2>'+
-                        '<p>'+ seo_description +'</p>'+
-                        '<div class="count-div">'+
-                            '<div class="count-in"></div>'+
-                            '<button class="btn btn2" title="Click to View Subjects" onClick="_get_class_page_with_id(' + "'all_subj_class'" + "," +"'" + department_id +"'"  + "," +"'" + class_id +"'" +')"><i class="bi-journals"></i> Number of subjects <span>' + no_of_subjects + '</span></button>'+
-                        '</div>'+
+                '<div class="text-div">'+
+                    '<h2>'+ class_name +'</h2>'+
+                    '<p>'+ seo_description +'</p>'+
+                    '<div class="count-div">'+
+                        '<div class="count-in"></div>'+
+                        '<button class="btn btn2" title="Click to View Subjects" onClick="_get_class_page_with_id(' + "'all_subj_class'" + "," +"'" + department_id +"'"  + "," +"'" + class_id +"'" +')"><i class="bi-journals"></i> Number of subjects <span>' + no_of_subjects + '</span></button>'+
                     '</div>'+
-                '</div> '+
-              '</div>';
+                '</div>'+
+            '</div> '+
+          '</div>';
           }
         }
-     
           $('#fetch_all_class_dept').html(text);
         } else {
           var response = info.response;
@@ -2275,6 +2288,8 @@ function _get_fetch_all_class_dept(department_id) {
       },
     });
 }
+
+
 
 function _get_fetch_form_class_dept(department_id) {
   var dataString = 'department_id=' + department_id;
@@ -2365,6 +2380,8 @@ function _add_class_dept(department_id) {
 }
 
 
+
+
 function _get_fetch_all_class_subject(department_id, class_id) {
   $('#fetch_all_class_subject').html('<div class="ajax-loader"><img src="' + website_url +'/all-images/images/ajax-loader.gif"/></div>').fadeIn("fast");
   var dataString = 'department_id=' + department_id + '&class_id=' + class_id;
@@ -2391,8 +2408,8 @@ function _get_fetch_all_class_subject(department_id, class_id) {
           if (!fetch || (Array.isArray(fetch) && fetch.length === 0)) {
             text +=
             '<div class="false-notification-div">' +
-              "<p> " + message +" </p>" +
-            "</div>";
+            "<p> " + message +" </p>" +
+            '<button class="btn" onclick="_get_subject_form_with_id(' + "'add_subject_class'" + "," +"'" + department_id +"'," +"'" + class_id +"'" +')"><i class="bi-plus-square"></i>ADD A NEW SUBJECT</button>' +"</div>";
             
           } else {
             for (var i = 0; i < fetch.length; i++) {
@@ -2418,8 +2435,8 @@ function _get_fetch_all_class_subject(department_id, class_id) {
               '</div>';
           }
         }
-          $('#department_name').html(department_name);
-          $('#class_name').html(class_name);
+          $('#sub_department_name').html(department_name);
+          $('#sub_class_name').html(class_name);
           $('#fetch_all_class_subject').html(text);
         } else {
           var response = info.response;
@@ -2439,7 +2456,6 @@ function _get_fetch_all_class_subject(department_id, class_id) {
 
 function _get_fetch_form_subject_class(department_id, class_id) {
   var dataString = 'department_id=' + department_id + '&class_id=' + class_id;
- 
     $.ajax({
       type: "POST",
       url: endPoint + '/admin/department-class-subject/fetch-subject-by-class',
@@ -2457,6 +2473,8 @@ function _get_fetch_form_subject_class(department_id, class_id) {
       },
     });
 }
+
+
 
 
 function _add_subject_class(department_id, class_id) {
@@ -2530,6 +2548,7 @@ function _add_subject_class(department_id, class_id) {
 }
 
 
+
 function _fetch_department_class_subject() {
 	var department_id = $('#department_id').val();
   var class_id = $('#class_id').val();
@@ -2547,7 +2566,7 @@ function _fetch_department_class_subject() {
     $('#department_id, #class_id').removeClass('complain');
 
 		var btn_text = $("#submit_btn").html();
-		$("#submit_btn").html('<i class="fa fa-spinner fa-spin"></i> Authenticating...');
+		$("#submit_btn").html('<i class="fa fa-spinner fa-spin"></i> Loading...');
 		document.getElementById("submit_btn").disabled = true;
   
 		var form_data = new FormData();
@@ -2574,14 +2593,16 @@ function _fetch_department_class_subject() {
 					_alert_close();
 					_get_class_page_with_id('tutorial', department_id, class_id);
         } else {
-            $("#warning-div").html('<div><i class="bi-exclamation-octagon-fill"></i></div> ' + message +" <br /><span>").fadeIn(500).delay(5000).fadeOut(100);
-            $("#submit_btn").html(btn_text);
-            document.getElementById("submit_btn").disabled = false;
+          $("#warning-div").html('<div><i class="bi-exclamation-octagon-fill"></i></div> ' + message +" <br /><span>").fadeIn(500).delay(5000).fadeOut(100);
+          $("#submit_btn").html(btn_text);
+          document.getElementById("submit_btn").disabled = false;
         }
 			},
 		});
 	}
 }
+
+
 
 
 function _get_fetch_department_class_subject(department_id, class_id) {

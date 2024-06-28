@@ -5,4 +5,4 @@
 <?php $seo_keywords='Enhance your expertise with exclusive senior-level online courses: advanced e-learning, executive education, tailored remote classes, specialized web-based';?>
 <?php $seo_description='The commercial class emphasizes the acquisition of skills and knowledge relevant to the business world';?>
 <?php $page_seo_pix='DPT004_202402070253_istockphoto-1351445530-612x612.jpg';?>
-<?php include '../class-details.php';?>
+<?php include '../department-content-details.php';?>

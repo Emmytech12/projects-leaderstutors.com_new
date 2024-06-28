@@ -1541,7 +1541,6 @@
     </div> 
 <?php }?>
 
-
 <?php if ($page=='transaction_details'){ ?>
     <div class="slide-form-div animated fadeInRight">
         <div class="fly-title-div">
@@ -2580,9 +2579,84 @@
 
 
 
+<?php if ($page=='agent_reg'){ ?>
+    <div class="slide-form-div animated fadeInRight">
+        <div class="fly-title-div">
+            <div class="in">
+                <span id="panel-title"><i class="bi-plus-square"></i> ADD A NEW AGENT</span>
+                <div class="close" title="Close" onclick="_alert_close();">X</div>
+            </div>
+        </div>
 
+        <div class="container-back-div sb-container">
+            <div class="inner-div">
+                <div class="alert">Kindly fill the form below to <span>ADD A NEW AGENT</span></div>
 
+                <div class="alert alert-success">
+                    <span>COMPANY DETAILS</span>
+                    <div class="title">COMPANY NAME: <span>*</span></div>
+                    <input id="company_name" type="text" class="text_field" placeholder="COMPANY NAME" title="COMPANY NAME" onkeyup="updateCompanyTitle()"/>
+                    <div class="title">COMPANY ADDRESS: <span>*</span></div>
+                    <input id="company_address" type="text" class="text_field" placeholder="COMPANY ADDRESS" title="COMPANY ADDRESS"/>
+                    <div class="title">COMPANY PHONE NUMBER: <span>*</span></div>
+                    <input id="reg_mobile" type="tel" class="text_field" onkeypress="isNumber_Check()" placeholder="COMPANY PHONE NUMBER" title="COMPANY PHONE NUMBER"/>
+                    <div class="title">COMPANY EMAIL ADDRESS:</div>
+                    <input id="company_email" type="text" class="text_field" placeholder="COMPANY EMAIL ADDRESS" title="COMPANY EMAIL ADDRESS"/>
 
+                    <div class="title">COMPANY LOGO: <span>*</span></div>
+                    <div class="pix-div">
+                        <label>
+                            <img id="quiz_question_pix" src="all-images/images/sample.jpg" alt="Default Image">
+                            <input type="file" id="question_pix" style="display:none" accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif" onchange="quiz_question_pix_preview.UpdatePreview(this);" />
+                        </label>
+                    </div>
+                </div>
+
+                <div class="alert alert-success">
+                    <span>CONTACT PERSON</span>
+                    <div class="title">FULLNAME: <span>*</span></div>
+                    <input id="contact_fullname" type="text" class="text_field" placeholder="FULLNAME" title="FULLNAME"/>
+                    <div class="title">EMAIL ADDRESS: <span>*</span></div>
+                    <input id="contact_email" type="text" class="text_field" placeholder="EMAIL ADDRESS" title="EMAIL ADDRESS"/>
+                    <div class="title">PHONE NUMBER: <span>*</span></div>
+                    <input id="contact_phone" type="tel" class="text_field" onkeypress="isNumber_Check()" placeholder="PHONE NUMBER" title="PHONE NUMBER"/>
+                </div>
+
+                <div class="alert alert-success">
+                    <span>COMMISSION DISTRIBUTION</span>
+                    <div class="title">LEADERS NETWORK (%):</div>
+                    <input id="leaders_network" type="text" class="text_field" placeholder="(%)" title="LEADERS NETWORK (%)"/>
+                    <div class="title" id="company_title">COMPANY NAME (%):</div>
+                    <input id="company_name_input" type="text" class="text_field" placeholder="(%)" title="COMPANY NAME (%)"/>
+                    <div class="title">LEADERS TUTOR (%):</div>
+                    <input id="leaders_tutor" type="tel" class="text_field" placeholder="(%)" title="LEADERS TUTOR (%)"/>
+                </div>
+
+                <div class="title">SELECT STATUS: <span>*</span></div>
+                <select id="reg_status_id" class="text_field selectinput" title="SELECT STATUS">
+                    <option value="" selected="selected">SELECT STATUS</option>
+                    <script>_get_select_status('reg_status_id','1,2');</script>
+                </select> 
+                <button class="action-btn" type="button" title="SUBMIT" id="submit_btn" onclick="_add_staff_HH('');"> <i class="bi-check"></i> SUBMIT </button>  
+            
+            </div>
+        </div>  
+    </div>
+
+    <script>
+        function updateCompanyTitle() {
+            const companyName = document.getElementById('company_name');              
+            const companyTitle = document.getElementById('company_title');                  
+            const defaultTitleText = "COMPANY NAME (%):";
+
+            if (companyName.value.trim() === '') {
+                companyTitle.textContent = defaultTitleText;
+            } else {
+                companyTitle.textContent = companyName.value + " (%):";
+            }
+        }
+    </script>
+<?php } ?>
 
 
 

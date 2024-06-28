@@ -18,8 +18,8 @@
         </div>
 
         <div class="nav-div" title="Department" onClick="_get_page('all_department', 'department')" id="department">
-            <div class="icon"><i class="bi-globe-europe-africa"></i></div> Department
-            <div class="hidden" id="_department"><i class="bi-globe-europe-africa"></i> Department</div>
+            <div class="icon"><i class="bi-house-up-fill"></i></div> Department
+            <div class="hidden" id="_department"><i class="bi-house-up-fill"></i> Department</div>
         </div>
 
         <div class="nav-div" title="Tutorial" onClick="_get_form('select_class_form', 'tutor')" id="tutor">
