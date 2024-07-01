@@ -6,7 +6,7 @@ function _logout(){
 $(document).ready(function() {
   window.setInterval(function(){
     get_notification_number();
-  },180000);
+  }, 3000);
 });
 
 
@@ -3372,24 +3372,28 @@ function _fetch_dashboard_alert() {
       var message = info.message;
       
       var text = '';
-        if (success == true) {
-            for (var i = 0; i < fetch.length; i++) {
-              var alert_id = fetch[i].alert_id;
-              var user_name = fetch[i].user_name;
-              var alert_detail = fetch[i].alert_detail.substr(0, 55);
-              var created_time = fetch[i].created_time;
-              
-              text +=
-              '<div class="system-alert dashboard-system-alert" id="'+ alert_id +'" onclick="_get_form_with_id(' + "'alert-read'" + "," + "'" + alert_id + "'" + ')">' +
-                '<div class="alert-name"><i class="bi-person"></i> ' + user_name + '<span id="'+ alert_id +'viewed"><i class="bi-check"></i></span></div>' +
-                '<div class="alert-text">Success Alert: ' + alert_detail + '...</div>' +
-                '<div class="alert-time"><i class="bi-clock"></i> <span>' + created_time + '</span></div>' +
-              '</div>';
-              
+      if (success == true) {
+        if (!fetch || (Array.isArray(fetch) && fetch.length === 0)) {
+          text +=
+            '<div class="false-notification-div">' +
+            "<p> " + message + " </p>" +
+            "</div>";
+        } else {
+          for (var i = 0; i < fetch.length; i++) {
+            var alert_id = fetch[i].alert_id;
+            var user_name = fetch[i].user_name;
+            var alert_detail = fetch[i].alert_detail.substr(0, 55);
+            var created_time = fetch[i].created_time;
             
+            text +=
+            '<div class="system-alert dashboard-system-alert" id="'+ alert_id +'" onclick="_get_form_with_id(' + "'alert-read'" + "," + "'" + alert_id + "'" + ')">' +
+              '<div class="alert-name"><i class="bi-person"></i> ' + user_name + '<span id="'+ alert_id +'viewed"><i class="bi-check"></i></span></div>' +
+              '<div class="alert-text">Success Alert: ' + alert_detail + '...</div>' +
+              '<div class="alert-time"><i class="bi-clock"></i> <span>' + created_time + '</span></div>' +
+            '</div>';   
+          }
         }
-        $('#fetch_dashboard_alert').html(text);
-      
+        $('#fetch_dashboard_alert').html(text);     
       } else {
         var response = info.response;
         if (response < 100) {
@@ -3410,33 +3414,37 @@ function _fetch_dashboard_alert() {
 
 function get_notification_number() {
   $.ajax({
-      type: "POST",
-      url: endPoint + '/admin/settings/fetch-dashboard-alert',
-      dataType: "json",
-      cache: false,
-      headers: {
-          'apiKey': apiKey,
-          'Authorization': 'Bearer ' + login_access_key
-      },
-      success: function(info) {
-        var success = info.success;
-        var unread_alert = info.unread_alert;
+  type: "POST",
+  url: endPoint + '/admin/settings/fetch-dashboard-alert',
+  dataType: "json",
+  cache: false,
+  headers: {
+    'apiKey': apiKey,
+    'Authorization': 'Bearer ' + login_access_key
+  },
+  success: function(info) {
+    var success = info.success;
+    var unread_alert = info.unread_alert;
 
-        if (success == true) {
-          if (unread_alert >= 100) {
-            $('.bell_notification').html('<i class="bi-bell"></i><div>99+</div>');
-          } else {
-            $('.bell_notification').html('<i class="bi-bell"></i><div>' + unread_alert + '</div>');
-          }
-        } else {
-          var response = info.response;
-          if (response < 100) {
-            _logout();
-          }
-        }
+    if (success == true) {
+      if (unread_alert === undefined || unread_alert === null) {
+        unread_alert = 0;
       }
+      if (unread_alert >= 100) {
+        $('.bell_notification').html('<i class="bi-bell"></i><div>99+</div>');
+      } else {
+        $('.bell_notification').html('<i class="bi-bell"></i><div>' + unread_alert + '</div>');
+      }
+    } else {
+      var response = info.response;
+      if (response < 100) {
+        _logout();
+      }
+    }
+  }
   });
 }
+
 
 
 
@@ -3465,7 +3473,8 @@ function _fetch_read_alert(alert_id) {
     },
     success: function (info) {
       var success = info.success;
-    
+      var message = info.message;
+
       if (success == true) {
         var data = info.data[0];
         var alert_id = data.alert_id;

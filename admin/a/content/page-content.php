@@ -38,9 +38,9 @@
                 </div>
             </div>          
 
-            <div class="statistics-div bg5" onClick="_get_page('blogs', 'blogs')" id="blogs">
+            <div class="statistics-div bg5" onClick="_get_page('active_agents', 'agents')" id="agents">
                 <div class="inner-div">
-                    Blogs  <br>
+                    Active Agents  <br>
                     <span class="number" id="total_active_blog">0</span>
                 </div>
             </div>
